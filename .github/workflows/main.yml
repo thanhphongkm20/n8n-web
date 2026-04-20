@@ -148,6 +148,7 @@ jobs:
     name: Deploy with rollback
     runs-on: self-hosted
     needs: image-scan
+    timeout-minutes: 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
