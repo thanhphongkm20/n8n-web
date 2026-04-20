@@ -1,6 +1,6 @@
 export const apps = [
   {
-    name: "server",
+    name: "n8n-server",
     script: "index.js",
     watch: false,
     log_date_format: "YYYY-MM-DD HH:mm:ss",
