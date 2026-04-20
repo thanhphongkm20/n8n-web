@@ -1,0 +1,47 @@
+# Dependency directories
+# Không copy node_modules từ máy cá nhân vào vì Docker sẽ tự cài bản Linux
+node_modules
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment variables
+# Không nên copy file .env vào image để bảo mật (ta dùng biến env từ docker-compose)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Build output (Nếu bạn có dùng build từ TypeScript/Next.js)
+dist
+build
+.next
+
+# Test results
+coverage
+.nyc_output
+
+# Editor folders
+.vscode
+.idea

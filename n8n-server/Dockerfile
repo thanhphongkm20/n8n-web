@@ -3,25 +3,29 @@ FROM node:24-slim AS builder
 WORKDIR /app
 RUN corepack enable
 
-# Copy file package trước để tận dụng cache
+# Copy file quản lý gói trước
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn ./.yarn
 RUN yarn install --immutable
 
-# COPY TOÀN BỘ CODE (Quan trọng)
+# COPY TOÀN BỘ CODE VÀO
 COPY . .
 
-# Kiểm tra thử xem code có ở đây không ngay khi build (tùy chọn để debug)
 RUN ls -la /app
 
 # Stage 2: Runtime
 FROM node:24-slim
 WORKDIR /app
+
+# Cài đặt PM2
 RUN npm install pm2 -g
 
-# Copy từ builder sang
+# Copy toàn bộ từ stage builder (bao gồm code và ecosystem.config.cjs)
 COPY --from=builder /app /app
 
 ENV NODE_ENV=production
-# Đảm bảo lệnh CMD đúng tên file
+ENV TZ=Asia/Bangkok
+EXPOSE 5000
+
+# Chắc chắn tên file này khớp với file trong project của bạn
 CMD ["pm2-runtime", "ecosystem.config.cjs"]
