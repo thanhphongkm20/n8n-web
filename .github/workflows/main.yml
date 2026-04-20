@@ -1,0 +1,293 @@
+name: 🚀 Production CI/CD (Optimized)
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+concurrency:
+  group: production-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  REGISTRY: docker.io
+  IMAGE_TAG: ${{ github.sha }}
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  # =========================
+  # 1️⃣ BACKEND CI
+  # =========================
+  backend-ci:
+    name: Backend CI
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Cache Yarn
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.yarn/cache
+            commerc-server/.yarn/cache
+          key: ${{ runner.os }}-backend-${{ hashFiles('commerc-server/yarn.lock') }}
+
+      - name: Install deps
+        run: |
+          corepack enable
+          cd commerc-server
+          yarn install --immutable
+
+      - name: Validate backend entry syntax
+        run: cd commerc-server && node --check index.js
+
+  # =========================
+  # 2️⃣ FRONTEND CI
+  # =========================
+  frontend-ci:
+    name: Frontend CI
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Cache Yarn
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.yarn/cache
+            commerc-client/.yarn/cache
+          key: ${{ runner.os }}-frontend-${{ hashFiles('commerc-client/yarn.lock') }}
+
+      - name: Install deps
+        run: |
+          corepack enable
+          cd commerc-client
+          yarn install --immutable
+
+      - name: Build
+        run: cd commerc-client && yarn build
+
+  # =========================
+  # 3️⃣ BUILD & PUSH DOCKER
+  # =========================
+  docker-build:
+    name: Build & Push
+    runs-on: ubuntu-24.04
+    needs: [backend-ci, frontend-ci]
+    strategy:
+      matrix:
+        include:
+          - name: backend
+            context: ./commerc-server
+            image: backend
+          - name: frontend
+            context: ./commerc-client
+            image: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/${{ matrix.image }}:latest
+            ${{ secrets.DOCKER_USERNAME }}/${{ matrix.image }}:${{ env.IMAGE_TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # =========================
+  # 4️⃣ SECURITY SCAN
+  # =========================
+  image-scan:
+    name: Trivy Scan
+    runs-on: ubuntu-24.04
+    needs: docker-build
+    strategy:
+      matrix:
+        image_name: [backend, frontend]
+
+    steps:
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Scan image
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$HOME/.docker:/root/.docker:ro" \
+            aquasec/trivy:0.53.0 image \
+            --severity CRITICAL,HIGH \
+            --ignore-unfixed \
+            --exit-code 0 \
+            ${{ secrets.DOCKER_USERNAME }}/${{ matrix.image_name }}:${{ env.IMAGE_TAG }}
+
+  # =========================
+  # 5️⃣ DEPLOY (WITH FIXED ENV & ROLLBACK)
+  # =========================
+  deploy:
+    name: Deploy with rollback
+    runs-on: self-hosted
+    needs: image-scan
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy with rollback
+        run: |
+          set -e
+
+          # 1. Đảm bảo thư mục app tồn tại
+          mkdir -p /home/ubuntu/app
+
+          # 2. Copy file docker-compose mới nhất từ code vừa checkout vào thư mục app
+          cp docker-compose.prod.yml /home/ubuntu/app/
+
+          # 3. Bây giờ mới nhảy vào thư mục app để làm việc
+          cd /home/ubuntu/app
+
+          # 4. Định nghĩa hàm thiết lập môi trường
+          setup_env() {
+            # Kiểm tra file .env có tồn tại không để tránh lỗi grep
+            if [ -f .env.production ]; then
+              export $(grep -v '^#' .env.production | xargs)
+              # Quan trọng: Đồng bộ tên biến nếu file .env dùng _KEY
+              export JWT_SECRET=${JWT_SECRET_KEY:-$JWT_SECRET}
+            else
+              echo "⚠️ Warning: .env.production not found!"
+            fi
+
+            export IMAGE_BACKEND="${{ secrets.DOCKER_USERNAME }}/backend"
+            export IMAGE_FRONTEND="${{ secrets.DOCKER_USERNAME }}/frontend"
+            export IMAGE_TAG="${{ env.IMAGE_TAG }}"
+          }
+
+          # Chạy thiết lập
+          setup_env
+
+          echo "Backup current version"
+          docker tag $IMAGE_BACKEND:latest backup-backend:latest || true
+          docker tag $IMAGE_FRONTEND:latest backup-frontend:latest || true
+
+          echo "Deploying version: $IMAGE_TAG"
+          # Sử dụng --env-file để chắc chắn Docker đọc được biến từ file
+          docker compose -f docker-compose.prod.yml --env-file .env.production up -d --pull always
+
+          echo "Health check (Waiting 40s for app to fully stabilize...)"
+          sleep 40
+
+          # 1. Kiểm tra trực tiếp Backend (Cổng 5000)
+          echo "Checking Backend (Port 5000)..."
+          if ! curl -sSf http://localhost:5000/health > /dev/null; then
+            echo "❌ Backend health check failed!"
+            docker compose -f docker-compose.prod.yml logs --tail=50 backend
+            if docker image inspect backup-backend:latest >/dev/null 2>&1; then
+              echo "Rolling back..."
+              setup_env
+              docker compose -f docker-compose.prod.yml down
+              docker tag backup-backend:latest $IMAGE_BACKEND:latest
+              docker tag backup-frontend:latest $IMAGE_FRONTEND:latest
+              IMAGE_TAG=latest docker compose -f docker-compose.prod.yml --env-file .env.production up -d
+            else
+              echo "⚠️ No backup images found. Keeping current containers for troubleshooting."
+              docker compose -f docker-compose.prod.yml ps
+            fi
+            exit 1
+          fi
+
+          # 2. Kiểm tra Frontend (Cổng 80)
+          echo "Checking Frontend (Port 80)..."
+          if ! curl -sSf http://localhost:80 > /dev/null; then
+            echo "❌ Frontend health check failed!"
+
+            # In log chi tiết để biết tại sao 500
+            echo "--- Backend Logs ---"
+            docker compose -f docker-compose.prod.yml logs --tail=50 backend
+            echo "--- Frontend Logs ---"
+            docker compose -f docker-compose.prod.yml logs --tail=50 frontend
+
+            if docker image inspect backup-backend:latest >/dev/null 2>&1; then
+              echo "Rolling back..."
+              setup_env
+              docker compose -f docker-compose.prod.yml down
+              docker tag backup-backend:latest $IMAGE_BACKEND:latest
+              docker tag backup-frontend:latest $IMAGE_FRONTEND:latest
+              IMAGE_TAG=latest docker compose -f docker-compose.prod.yml --env-file .env.production up -d
+            else
+              echo "⚠️ No backup images found. Keeping current containers for troubleshooting."
+              docker compose -f docker-compose.prod.yml ps
+            fi
+            exit 1
+          fi
+
+          # 3. Kiểm tra API thông qua Nginx reverse proxy
+          echo "Checking API via Nginx (/api/v1/health)..."
+          if ! curl -sSf http://localhost:80/api/v1/health > /dev/null; then
+            echo "❌ API reverse proxy health check failed!"
+
+            # In log chi tiết để biết tại sao 500
+            echo "--- Backend Logs ---"
+            docker compose -f docker-compose.prod.yml logs --tail=50 backend
+            echo "--- Frontend Logs ---"
+            docker compose -f docker-compose.prod.yml logs --tail=50 frontend
+
+            if docker image inspect backup-backend:latest >/dev/null 2>&1; then
+              echo "Rolling back..."
+              setup_env
+              docker compose -f docker-compose.prod.yml down
+              docker tag backup-backend:latest $IMAGE_BACKEND:latest
+              docker tag backup-frontend:latest $IMAGE_FRONTEND:latest
+              IMAGE_TAG=latest docker compose -f docker-compose.prod.yml --env-file .env.production up -d
+            else
+              echo "⚠️ No backup images found. Keeping current containers for troubleshooting."
+              docker compose -f docker-compose.prod.yml ps
+            fi
+            exit 1
+          fi
+
+          echo "✅ Deploy successful!"
+
+  # =========================
+  # 6️⃣ NOTIFY
+  # =========================
+  notify:
+    name: Notify
+    runs-on: self-hosted
+    needs: deploy
+    if: always()
+
+    steps:
+      - name: Send Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "🚀 Deploy Status: ${{ needs.deploy.result }}"
+          to: your@email.com
+          from: GitHub Actions
+          secure: true
+          body: |
+            Status: ${{ needs.deploy.result }}
+            Commit: ${{ github.sha }}
+            Link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}

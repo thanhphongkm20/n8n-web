@@ -1,0 +1,34 @@
+services:
+  backend:
+    image: ${IMAGE_BACKEND}:${IMAGE_TAG:-latest}
+    container_name: commerc-backend
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+      - JWT_SECRET_KEY=${JWT_SECRET}
+    networks:
+      - commerc-network
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:5000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  frontend:
+    image: ${IMAGE_FRONTEND}:${IMAGE_TAG:-latest}
+    container_name: commerc-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - commerc-network
+
+networks:
+  commerc-network:
+    driver: bridge
