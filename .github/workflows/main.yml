@@ -156,33 +156,20 @@ jobs:
       - name: Deploy with rollback
         run: |
           set -e
-
-          # 1. Đảm bảo thư mục app tồn tại
           mkdir -p /home/ubuntu/app
-
-          # 2. Copy file docker-compose mới nhất từ code vừa checkout vào thư mục app
           cp docker-compose.prod.yml /home/ubuntu/app/
-
-          # 3. Bây giờ mới nhảy vào thư mục app để làm việc
           cd /home/ubuntu/app
 
-          # 4. Định nghĩa hàm thiết lập môi trường
           setup_env() {
-            # Kiểm tra file .env có tồn tại không để tránh lỗi grep
             if [ -f .env.production ]; then
               export $(grep -v '^#' .env.production | xargs)
-              # Quan trọng: Đồng bộ tên biến nếu file .env dùng _KEY
               export JWT_SECRET=${JWT_SECRET_KEY:-$JWT_SECRET}
-            else
-              echo "⚠️ Warning: .env.production not found!"
             fi
-
             export IMAGE_BACKEND="${{ secrets.DOCKER_USERNAME }}/backend"
             export IMAGE_FRONTEND="${{ secrets.DOCKER_USERNAME }}/frontend"
             export IMAGE_TAG="${{ env.IMAGE_TAG }}"
           }
 
-          # Chạy thiết lập
           setup_env
 
           echo "Backup current version"
@@ -190,79 +177,38 @@ jobs:
           docker tag $IMAGE_FRONTEND:latest backup-frontend:latest || true
 
           echo "Deploying version: $IMAGE_TAG"
-          # Sử dụng --env-file để chắc chắn Docker đọc được biến từ file
           docker compose -f docker-compose.prod.yml --env-file .env.production up -d --pull always
 
-          echo "Health check (Waiting 40s for app to fully stabilize...)"
-          sleep 40
+          echo "Waiting for app to stabilize (30s)..."
+          sleep 30
 
-          # 1. Kiểm tra trực tiếp Backend (Cổng 5000)
-          echo "Checking Backend (Port 5000)..."
-          if ! curl -sSf http://localhost:5000/health > /dev/null; then
-            echo "❌ Backend health check failed!"
-            docker compose -f docker-compose.prod.yml logs --tail=50 backend
+          # HÀM ROLLBACK ĐỂ DÙNG CHUNG
+          rollback() {
+            echo "❌ $1"
+            setup_env
             if docker image inspect backup-backend:latest >/dev/null 2>&1; then
-              echo "Rolling back..."
-              setup_env
+              echo "Rolling back to previous version..."
               docker compose -f docker-compose.prod.yml down
               docker tag backup-backend:latest $IMAGE_BACKEND:latest
               docker tag backup-frontend:latest $IMAGE_FRONTEND:latest
               IMAGE_TAG=latest docker compose -f docker-compose.prod.yml --env-file .env.production up -d
             else
-              echo "⚠️ No backup images found. Keeping current containers for troubleshooting."
-              docker compose -f docker-compose.prod.yml ps
+              echo "⚠️ No backup found. Checking logs..."
+              docker compose -f docker-compose.prod.yml logs --tail=20
             fi
             exit 1
-          fi
+          }
 
-          # 2. Kiểm tra Frontend (Cổng 80)
-          echo "Checking Frontend (Port 80)..."
-          if ! curl -sSf http://localhost:80 > /dev/null; then
-            echo "❌ Frontend health check failed!"
-
-            # In log chi tiết để biết tại sao 500
-            echo "--- Backend Logs ---"
-            docker compose -f docker-compose.prod.yml logs --tail=50 backend
-            echo "--- Frontend Logs ---"
-            docker compose -f docker-compose.prod.yml logs --tail=50 frontend
-
-            if docker image inspect backup-backend:latest >/dev/null 2>&1; then
-              echo "Rolling back..."
-              setup_env
-              docker compose -f docker-compose.prod.yml down
-              docker tag backup-backend:latest $IMAGE_BACKEND:latest
-              docker tag backup-frontend:latest $IMAGE_FRONTEND:latest
-              IMAGE_TAG=latest docker compose -f docker-compose.prod.yml --env-file .env.production up -d
-            else
-              echo "⚠️ No backup images found. Keeping current containers for troubleshooting."
-              docker compose -f docker-compose.prod.yml ps
-            fi
-            exit 1
-          fi
-
-          # 3. Kiểm tra API thông qua Nginx reverse proxy
-          echo "Checking API via Nginx (/api/v1/health)..."
+          # 1. Kiểm tra API qua Nginx (Đây là đường dẫn quan trọng nhất)
+          echo "Checking API via Nginx (http://localhost:80/api/v1/health)..."
           if ! curl -sSf http://localhost:80/api/v1/health > /dev/null; then
-            echo "❌ API reverse proxy health check failed!"
+            rollback "API Health Check via Nginx FAILED!"
+          fi
 
-            # In log chi tiết để biết tại sao 500
-            echo "--- Backend Logs ---"
-            docker compose -f docker-compose.prod.yml logs --tail=50 backend
-            echo "--- Frontend Logs ---"
-            docker compose -f docker-compose.prod.yml logs --tail=50 frontend
-
-            if docker image inspect backup-backend:latest >/dev/null 2>&1; then
-              echo "Rolling back..."
-              setup_env
-              docker compose -f docker-compose.prod.yml down
-              docker tag backup-backend:latest $IMAGE_BACKEND:latest
-              docker tag backup-frontend:latest $IMAGE_FRONTEND:latest
-              IMAGE_TAG=latest docker compose -f docker-compose.prod.yml --env-file .env.production up -d
-            else
-              echo "⚠️ No backup images found. Keeping current containers for troubleshooting."
-              docker compose -f docker-compose.prod.yml ps
-            fi
-            exit 1
+          # 2. Kiểm tra Frontend (Trang chủ)
+          echo "Checking Frontend UI (http://localhost:80)..."
+          if ! curl -sSf http://localhost:80 > /dev/null; then
+            rollback "Frontend UI FAILED!"
           fi
 
           echo "✅ Deploy successful!"
@@ -275,7 +221,7 @@ jobs:
     runs-on: self-hosted
     needs: deploy
     if: always()
-
+    timeout-minutes: 2
     steps:
       - name: Send Email
         uses: dawidd6/action-send-mail@v3
