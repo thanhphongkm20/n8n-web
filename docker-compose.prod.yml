@@ -1,7 +1,7 @@
 services:
   backend:
     image: ${IMAGE_BACKEND}:${IMAGE_TAG:-latest}
-    container_name: commerc-backend
+    container_name: n8n-backend
     restart: always
     environment:
       - NODE_ENV=production
@@ -20,7 +20,7 @@ services:
 
   frontend:
     image: ${IMAGE_FRONTEND}:${IMAGE_TAG:-latest}
-    container_name: commerc-frontend
+    container_name: n8n-frontend
     restart: always
     ports:
       - "80:80"
