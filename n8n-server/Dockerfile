@@ -1,13 +1,25 @@
+# Stage 1: Build
 FROM node:24-slim AS builder
+WORKDIR /app
+RUN corepack enable
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn ./.yarn
+RUN yarn install --immutable
+COPY . .
 
+# Stage 2: Runtime
 FROM node:24-slim
 WORKDIR /app
-# Cài PM2 để container có lệnh này
+
+# Cài đặt PM2 toàn cục trong stage runtime
 RUN npm install pm2 -g
+
+# Copy toàn bộ từ stage builder
 COPY --from=builder /app ./
 
-# Đảm bảo copy cả file config vào
-COPY ecosystem.config.cjs ./
-
+ENV NODE_ENV=production
+ENV TZ=Asia/Bangkok
 EXPOSE 5000
+
+# SỬA LỆNH CHẠY:
 CMD ["pm2-runtime", "ecosystem.config.cjs"]

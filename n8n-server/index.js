@@ -34,7 +34,10 @@ class ServerManager {
       throw error;
     }
 
-    const bind = typeof config.port === "string" ? `Pipe ${config.port}` : `Port ${config.port}`;
+    const bind =
+      typeof config.port === "string"
+        ? `Pipe ${config.port}`
+        : `Port ${config.port}`;
 
     const errorMessages = {
       EACCES: `${bind} requires elevated privileges`,
@@ -43,7 +46,8 @@ class ServerManager {
       ECONNREFUSED: "Connection refused",
     };
 
-    const errorMessage = errorMessages[error.code] || `Unknown server error: ${error.message}`;
+    const errorMessage =
+      errorMessages[error.code] || `Unknown server error: ${error.message}`;
 
     logger.error("Server error:", { error: errorMessage, code: error.code });
     console.error(chalk.red("✗ [Server] Error:", errorMessage));
@@ -53,7 +57,8 @@ class ServerManager {
 
   static handleListening() {
     const addr = server.address();
-    const bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
+    const bind =
+      typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
 
     logger.info(`Server listening on ${bind}`);
     console.log(chalk.green(`✓ [Server] Listening on ${bind}`));
@@ -65,7 +70,7 @@ class ServerManager {
   static start() {
     return new Promise((resolve, reject) => {
       server
-        .listen(config.port)
+        .listen(config.port, "0.0.0.0")
         .on("error", (error) => {
           ServerManager.handleError(error);
           reject(error);
@@ -85,7 +90,9 @@ class ServerManager {
       server.close((err) => {
         if (err) {
           logger.error("Error during server shutdown:", err);
-          console.error(chalk.red("✗ [Server] Error during shutdown:", err.message));
+          console.error(
+            chalk.red("✗ [Server] Error during shutdown:", err.message),
+          );
         } else {
           logger.info("Server closed successfully");
           console.log(chalk.green("✓ [Server] Closed successfully"));
@@ -113,10 +120,11 @@ class Application {
 
       // Start server
       await ServerManager.start();
-
     } catch (error) {
       logger.error("Application startup failed:", error);
-      console.error(chalk.red("✗ [Application] Startup failed:", error.message));
+      console.error(
+        chalk.red("✗ [Application] Startup failed:", error.message),
+      );
       await Application.shutdown(1);
     }
   }
@@ -137,7 +145,9 @@ class Application {
       process.exit(exitCode);
     } catch (error) {
       logger.error("Error during shutdown:", error);
-      console.error(chalk.red("✗ [Application] Error during shutdown:", error.message));
+      console.error(
+        chalk.red("✗ [Application] Error during shutdown:", error.message),
+      );
       process.exit(1);
     }
   }
