@@ -1,22 +1,13 @@
 FROM node:24-slim AS builder
-
 WORKDIR /app
-
-# Bật corepack để dùng Yarn Berry/Modern nếu có
 RUN corepack enable
-
-# Chỉ copy các file cấu hình trước để tối ưu layer cache
 COPY package.json yarn.lock .yarnrc.yml ./
-# Nếu bạn có thư mục .yarn (chứa plugin/releases), hãy copy nó
+# Đảm bảo copy cả thư mục .yarn nếu có
 COPY .yarn ./.yarn
-
-# Cài đặt dependencies
 RUN yarn install --immutable
-
-# Copy toàn bộ code
 COPY . .
 
-# Stage chạy thực tế
+# --- Runtime Stage ---
 FROM node:24-slim
 WORKDIR /app
 COPY --from=builder /app ./
@@ -24,5 +15,5 @@ COPY --from=builder /app ./
 ENV NODE_ENV=production
 EXPOSE 5000
 
-# Chạy bằng node trực tiếp để nhẹ image
+# THAY ĐỔI Ở ĐÂY: Chạy bằng node thuần cho ổn định
 CMD ["node", "index.js"]
