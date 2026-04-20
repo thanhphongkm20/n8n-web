@@ -34,17 +34,17 @@ jobs:
         with:
           path: |
             ~/.yarn/cache
-            commerc-server/.yarn/cache
-          key: ${{ runner.os }}-backend-${{ hashFiles('commerc-server/yarn.lock') }}
+            n8n-server/.yarn/cache
+          key: ${{ runner.os }}-backend-${{ hashFiles('n8n-server/yarn.lock') }}
 
       - name: Install deps
         run: |
           corepack enable
-          cd commerc-server
+          cd n8n-server
           yarn install --immutable
 
       - name: Validate backend entry syntax
-        run: cd commerc-server && node --check index.js
+        run: cd n8n-server && node --check index.js
 
   # =========================
   # 2️⃣ FRONTEND CI
@@ -64,17 +64,17 @@ jobs:
         with:
           path: |
             ~/.yarn/cache
-            commerc-client/.yarn/cache
-          key: ${{ runner.os }}-frontend-${{ hashFiles('commerc-client/yarn.lock') }}
+            n8n-client/.yarn/cache
+          key: ${{ runner.os }}-frontend-${{ hashFiles('n8n-client/yarn.lock') }}
 
       - name: Install deps
         run: |
           corepack enable
-          cd commerc-client
+          cd n8n-client
           yarn install --immutable
 
       - name: Build
-        run: cd commerc-client && yarn build
+        run: cd n8n-client && yarn build
 
   # =========================
   # 3️⃣ BUILD & PUSH DOCKER
@@ -87,10 +87,10 @@ jobs:
       matrix:
         include:
           - name: backend
-            context: ./commerc-server
+            context: ./n8n-server
             image: backend
           - name: frontend
-            context: ./commerc-client
+            context: ./n8n-client
             image: frontend
 
     steps:
