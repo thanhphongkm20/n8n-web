@@ -8,5 +8,9 @@ export const USER_STATUS = {
   INACTIVE: "inactive",
 };
 
+export const USER_SEARCH_FIELDS = {
+  EMAIL: "email",
+  DISPLAY_NAME: "display_name",
+};
 
 
