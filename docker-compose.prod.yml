@@ -12,12 +12,18 @@ services:
     ports:
       - "5000:5000"
     healthcheck:
-      # Sửa lại URL cho đúng với app.js của bạn
-      test: ["CMD", "node", "-e", "fetch('http://localhost:5000/api/v1/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
-      interval: 10s
+      test: >
+        node -e "
+        const http = require('http');
+        const req = http.get('http://localhost:5000/api/v1/health', (res) => {
+          process.exit(res.statusCode === 200 ? 0 : 1);
+        });
+        req.on('error', () => process.exit(1));
+        "
+      interval: 20s
       timeout: 5s
-      retries: 5
-      start_period: 30s # Tăng lên 30s để thong thả đợi kết nối MongoDB
+      retries: 3
+      start_period: 45s
 
   frontend:
     image: ${IMAGE_FRONTEND}:${IMAGE_TAG:-latest}
@@ -27,7 +33,7 @@ services:
       - "80:80"
     depends_on:
       backend:
-        condition: service_healthy # Quan trọng: Chỉ bật Nginx khi Backend thực sự sống
+        condition: service_healthy
     networks:
       - n8n-network
 
