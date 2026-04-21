@@ -147,7 +147,8 @@ app.use((err, req, res, _next) => {
   }
 
   // Default error response
-  ApiResponse.InternalServerError(res, CONSTANTS.NODE_ENV === "production" ? "Something went wrong!" : err.message);
+  const message = CONSTANTS.NODE_ENV === "production" ? "Something went wrong!" : err.message;
+  ApiResponse.InternalServerError(res, err, message);
 });
 
 export default app;
