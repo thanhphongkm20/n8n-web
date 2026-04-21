@@ -1,12 +1,15 @@
 import { config as dotenvConfig } from "dotenv";
 
-dotenvConfig({ path: `.env.${process.env.NODE_ENV}` });
+// Default to 'development' when NODE_ENV is not set so .env.development loads during local dev
+const env = process.env.NODE_ENV || "development";
+dotenvConfig({ path: `.env.${env}` });
 
 export const CONSTANTS = {
   LOG_LEVEL: process.env.LOG_LEVEL || "info",
   USER_ROLE: ["admin", "user"],
   /* DATABASE */
-  MONGO_URI: process.env.MONGO_URI,
+  // Accept either MONGO_URI (preferred) or MONGODB_URI (common in some setups)
+  MONGO_URI: process.env.MONGO_URI || process.env.MONGODB_URI,
   /* COMMON */
   NODE_ENV: process.env.NODE_ENV,
   PORT: process.env.PORT || 5000,

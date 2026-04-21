@@ -1,0 +1,51 @@
+import { colors, darken } from "@mui/material";
+
+export const COLORS = {
+  WHITE: colors.common.white,
+  PRIMARY: "#0078CF",
+  SECONDARY: "#009F8F",
+  BLACK: "#000000",
+  BOTTOM_NAV: "#ADAAA8",
+  BORDER_SOLID: "1px solid #E7E5E4",
+  BORDER_MESSAGE: "1px solid #F3F3F6",
+  BORDER_FOCUS: "2px solid #009F8F",
+  BORDER_FOCUS_BLACK: "2px solid #000000",
+  BORDER_SAND_CARD: "#E6EEF9",
+  BORDER_SAFE_STORY: "1px solid #E0E7FF",
+  BORDER_TOP_BAR: "1px solid #E0E0E0",
+  NOTE: "#A8A29E",
+  MESSAGE: "#4F4B47",
+  MESSAGE_USER: "#86C9C3",
+  BLUE: "#004466",
+  BLUE_PAGINATION: "#06557D",
+  TABLE_HEAD_BG: "#CDD6DD",
+  TABLE_TEXT: "#004466",
+  BREADCRUMB_BORDER_ACTIVE: "#0078CF",
+  BREADCRUMB_BORDER: "#E0E0E0",
+  GREY: "#616161",
+  HOVER_MENU: darken("#FFFFFF", 0.1),
+  PDF: "#D32F2F",
+  MENU: "#707F89",
+  RED: "#F44336",
+  DOTS: "#999",
+  PLACEHOLDER: "#A8A8A8",
+};
+
+export const BG_COLORS = {
+  DEFAULT: colors.grey["100"],
+  SAND_CARD: "#F1F5FF",
+  STAR_CARD: "#3C3A3A",
+  TABLE_ROW: "#F5F6FA",
+  ARROW_RIGHT: "#CCC",
+  BREADCRUMB_BGCOLOR: "#E8F0FF",
+  BLOCK_FILE: "#F8F9FA",
+  DELETE: "#B7C0C6",
+  BUTTON_HOVER: darken("#009F8F", 0.25),
+  BG_HOVER: "rgba(0,0,0,0.04)",
+};
+
+export const COLORS_BTN = {
+  EDIT: "#DCEDF0",
+  DELETE: "#CDD6DD",
+};
+
