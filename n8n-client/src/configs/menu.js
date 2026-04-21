@@ -30,11 +30,6 @@ const menuTop = [
     mainIcon: Newspaper,
     path: ROUTES.BLOG,
   },
-  {
-    mainTitle: "Company",
-    mainIcon: Building,
-    path: ROUTES.COMPANY,
-  },
 ];
 
 const menuConfigs = {

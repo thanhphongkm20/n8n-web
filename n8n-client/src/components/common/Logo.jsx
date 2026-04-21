@@ -48,7 +48,7 @@ const Logo = () => {
           alignItems: "center"
         }}
       >
-        n8n
+        N8N
         <Box
           component="span"
           sx={{
