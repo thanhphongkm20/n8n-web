@@ -6,17 +6,19 @@ services:
     environment:
       - NODE_ENV=production
       - MONGO_URI=${MONGO_URI}
-      - JWT_SECRET_KEY=${JWT_SECRET}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    env_file:
+      - .env.production
     networks:
       - n8n-network
     ports:
       - "5000:5000"
     healthcheck:
-      test: ["CMD-SHELL", "cat < /dev/null > /dev/tcp/localhost/5000"]
-      interval: 20s
-      timeout: 5s
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:5000/api/v1/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1); }).on('error', () => process.exit(1))"]
+      interval: 30s
+      timeout: 10s
       retries: 3
-      start_period: 45s
+      start_period: 60s
 
   frontend:
     image: ${IMAGE_FRONTEND}:${IMAGE_TAG:-latest}
@@ -26,7 +28,7 @@ services:
       - "80:80"
     depends_on:
       backend:
-        condition: service_healthy
+        condition: service_started
     networks:
       - n8n-network
 
