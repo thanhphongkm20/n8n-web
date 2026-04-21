@@ -3,7 +3,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
-import session from "cookie-session";
+import expressSession from "express-session";
+// import cookieSession from "cookie-session";
 
 import { CONSTANTS } from "./src/configs/constants.js";
 import router from "./src/routes/index.js";
@@ -70,7 +71,7 @@ app.use(bodyParser.urlencoded({
 
 // Cookie and session middleware
 app.use(cookieParser(CONSTANTS.COOKIE_SECRET));
-app.use(session({
+app.use(expressSession({
   name: CONSTANTS.SESSION_NAME,
   secret: CONSTANTS.SESSION_SECRET,
   resave: false,

@@ -1,6 +1,6 @@
 import { config as dotenvConfig } from "dotenv";
 
-dotenvConfig({ path: ".env.development" });
+dotenvConfig({ path: `.env.${process.env.NODE_ENV}` });
 
 export const CONSTANTS = {
   LOG_LEVEL: process.env.LOG_LEVEL || "info",

@@ -133,3 +133,6 @@
 {"level":"error","message":"\u001b[1m  at file:///C:/AWS/n8n-web/server/src/controllers/user.controller.js:18:23\u001b[22m","service":"api","timestamp":"2026-04-20T03:43:58.885Z"}
 {"level":"error","message":"\u001b[1m  at node:internal/process/task_queues:103:5\u001b[22m","service":"api","timestamp":"2026-04-20T03:43:58.886Z"}
 {"level":"error","message":"\u001b[1m  at file:///C:/AWS/n8n-web/server/index.js:109:7\u001b[22m","service":"api","timestamp":"2026-04-20T03:43:58.886Z"}
+{"code":"EADDRINUSE","error":"Port 5000 is already in use","level":"error","message":"Server error:","service":"api","timestamp":"2026-04-21T01:22:18.997Z"}
+{"code":"EADDRINUSE","error":"Port 5000 is already in use","level":"error","message":"Server error:","service":"api","timestamp":"2026-04-21T01:23:48.815Z"}
+{"code":"EADDRINUSE","error":"Port 5000 is already in use","level":"error","message":"Server error:","service":"api","timestamp":"2026-04-21T01:23:56.263Z"}

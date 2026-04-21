@@ -15,10 +15,8 @@ yarn-error.log*
 # Environment variables
 # Không nên copy file .env vào image để bảo mật (ta dùng biến env từ docker-compose)
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.development
+.env.production
 
 # OS files
 .DS_Store
