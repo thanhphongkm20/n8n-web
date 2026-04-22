@@ -61,6 +61,7 @@ const FormPassword = ({
         type={showPassword ? "text" : "password"}
         value={form?.values?.[id] || ""}
         onChange={form?.handleChange}
+        onBlur={form?.handleBlur}
         error={form?.touched?.[id] && Boolean(form?.errors?.[id])}
         helperText={form?.touched?.[id] && form?.errors?.[id]}
         slotProps={{

@@ -14,6 +14,7 @@ import LoginPage from '../pages/auth/LoginPage.jsx';
 import UserListPage from "../pages/user/UserListPage.jsx";
 import { APP_STATE, ROLES } from "../configs/constants.js";
 import Page from "../components/common/Page.jsx";
+import RegisterPage from "../pages/auth/RegisterPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [
           { path: ROUTES.LOGIN, element: <LoginPage /> },
+          { path: ROUTES.REGISTER, element: <RegisterPage /> },
         ],
       },
       {

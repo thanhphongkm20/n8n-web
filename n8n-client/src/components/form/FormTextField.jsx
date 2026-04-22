@@ -83,6 +83,7 @@ const FormTextField = ({
           type={type}
           value={fieldValue}
           onChange={onChange ?? form?.handleChange}
+          onBlur={form?.handleBlur}
           error={isError}
           helperText={helper}
           slotProps={{

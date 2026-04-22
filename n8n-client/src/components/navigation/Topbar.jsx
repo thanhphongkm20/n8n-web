@@ -6,9 +6,11 @@ import StackRow from "../common/StackRow.jsx";
 import menuConfigs from "../../configs/menu.js";
 import { ROUTES } from "../../configs/routes.js";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Topbar = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state?.auth?.user);
   return (
     <AppBar
       position="fixed"
@@ -81,30 +83,38 @@ const Topbar = () => {
             );
           })}
         </StackRow>
-        <StackRow
-          sx={{
-            ml: "auto",
-          }}
-        >
-          <Button
-            variant="contained"
-            onClick={() => navigate(ROUTES.LOGIN)}
-            sx={{
-              bgcolor: COLORS.SECONDARY,
-              color: "white",
-              textTransform: "none",
-              fontWeight: 700,
-              borderRadius: "8px",
-              px: 4,
-              py: 1,
-              "&:hover": {
+        <StackRow sx={{ ml: "auto" }}>
+          {user ? (
+            <Box
+              sx={{
+                fontWeight: 600,
+                color: COLORS.BLACK,
+                px: 2,
+              }}
+            >
+              {user.full_name}
+            </Box>
+          ) : (
+            <Button
+              variant="contained"
+              onClick={() => navigate(ROUTES.LOGIN)}
+              sx={{
                 bgcolor: COLORS.SECONDARY,
-                opacity: 0.9,
-              },
-            }}
-          >
-            LOGIN
-          </Button>
+                color: "white",
+                textTransform: "none",
+                fontWeight: 700,
+                borderRadius: "8px",
+                px: 4,
+                py: 1,
+                "&:hover": {
+                  bgcolor: COLORS.SECONDARY,
+                  opacity: 0.9,
+                },
+              }}
+            >
+              LOGIN
+            </Button>
+          )}
         </StackRow>
       </Toolbar>
     </AppBar>

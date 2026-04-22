@@ -6,7 +6,8 @@ import { validateRequest } from "../middlewares/validate.middleware.js";
 import {
   userLoginRequest,
   userUpdateProfileRequest,
-  userUpdateRequest
+  userUpdateRequest,
+  userCreateRequest
 } from "../requests/user.request.js";
 import { objectIdSchema } from "../requests/base.request.js";
 
@@ -28,6 +29,12 @@ router.get(
   "/",
   adminTokenRequired,
   userController.list,
+);
+
+router.post(
+  "/",
+  validateRequest(userCreateRequest),
+  userController.create
 );
 
 router.get(

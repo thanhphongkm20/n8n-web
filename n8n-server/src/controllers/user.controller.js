@@ -121,8 +121,9 @@ const create = async (req, res) => {
 
     userData.salt = salt;
     userData.password = password;
-    userData.display_name = `${userData.last_name} ${userData.first_name}`;
-    userData.created_by = req.user.id;
+    userData.display_name = userData.full_name;
+    userData.created_by = req.user ? req.user.id : null;
+    userData.role = USER_ROLE.USER;
 
     const saved = await userService.create(userData);
     return ApiResponse.Created(res, saved);

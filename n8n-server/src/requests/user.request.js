@@ -14,34 +14,28 @@ export const userLoginRequest = z.object({
 
 export const userCreateRequest = z.object({
   body: z.object({
-    first_name: z.string().trim().nonempty(),
-    last_name: z.string().trim().nonempty(),
+    full_name: z.string().trim().nonempty(),
     email: z.email().nonempty(),
     password: z.string().trim().nonempty(),
     phone: z.string().trim().optional(),
-    address: z.string().trim().optional(),
     profile_image: z.string().trim().optional(),
   }),
 });
 
 export const userUpdateRequest = z.object({
   body: z.object({
-    first_name: z.string().trim().optional(),
-    last_name: z.string().trim().optional(),
+    full_name: z.string().trim().optional(),
     email: z.email().nonempty(),
     phone: z.string().trim().optional(),
-    address: z.string().trim().optional(),
     profile_image: z.string().trim().optional(),
   }),
 });
 
 export const userUpdateProfileRequest = z.object({
   body: z.object({
-    first_name: z.string().trim().optional(),
-    last_name: z.string().trim().optional(),
+    full_name: z.string().trim().optional(),
     email: z.email().nonempty(),
     phone: z.string().trim().optional(),
-    address: z.string().trim().optional(),
     profile_image: z.string().trim().optional(),
     avatar: z.string().trim().optional(),
   }),
