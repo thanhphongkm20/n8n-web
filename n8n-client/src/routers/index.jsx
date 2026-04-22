@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import { ROUTES } from "../configs/routes.js";
 
 // Layouts
-import AppLayout from '../layout/AppLayout';
+import AppLayout from '../layout/AppLayout.jsx';
 import MainLayout from '../layout/MainLayout.jsx';
-import AuthLayout from '../layout/AuthLayout';
+import AuthLayout from '../layout/AuthLayout.jsx';
 import AdminLayout from '../layout/AdminLayout.jsx';
 
 // Pages
