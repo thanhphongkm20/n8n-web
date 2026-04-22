@@ -73,6 +73,11 @@ jobs:
           cd n8n-client
           yarn install --immutable
 
+      - name: Setup Environment
+        run: |
+          cd n8n-client
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env.production
+
       - name: Build
         run: cd n8n-client && yarn build
 
