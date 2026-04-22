@@ -25,6 +25,8 @@ import userApi from '../../api/user.api';
 import { userLoginSchema } from '../../validation/user.validation.js';
 import { setUser } from "../../store/slices/user.slice";
 import useLoadingProgress from "../../hooks/useLoadingProgress.js";
+import { ArrowLeft } from "lucide-react";
+import { IconButton } from "@mui/material";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -105,6 +107,20 @@ const LoginPage = () => {
               boxShadow: "0 20px 50px rgba(15, 118, 110, 0.15), 0 5px 15px rgba(0,0,0,0.05)",
             }}
           >
+            <IconButton
+              onClick={() => navigate(ROUTES.HOME)}
+              sx={{
+                position: "absolute",
+                top: 16,
+                left: 16,
+                color: COLORS.SECONDARY,
+                "&:hover": {
+                  bgcolor: "rgba(15,118,110,0.15)",
+                },
+              }}
+            >
+              <ArrowLeft size={22} />
+            </IconButton>
             {/* Dùng component form để bắt sự kiện Enter */}
             <Box component="form" onSubmit={form.handleSubmit}>
               <StackCol gap={0}>

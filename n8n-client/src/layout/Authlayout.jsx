@@ -2,7 +2,7 @@ import { Box, Stack } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 import { BG_COLORS } from "../components/common/Colors.jsx";
-import Topbar from "../components/navigation/Topbar";
+import Topbar from "../components/navigation/Topbar.jsx";
 
 const AuthLayout = () => {
   return (

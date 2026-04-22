@@ -4,10 +4,12 @@ import {
   BookOpen,
   Newspaper,
   Building,
-  Phone
+  Phone,
+  Users
 } from "lucide-react";
 
 import { ROUTES } from "./routes";
+import { APP_STATE, ROLES } from "./constants";
 
 const menuTop = [
   {
@@ -32,8 +34,20 @@ const menuTop = [
   },
 ];
 
+const menuAdmin = [
+  {
+    mainTitle: "USER",
+    mainIcon: Users,
+    appState: APP_STATE.USER,
+    path: ROUTES.USER.LIST,
+    roles: [ROLES.ADMIN],
+  },
+];
+
+
 const menuConfigs = {
   topBar: menuTop,
+  menuAdminBar: menuAdmin,
 };
 
 export default menuConfigs;

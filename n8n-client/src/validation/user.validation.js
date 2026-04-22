@@ -29,21 +29,6 @@ export const userCreateSchema = object({
     .required(LANGUAGE.FIELD_REQUIRED(LANGUAGE.PASSWORD.PASSWORD)),
 });
 
-export const userForgotPasswordSchema = object({
-  email: string()
-    .email(LANGUAGE.FIELD_INVALID(LANGUAGE.GENERAL.EMAIL_ADDRESS))
-    .required(LANGUAGE.FIELD_REQUIRED(LANGUAGE.GENERAL.EMAIL_ADDRESS)),
-});
-
-export const userResetPasswordSchema = object({
-  new_password: string().required(
-    LANGUAGE.FIELD_REQUIRED(LANGUAGE.PASSWORD.NEW_PASSWORD),
-  ),
-  new_password_repeat: string()
-    .oneOf([ref("new_password")], LANGUAGE.PASSWORD.PASSWORD_MUST_MATCH)
-    .required(LANGUAGE.FIELD_REQUIRED(LANGUAGE.PASSWORD.PASSWORD_CONFIRM)),
-});
-
 export const userChangePasswordSchema = object({
   old_password: string().required(
     LANGUAGE.FIELD_REQUIRED(LANGUAGE.PASSWORD.OLD_PASSWORD),
@@ -54,19 +39,6 @@ export const userChangePasswordSchema = object({
   new_password_repeat: string()
     .oneOf([ref("new_password")], LANGUAGE.PASSWORD.PASSWORD_MUST_MATCH)
     .required(LANGUAGE.FIELD_REQUIRED(LANGUAGE.PASSWORD.PASSWORD_CONFIRM)),
-});
-
-export const userUpdateSchema = object({
-  email: string()
-    .email(LANGUAGE.FIELD_INVALID(LANGUAGE.USER.EMAIL))
-    .required(LANGUAGE.FIELD_REQUIRED(LANGUAGE.USER.EMAIL)),
-  first_name: string().required(
-    LANGUAGE.FIELD_REQUIRED(LANGUAGE.USER.FIRST_NAME),
-  ),
-  last_name: string().required(
-    LANGUAGE.FIELD_REQUIRED(LANGUAGE.USER.LAST_NAME),
-  ),
-  role: string().required(LANGUAGE.FIELD_REQUIRED(LANGUAGE.USER.ROLE)),
 });
 
 export const userUpdateProfileSchema = object({

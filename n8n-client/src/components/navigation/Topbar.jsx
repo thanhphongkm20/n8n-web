@@ -4,8 +4,11 @@ import { COLORS } from "../common/Colors.jsx";
 import Logo from "../common/Logo.jsx";
 import StackRow from "../common/StackRow.jsx";
 import menuConfigs from "../../configs/menu.js";
+import { ROUTES } from "../../configs/routes.js";
+import { useNavigate } from "react-router-dom";
 
 const Topbar = () => {
+  const navigate = useNavigate();
   return (
     <AppBar
       position="fixed"
@@ -78,7 +81,6 @@ const Topbar = () => {
             );
           })}
         </StackRow>
-
         <StackRow
           sx={{
             ml: "auto",
@@ -86,6 +88,7 @@ const Topbar = () => {
         >
           <Button
             variant="contained"
+            onClick={() => navigate(ROUTES.LOGIN)}
             sx={{
               bgcolor: COLORS.SECONDARY,
               color: "white",
@@ -100,7 +103,7 @@ const Topbar = () => {
               },
             }}
           >
-            Request Consultation
+            LOGIN
           </Button>
         </StackRow>
       </Toolbar>
