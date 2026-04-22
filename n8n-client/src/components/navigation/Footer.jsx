@@ -67,18 +67,17 @@ const Footer = () => {
               variant="body2"
               sx={{ color: "#94a3b8", mb: 4, lineHeight: 1.7 }}
             >
-              Nâng tầm quy trình tự động hóa của bạn với thư viện workflow
-              được thiết kế bởi các chuyên gia hàng đầu.
+              Elevate your automation processes with a workflow library designed by top experts.
             </Typography>
 
             <Typography variant="subtitle2" sx={{ mb: 1.5, fontWeight: 600 }}>
-              Đăng ký nhận workflow mới nhất
+              Subscribe to get the latest workflows
             </Typography>
 
             <Box sx={{ display: "flex", gap: 1 }}>
               <TextField
                 size="small"
-                placeholder="Email của bạn..."
+                placeholder="Your email..."
                 fullWidth
                 sx={{
                   bgcolor: "rgba(255,255,255,0.08)",
@@ -98,7 +97,6 @@ const Footer = () => {
                   },
                 }}
               />
-
               <Button
                 variant="contained"
                 sx={{
@@ -109,7 +107,7 @@ const Footer = () => {
                   px: 3,
                 }}
               >
-                Gửi
+                Subscribe
               </Button>
             </Box>
           </Box>
@@ -126,7 +124,7 @@ const Footer = () => {
             }}
           >
             <Typography variant="subtitle1" fontWeight="700" sx={{ mb: 3 }}>
-              Liên hệ & Kết nối
+              Contact & Connect
             </Typography>
 
             <Stack spacing={1.5}>

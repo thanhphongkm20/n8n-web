@@ -4,7 +4,8 @@ import { ROUTES } from "../configs/routes.js";
 // Layouts
 import AppLayout from '../layout/AppLayout';
 import MainLayout from '../layout/Mainlayout.jsx';
-// import AuthLayout from './layout/AuthLayout';
+import AuthLayout from '../layout/Authlayout';
+import LoginPage from '../pages/auth/LoginPage.jsx';
 
 // Pages
 import HomePage from "../pages/HomePage.jsx";
@@ -27,12 +28,12 @@ const router = createBrowserRouter([
           },
         ],
       },
-      // {
-      //   element: <AuthLayout />,
-      //   children: [
-      //     { path: ROUTES.LOGIN, element: <LoginPage /> },
-      //   ],
-      // },
+      {
+        element: <AuthLayout />,
+        children: [
+          { path: ROUTES.LOGIN, element: <LoginPage /> },
+        ],
+      },
     ],
   },
 ]);

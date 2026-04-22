@@ -13,9 +13,6 @@ const AuthLayout = () => {
         flexDirection: 'column',
       }}
     >
-      {/* Top Navigation Bar */}
-      <Topbar />
-
       {/* Main Content Area */}
       <Box display="flex" flex="1">
         <Box

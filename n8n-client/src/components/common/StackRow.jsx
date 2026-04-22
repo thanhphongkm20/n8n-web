@@ -7,7 +7,7 @@ const StackRow = ({
   direction = "row",
   gap = 2,
   sx = {},
-  ...props
+  ...rest
 }) => {
   return (
     <Stack
@@ -18,7 +18,7 @@ const StackRow = ({
         alignItems,
         ...sx,
       }}
-      {...props}
+      {...rest}
     >
       {children}
     </Stack>

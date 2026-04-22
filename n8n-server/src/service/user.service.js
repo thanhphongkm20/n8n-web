@@ -5,6 +5,14 @@ const save = async (user) => {
   return user;
 };
 
+const findByEmailForAuth = async (email) => {
+  return await User.findOne({ email }).select("+password +salt");
+};
+
+const findByIdForAuth = async (id) => {
+  return await User.findById(id);
+};
+
 const create = async (data) => {
   const user = new User(data);
   await user.save();
@@ -40,4 +48,6 @@ export default {
   findOne,
   list,
   findById,
+  findByEmailForAuth,
+  findByIdForAuth,
 };

@@ -26,7 +26,7 @@ const HomeMainContent = () => {
         sx={{
           background: "radial-gradient(circle at center, #1e293b 0%, #0f172a 100%)",
           color: "white",
-          minHeight: "70vh",
+          minHeight: "50vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

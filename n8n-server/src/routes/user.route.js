@@ -12,6 +12,12 @@ import { objectIdSchema } from "../requests/base.request.js";
 
 const router = express.Router();
 
+router.get(
+  "/verify-token",
+  allTokenRequired,
+  userController.verifyToken
+);
+
 router.post(
   "/login",
   validateRequest(userLoginRequest),

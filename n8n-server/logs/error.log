@@ -136,3 +136,12 @@
 {"code":"EADDRINUSE","error":"Port 5000 is already in use","level":"error","message":"Server error:","service":"api","timestamp":"2026-04-21T01:22:18.997Z"}
 {"code":"EADDRINUSE","error":"Port 5000 is already in use","level":"error","message":"Server error:","service":"api","timestamp":"2026-04-21T01:23:48.815Z"}
 {"code":"EADDRINUSE","error":"Port 5000 is already in use","level":"error","message":"Server error:","service":"api","timestamp":"2026-04-21T01:23:56.263Z"}
+{"level":"error","message":"\u001b[33m[2026-04-22 03:32:29]\u001b[39m \u001b[91mTypeError: userService.findByIdForAuth is not a function\u001b[39m","service":"api","timestamp":"2026-04-22T03:32:29.923Z"}
+{"level":"error","message":"\u001b[1m  at file:///C:/AWS/n8n-web/n8n-server/src/middlewares/auth.middleware.js:17:34\u001b[22m","service":"api","timestamp":"2026-04-22T03:32:29.924Z"}
+{"level":"error","message":"\u001b[1m  at file:///C:/AWS/n8n-web/n8n-server/src/middlewares/auth.middleware.js:30:24\u001b[22m","service":"api","timestamp":"2026-04-22T03:32:29.925Z"}
+{"level":"error","message":"\u001b[33m[2026-04-22 03:32:55]\u001b[39m \u001b[91mTypeError: userService.findByIdForAuth is not a function\u001b[39m","service":"api","timestamp":"2026-04-22T03:32:55.412Z"}
+{"level":"error","message":"\u001b[1m  at file:///C:/AWS/n8n-web/n8n-server/src/middlewares/auth.middleware.js:17:34\u001b[22m","service":"api","timestamp":"2026-04-22T03:32:55.413Z"}
+{"level":"error","message":"\u001b[1m  at file:///C:/AWS/n8n-web/n8n-server/src/middlewares/auth.middleware.js:30:24\u001b[22m","service":"api","timestamp":"2026-04-22T03:32:55.413Z"}
+{"level":"error","message":"\u001b[33m[2026-04-22 03:32:59]\u001b[39m \u001b[91mTypeError: userService.findByIdForAuth is not a function\u001b[39m","service":"api","timestamp":"2026-04-22T03:32:59.341Z"}
+{"level":"error","message":"\u001b[1m  at file:///C:/AWS/n8n-web/n8n-server/src/middlewares/auth.middleware.js:17:34\u001b[22m","service":"api","timestamp":"2026-04-22T03:32:59.342Z"}
+{"level":"error","message":"\u001b[1m  at file:///C:/AWS/n8n-web/n8n-server/src/middlewares/auth.middleware.js:30:24\u001b[22m","service":"api","timestamp":"2026-04-22T03:32:59.342Z"}
