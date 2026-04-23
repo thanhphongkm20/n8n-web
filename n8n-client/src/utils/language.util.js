@@ -13,6 +13,9 @@ const LANGUAGE = {
     FIRST_NAME: "First name",
     LAST_NAME: "Last name",
     ROLE: "Role",
+    PHONE: "Phone",
+    FULL_NAME: "Full name",
+    DISPLAY_NAME: "Display name",
   },
 
   PASSWORD: {
@@ -27,6 +30,14 @@ const LANGUAGE = {
   REGISTER: {
     FIRST_NAME: "First name",
     LAST_NAME: "Last name",
+  },
+
+  BUTTON: {
+    CONFIRM: "Confirm",
+    CANCEL: "Cancel",
+    DELETE: "Delete",
+    DEACTIVATE: "Deactivate",
+    UPDATE: "Update",
   },
 };
 

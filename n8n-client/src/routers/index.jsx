@@ -15,6 +15,7 @@ import UserListPage from "../pages/user/UserListPage.jsx";
 import { APP_STATE, ROLES } from "../configs/constants.js";
 import Page from "../components/common/Page.jsx";
 import RegisterPage from "../pages/auth/RegisterPage.jsx";
+import UserDetailPage from "../pages/user/UserDetailPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -67,19 +68,19 @@ const router = createBrowserRouter([
                   roles={[ROLES.ADMIN]}
                 />,
               },
-              // {
-              //   path: ROUTES.USER.UPDATE,
-              //   element: <Page
-              //     state={APP_STATE.USER}
-              //     element={<UserUpdatePage />}
-              //     roles={[ROLES.ADMIN, ROLES.MANAGER]}
-              //   />,
-              //   handle: {
-              //     breadcrumb: {
-              //       label: "USER UPDATE",
-              //     },
-              //   },
-              // },
+              {
+                path: ROUTES.USER.DETAIL,
+                element: <Page
+                  state={APP_STATE.USER}
+                  element={<UserDetailPage />}
+                  roles={[ROLES.ADMIN, ROLES.MANAGER]}
+                />,
+                handle: {
+                  breadcrumb: {
+                    label: "USER DETAIL",
+                  },
+                },
+              },
             ],
           },
         ],

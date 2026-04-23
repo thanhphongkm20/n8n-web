@@ -26,6 +26,16 @@ export const userCreateSchema = object({
     .required(LANGUAGE.FIELD_REQUIRED(LANGUAGE.PASSWORD.PASSWORD_CONFIRM)),
 });
 
+export const userUpdateSchema = object({
+  display_name: string().required(
+    LANGUAGE.FIELD_REQUIRED(LANGUAGE.USER.DISPLAY_NAME),
+  ),
+  phone: string().required(LANGUAGE.FIELD_REQUIRED(LANGUAGE.USER.PHONE)),
+  email: string()
+    .email(LANGUAGE.FIELD_INVALID(LANGUAGE.USER.EMAIL))
+    .required(LANGUAGE.FIELD_REQUIRED(LANGUAGE.USER.EMAIL)),
+});
+
 export const userChangePasswordSchema = object({
   old_password: string().required(
     LANGUAGE.FIELD_REQUIRED(LANGUAGE.PASSWORD.OLD_PASSWORD),

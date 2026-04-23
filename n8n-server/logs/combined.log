@@ -820,3 +820,24 @@
 {"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
 {"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
 {"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T02:03:52.594Z"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: GET /api/v1/users/69e975e99be4b3c1e02e3fd3","service":"api","timestamp":"2026-04-23T03:42:28.475Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: GET /api/v1/users/69e975e99be4b3c1e02e3fd3","service":"api","timestamp":"2026-04-23T03:43:49.432Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: GET /api/v1/users/69e975e99be4b3c1e02e3fd3","service":"api","timestamp":"2026-04-23T03:46:00.452Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: GET /api/v1/users/69e975e99be4b3c1e02e3fd3","service":"api","timestamp":"2026-04-23T03:46:08.292Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T03:53:19.033Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"api","timestamp":"2026-04-23T05:27:33.443Z"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"MongoDB reconnected successfully","service":"api","timestamp":"2026-04-23T05:27:33.449Z"}
+{"level":"info","message":"MongoDB reconnected successfully","service":"api","timestamp":"2026-04-23T06:15:25.198Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"api","timestamp":"2026-04-23T06:15:40.765Z"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"MongoDB reconnected successfully","service":"api","timestamp":"2026-04-23T06:15:51.002Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T06:19:24.629Z"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: GET /api/v1/users/69e975e99be4b3c1e02e3fd3","service":"api","timestamp":"2026-04-23T06:19:25.055Z","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T06:19:30.512Z"}

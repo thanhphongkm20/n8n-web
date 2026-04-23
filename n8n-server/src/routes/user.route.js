@@ -26,6 +26,14 @@ router.post(
 );
 
 router.get(
+  "/:id",
+  adminTokenRequired,
+  validateRequest(objectIdSchema),
+  userController.userById,
+  userController.getById
+);
+
+router.get(
   "/",
   adminTokenRequired,
   userController.list,

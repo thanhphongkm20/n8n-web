@@ -74,8 +74,8 @@ const UserListPage = () => {
     }, 500);
   };
 
-  const handleUpdate = (id) => {
-    navigate(ROUTES_GEN.userUpdate(id));
+  const handleDetail = (id) => {
+    navigate(ROUTES_GEN.userDetail(id));
   };
 
   if (isLoading) {
@@ -174,7 +174,7 @@ const UserListPage = () => {
                     <TableCell>{item.email}</TableCell>
                     <TableCell>{item.phone}</TableCell>
                     <TableCell align="right" sx={{ pr: "30px" }}>
-                      <ButtonEdit onClick={() => handleUpdate(item.id)} />
+                      <ButtonEdit onClick={() => handleDetail(item.id)} />
                     </TableCell>
                   </TableRow>
                 ))}
