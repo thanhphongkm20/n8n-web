@@ -841,3 +841,280 @@
 {"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
 {"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
 {"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T06:19:30.512Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T06:54:53.244Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T06:55:15.285Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T06:55:36.066Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T06:55:50.062Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T06:56:05.673Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:25:30.438Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:25:36.002Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:25:40.741Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:25:43.475Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:25:47.288Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:25:56.042Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:25:58.694Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:03.301Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:05.041Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:09.260Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:17.611Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:26.565Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:28.966Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:32.011Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:38.077Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:42.658Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:45.788Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:51.222Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:55.280Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:26:57.704Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:27:07.933Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:27:12.840Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:27:15.097Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:27:17.260Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:27:19.410Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:27:26.517Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:27:33.081Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:27:37.336Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:27:40.325Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:28:19.030Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:28:24.302Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:28:39.718Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:28:46.102Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:29:04.283Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:29:08.728Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:33:27.328Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:33:32.659Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:33:34.688Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:33:38.239Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:33:41.294Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:34:22.797Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:34:25.783Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:35:29.273Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:36:11.929Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:43:25.193Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:43:28.218Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:43:31.840Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:43:35.397Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:44:04.108Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:44:17.176Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:45:11.458Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:46:42.427Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:47:04.887Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:47:34.891Z"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: POST /api/users/login","service":"api","timestamp":"2026-04-23T07:49:33.894Z","userAgent":"PostmanRuntime/7.53.0"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: POST /api/users/login","service":"api","timestamp":"2026-04-23T07:50:26.746Z","userAgent":"PostmanRuntime/7.53.0"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: POST /api/users/login","service":"api","timestamp":"2026-04-23T07:50:35.794Z","userAgent":"PostmanRuntime/7.53.0"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: POST /api/users/login","service":"api","timestamp":"2026-04-23T07:50:44.593Z","userAgent":"PostmanRuntime/7.53.0"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: POST /api/users/login","service":"api","timestamp":"2026-04-23T07:53:52.123Z","userAgent":"PostmanRuntime/7.53.0"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: POST /api/articles","service":"api","timestamp":"2026-04-23T07:55:14.050Z","userAgent":"PostmanRuntime/7.53.0"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: POST /api/v1/articles","service":"api","timestamp":"2026-04-23T07:55:36.881Z","userAgent":"PostmanRuntime/7.53.0"}
+{"level":"info","message":"Received SIGINT, starting graceful shutdown","service":"api","timestamp":"2026-04-23T07:56:47.497Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T07:56:56.262Z"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: POST /api/v1/articles","service":"api","timestamp":"2026-04-23T07:57:08.046Z","userAgent":"PostmanRuntime/7.53.0"}
+{"ip":"127.0.0.1","level":"warn","message":"404 - Route not found: POST /api/articles","service":"api","timestamp":"2026-04-23T07:58:50.743Z","userAgent":"PostmanRuntime/7.53.0"}
+{"level":"info","message":"MongoDB reconnected successfully","service":"api","timestamp":"2026-04-23T08:17:12.888Z"}
+{"level":"warn","message":"MongoDB disconnected","service":"api","timestamp":"2026-04-23T08:17:23.105Z"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"MongoDB reconnected successfully","service":"api","timestamp":"2026-04-23T08:17:23.219Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:19:23.687Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:19:25.821Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:19:31.337Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:22:19.551Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:24:06.406Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:24:10.983Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:24:13.423Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:24:16.978Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:35:34.701Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:36:18.695Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:36:23.061Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:36:26.281Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:36:28.249Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-02.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:36:30.610Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:36:32.732Z"}
+{"error":"Expected ',' or '}' after property value in JSON at position 155 (line 4 column 14)","ip":"127.0.0.1","level":"error","message":"Unhandled error:","method":"POST","service":"api","stack":"SyntaxError: Expected ',' or '}' after property value in JSON at position 155 (line 4 column 14)\n    at JSON.parse (<anonymous>)\n    at parse (C:\\AWS\\n8n-web\\n8n-server\\node_modules\\body-parser\\lib\\types\\json.js:72:19)\n    at C:\\AWS\\n8n-web\\n8n-server\\node_modules\\body-parser\\lib\\read.js:162:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)\n    at invokeCallback (C:\\AWS\\n8n-web\\n8n-server\\node_modules\\raw-body\\index.js:238:16)\n    at done (C:\\AWS\\n8n-web\\n8n-server\\node_modules\\raw-body\\index.js:227:7)\n    at IncomingMessage.onEnd (C:\\AWS\\n8n-web\\n8n-server\\node_modules\\raw-body\\index.js:287:7)\n    at IncomingMessage.emit (node:events:519:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)","timestamp":"2026-04-23T08:37:53.550Z","url":"/api/v1/articles","userAgent":"PostmanRuntime/7.53.0"}
+{"level":"error","message":"\u001b[33m[2026-04-23 08:37:53]\u001b[39m \u001b[91mSyntaxError: Expected ',' or '}' after property value in JSON at position 155 (line 4 column 14)\u001b[39m","service":"api","timestamp":"2026-04-23T08:37:53.551Z"}
+{"level":"error","message":"\u001b[1m  at <anonymous>\u001b[22m","service":"api","timestamp":"2026-04-23T08:37:53.551Z"}
+{"level":"error","message":"\u001b[1m  at node:async_hooks:214:14\u001b[22m","service":"api","timestamp":"2026-04-23T08:37:53.552Z"}
+{"level":"error","message":"\u001b[1m  at node:events:519:28\u001b[22m","service":"api","timestamp":"2026-04-23T08:37:53.552Z"}
+{"level":"error","message":"\u001b[1m  at node:internal/streams/readable:1698:12\u001b[22m","service":"api","timestamp":"2026-04-23T08:37:53.552Z"}
+{"level":"error","message":"\u001b[1m  at node:internal/process/task_queues:89:21\u001b[22m","service":"api","timestamp":"2026-04-23T08:37:53.552Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:41:58.801Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:42:02.636Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-00.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T08:42:05.227Z"}
+{"error":"Expected ',' or '}' after property value in JSON at position 163 (line 4 column 20)","ip":"127.0.0.1","level":"error","message":"Unhandled error:","method":"POST","service":"api","stack":"SyntaxError: Expected ',' or '}' after property value in JSON at position 163 (line 4 column 20)\n    at JSON.parse (<anonymous>)\n    at parse (C:\\AWS\\n8n-web\\n8n-server\\node_modules\\body-parser\\lib\\types\\json.js:72:19)\n    at C:\\AWS\\n8n-web\\n8n-server\\node_modules\\body-parser\\lib\\read.js:162:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)\n    at invokeCallback (C:\\AWS\\n8n-web\\n8n-server\\node_modules\\raw-body\\index.js:238:16)\n    at done (C:\\AWS\\n8n-web\\n8n-server\\node_modules\\raw-body\\index.js:227:7)\n    at IncomingMessage.onEnd (C:\\AWS\\n8n-web\\n8n-server\\node_modules\\raw-body\\index.js:287:7)\n    at IncomingMessage.emit (node:events:519:28)\n    at endReadableNT (node:internal/streams/readable:1698:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)","timestamp":"2026-04-23T08:42:34.553Z","url":"/api/v1/articles","userAgent":"PostmanRuntime/7.53.0"}
+{"level":"error","message":"\u001b[33m[2026-04-23 08:42:34]\u001b[39m \u001b[91mSyntaxError: Expected ',' or '}' after property value in JSON at position 163 (line 4 column 20)\u001b[39m","service":"api","timestamp":"2026-04-23T08:42:34.554Z"}
+{"level":"error","message":"\u001b[1m  at <anonymous>\u001b[22m","service":"api","timestamp":"2026-04-23T08:42:34.554Z"}
+{"level":"error","message":"\u001b[1m  at node:async_hooks:214:14\u001b[22m","service":"api","timestamp":"2026-04-23T08:42:34.555Z"}
+{"level":"error","message":"\u001b[1m  at node:events:519:28\u001b[22m","service":"api","timestamp":"2026-04-23T08:42:34.555Z"}
+{"level":"error","message":"\u001b[1m  at node:internal/streams/readable:1698:12\u001b[22m","service":"api","timestamp":"2026-04-23T08:42:34.555Z"}
+{"level":"error","message":"\u001b[1m  at node:internal/process/task_queues:89:21\u001b[22m","service":"api","timestamp":"2026-04-23T08:42:34.555Z"}
