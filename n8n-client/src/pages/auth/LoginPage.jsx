@@ -68,6 +68,8 @@ const LoginPage = () => {
           }),
         );
 
+        localStorage.setItem("access_token", response.access_token);
+
         const role = response.user.role;
         if (isAdminOrManager(role)) {
           navigate(ROUTES.USER.LIST);

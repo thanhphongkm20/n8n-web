@@ -14,8 +14,23 @@ const findByIdForAuth = async (id) => {
 };
 
 const create = async (data) => {
+  const { email, phone } = data;
+
+  // 👉 check email
+  const existEmail = await User.findOne({ email });
+  if (existEmail) {
+    throw new Error("EMAIL_EXISTS");
+  }
+
+  // 👉 check phone
+  const existPhone = await User.findOne({ phone });
+  if (existPhone) {
+    throw new Error("PHONE_EXISTS");
+  }
+
   const user = new User(data);
   await user.save();
+
   return User.findById(user._id);
 };
 

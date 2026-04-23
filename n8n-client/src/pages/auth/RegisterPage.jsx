@@ -42,6 +42,9 @@ const RegisterPage = ({ onSuccess }) => {
       try {
         await userApi.create(values);
         toast.success("Tạo tài khoản thành công!");
+        setTimeout(() => {
+          navigate(ROUTES.LOGIN);
+        }, 800);
         if (onSuccess) {
           onSuccess();
         }

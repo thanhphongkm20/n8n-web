@@ -111,9 +111,14 @@ const create = async (req, res) => {
   try {
     const userData = req.validatedBody;
 
-    const existingUser = await userService.findOne({ email: userData.email });
-    if (existingUser) {
+    const existingEmail = await userService.findOne({ email: userData.email });
+    if (existingEmail) {
       return ApiResponse.BadRequest(res, messageUser.USER_EXISTED_WITH_EMAIL);
+    }
+
+    const existingPhone = await userService.findOne({ phone: userData.phone });
+    if (existingPhone) {
+      return ApiResponse.BadRequest(res, "PHONE_EXISTED");
     }
 
     const salt = generateRandomSalt();

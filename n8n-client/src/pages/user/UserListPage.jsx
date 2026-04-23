@@ -86,7 +86,7 @@ const UserListPage = () => {
     <Box sx={{ width: "100%", py: 4 }}>
       <Box
         sx={{
-          width: "90%",
+          width: "100%",
           maxWidth: "1200px",
           mx: "auto",
           display: "flex",
@@ -113,7 +113,14 @@ const UserListPage = () => {
         >
           <Table sx={{ minWidth: 850 }}>
             <TableHead>
-              <TableRow sx={{ bgcolor: "#f8f9fa" }}>
+              <TableRow
+                sx={{
+                  bgcolor: "#f8f9fa",
+                  "& th": {
+                    borderBottom: "1px solid #e0e0e0"
+                  }
+                }}
+              >
                 <TableCell
                   fontSize={{ xs: 14, md: 16 }}
                   sx={{
@@ -121,7 +128,6 @@ const UserListPage = () => {
                     whiteSpace: "nowrap",
                     color: COLORS.BLUE,
                     pl: "30px",
-                    width: "25%",
                     position: "sticky",
                     top: 0,
                     zIndex: 10,
@@ -136,7 +142,6 @@ const UserListPage = () => {
                     whiteSpace: "normal",
                     color: COLORS.BLUE,
                     pl: 1,
-                    width: "29%",
                     position: "sticky",
                     top: 0,
                     zIndex: 10,
@@ -151,7 +156,6 @@ const UserListPage = () => {
                     whiteSpace: "normal",
                     color: COLORS.BLUE,
                     pl: 1,
-                    width: "29%",
                     position: "sticky",
                     top: 0,
                     zIndex: 10,
@@ -159,6 +163,7 @@ const UserListPage = () => {
                 >
                   PHONE
                 </TableCell>
+                <TableCell sx={{ width: 80 }} />
               </TableRow>
             </TableHead>
             <TableBody>

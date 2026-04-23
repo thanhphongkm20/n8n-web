@@ -7,11 +7,14 @@ const UserSchema = BaseSchema({
   first_name: String,
   last_name: String,
   display_name: String,
-  phone: String,
+  phone: {
+    type: String,
+    unique: true,
+  },
   email: {
     type: String,
     required: true,
-    index: true,
+    unique: true,
   },
   password: { type: String, select: false },
   salt: { type: String, select: false },

@@ -1,16 +1,29 @@
-import { AppBar, Toolbar, Button, Box, Link } from "@mui/material";
-import Animate from "../common/Animate.jsx";
-import { COLORS } from "../common/Colors.jsx";
-import Logo from "../common/Logo.jsx";
-import StackRow from "../common/StackRow.jsx";
-import menuConfigs from "../../configs/menu.js";
-import { ROUTES } from "../../configs/routes.js";
+import { AppBar, Toolbar, Button, Box, Link, Avatar } from "@mui/material";
+import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+
+import { COLORS } from "../common/Colors.jsx";
+import { ROUTES } from "../../configs/routes.js";
+import Animate from "../common/Animate.jsx";
+import Logo from "../common/Logo.jsx";
+import menuConfigs from "../../configs/menu.js";
+import MenuUser from "../menu/MenuUser";
+import StackRow from "../common/StackRow.jsx";
 
 const Topbar = () => {
   const navigate = useNavigate();
-  const user = useSelector((state) => state?.auth?.user);
+  const user = useSelector((state) => state?.user?.user);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleOpenMenu = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
   return (
     <AppBar
       position="fixed"
@@ -85,32 +98,71 @@ const Topbar = () => {
         </StackRow>
         <StackRow sx={{ ml: "auto" }}>
           {user ? (
-            <Box
-              sx={{
-                fontWeight: 600,
-                color: COLORS.BLACK,
-                px: 2,
-              }}
-            >
-              {user.full_name}
-            </Box>
+            <>
+              <Box
+                onClick={handleOpenMenu}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1.2,
+                  cursor: "pointer",
+                  px: 1.5,
+                  py: 0.6,
+                  borderRadius: "999px",
+                  transition: "all 0.2s ease",
+
+                  "&:hover": {
+                    bgcolor: "rgba(0,0,0,0.04)",
+                  },
+                }}
+              >
+                <Avatar
+                  sx={{
+                    width: 30,
+                    height: 30,
+                    bgcolor: COLORS.SECONDARY,
+                    fontSize: 14,
+                  }}
+                >
+                  {user.display_name?.charAt(0).toUpperCase()}
+                </Avatar>
+
+                <Box
+                  sx={{
+                    fontWeight: 500,
+                    color: "#0f172a",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  {user.display_name}
+                </Box>
+
+                <ChevronDown
+                  size={14}
+                  style={{
+                    color: "#94a3b8",
+                    transition: "0.2s",
+                    transform: anchorEl ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </Box>
+              <MenuUser
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleCloseMenu}
+                onLogout={() => {
+                  localStorage.removeItem("access_token");
+                  window.location.reload();
+                }}
+              />
+            </>
           ) : (
             <Button
               variant="contained"
-              onClick={() => navigate(ROUTES.LOGIN)}
               sx={{
                 bgcolor: COLORS.SECONDARY,
-                color: "white",
-                textTransform: "none",
-                fontWeight: 700,
-                borderRadius: "8px",
-                px: 4,
-                py: 1,
-                "&:hover": {
-                  bgcolor: COLORS.SECONDARY,
-                  opacity: 0.9,
-                },
               }}
+              onClick={() => navigate(ROUTES.LOGIN)}
             >
               LOGIN
             </Button>
