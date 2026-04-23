@@ -1118,3 +1118,7 @@
 {"level":"error","message":"\u001b[1m  at node:events:519:28\u001b[22m","service":"api","timestamp":"2026-04-23T08:42:34.555Z"}
 {"level":"error","message":"\u001b[1m  at node:internal/streams/readable:1698:12\u001b[22m","service":"api","timestamp":"2026-04-23T08:42:34.555Z"}
 {"level":"error","message":"\u001b[1m  at node:internal/process/task_queues:89:21\u001b[22m","service":"api","timestamp":"2026-04-23T08:42:34.555Z"}
+{"level":"info","message":"Received SIGINT, starting graceful shutdown","service":"api","timestamp":"2026-04-23T09:05:53.737Z"}
+{"attempt":1,"level":"info","maxRetries":5,"message":"Attempting to connect to MongoDB...","service":"api","timestamp":"2025-06-22 03:49:56"}
+{"host":"ac-gc0ygai-shard-00-01.ehcg02t.mongodb.net","level":"info","message":"MongoDB connected successfully","name":"test","port":27017,"service":"api","timestamp":"2025-06-22 03:49:56"}
+{"level":"info","message":"Server listening on port 5000","service":"api","timestamp":"2026-04-23T09:05:58.737Z"}

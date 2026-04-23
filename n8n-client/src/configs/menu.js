@@ -5,7 +5,7 @@ import {
   Newspaper,
   Building,
   Phone,
-  Users
+  Users,
 } from "lucide-react";
 
 import { ROUTES } from "./routes";
@@ -42,8 +42,14 @@ const menuAdmin = [
     path: ROUTES.USER.LIST,
     roles: [ROLES.ADMIN],
   },
+  {
+    mainTitle: "ARTICLE",
+    mainIcon: BookOpen,
+    appState: APP_STATE.ARTICLE,
+    path: ROUTES.ARTICLE.LIST,
+    roles: [ROLES.ADMIN],
+  },
 ];
-
 
 const menuConfigs = {
   topBar: menuTop,

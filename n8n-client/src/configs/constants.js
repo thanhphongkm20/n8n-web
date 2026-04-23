@@ -4,6 +4,7 @@ export const API_URL =
 export const APP_STATE = {
   HOME: "HOME",
   USER: "USER",
+  ARTICLE: "ARTICLE",
 };
 
 export const ROLES = {

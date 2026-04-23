@@ -16,6 +16,7 @@ import { APP_STATE, ROLES } from "../configs/constants.js";
 import Page from "../components/common/Page.jsx";
 import RegisterPage from "../pages/auth/RegisterPage.jsx";
 import UserDetailPage from "../pages/user/UserDetailPage.jsx";
+import ArticleListPage from "../pages/article/ArticleListPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,38 @@ const router = createBrowserRouter([
                   },
                 },
               },
+            ],
+          },
+          {
+            path: ROUTES.ARTICLE.LIST,
+            handle: {
+              breadcrumb: {
+                label: "ARTICLE LIST",
+                path: ROUTES.ARTICLE.LIST,
+              },
+            },
+            children: [
+              {
+                index: true,
+                element: <Page
+                  state={APP_STATE.ARTICLE}
+                  element={<ArticleListPage />}
+                  roles={[ROLES.ADMIN]}
+                />,
+              },
+              // {
+              //   path: ROUTES.ARTICLE.DETAIL,
+              //   element: <Page
+              //     state={APP_STATE.ARTICLE}
+              //     element={<UserDetailPage />}
+              //     roles={[ROLES.ADMIN, ROLES.MANAGER]}
+              //   />,
+              //   handle: {
+              //     breadcrumb: {
+              //       label: "ARTICLE DETAIL",
+              //     },
+              //   },
+              // },
             ],
           },
         ],

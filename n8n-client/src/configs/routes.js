@@ -6,6 +6,12 @@ export const ROUTES = {
     LIST: "/users",
     DETAIL: "/users/:id",
   },
+  ARTICLE: {
+    LIST: "/articles",
+    CREATE: "/articles/create",
+    UPDATE: "/articles/:id",
+  },
+
   CUSTOM_BUILT: "/custom-built",
   RESOURCES: "/resources",
   BLOG: "/blog",
@@ -20,4 +26,5 @@ export const ROUTES = {
 
 export const ROUTES_GEN = {
   userDetail: (id) => `/users/${id}`,
+  articleUpdate: (id) => `/articles/${id}/update`,
 };
