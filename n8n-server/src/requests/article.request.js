@@ -1,29 +1,25 @@
-import Joi from "joi";
+import { z } from "zod";
 
-export const createArticleSchema = Joi.object({
-  title: Joi.string().trim().min(3).max(255).required(),
+export const createArticleSchema = z.object({
+  title: z.string().trim().min(3).max(255),
 
-  description: Joi.string().required(),
+  description: z.string(),
 
-  price: Joi.number().min(0).required(),
+  price: z.coerce.number().min(0),
 
-  image: Joi.string().uri().allow("", null),
+  image: z.union([z.string().url(), z.literal(""), z.null()]).optional(),
 
-  status: Joi.string().valid("draft", "published"),
-
-  slug: Joi.string().optional(),
+  status: z.enum(["draft", "published"]).default("draft"),
 });
 
-export const updateArticleSchema = Joi.object({
-  title: Joi.string().trim().min(3).max(255),
+export const updateArticleSchema = z.object({
+  title: z.string().trim().min(3).max(255).optional(),
 
-  description: Joi.string(),
+  description: z.string().optional(),
 
-  price: Joi.number().min(0),
+  price: z.coerce.number().min(0).optional(),
 
-  image: Joi.string().uri().allow("", null),
+  image: z.union([z.string().url(), z.literal(""), z.null()]).optional(),
 
-  status: Joi.string().valid("draft", "published"),
-
-  slug: Joi.string(),
+  status: z.enum(["draft", "published"]).default("draft"),
 });

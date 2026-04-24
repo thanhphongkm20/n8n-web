@@ -1,17 +1,17 @@
-import { ApiResponse } from "./../configs/response.js";
-
 export const validateRequest = (schema) => (req, res, next) => {
-  const { error, value } = schema.validate(req.body, {
-    abortEarly: true,
-    allowUnknown: true,
-    stripUnknown: true,
+  const result = schema.safeParse({
+    body: req.body,
+    params: req.params,
+    query: req.query,
   });
 
-  if (error) {
+  if (!result.success) {
+    const firstError =
+      result.error.issues?.[0]?.message || "Invalid request";
 
-    const firstError = error.details[0].message.replace(/[\\"]/g, "");
     return ApiResponse.BadRequest(res, firstError);
   }
-  req.validatedBody = value;
+
+  req.validated = result.data; // 🔥 đổi tên
   next();
 };

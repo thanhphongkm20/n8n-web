@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Paper,
   Table,
   TableBody,
@@ -12,11 +13,11 @@ import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ButtonEdit } from "../../components/common/ButtonEdit";
-import { COLORS } from "../../components/common/Colors";
+import { BG_COLORS, COLORS } from "../../components/common/Colors";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import StackRow from "../../components/common/StackRow";
 import CustomPagination from "../../components/pagination/CustomPagination";
-import { ROUTES_GEN } from '../../configs/routes';
+import { ROUTES, ROUTES_GEN } from '../../configs/routes';
 import { LoadingPage } from "../bases/LoadingPage";
 import articleApi from "../../api/article.api";
 
@@ -56,6 +57,22 @@ const ArticleListPage = () => {
     setSearchParams({ page: value });
   };
 
+  const handleCreate = async () => {
+    try {
+      const payload = {
+        date: new Date().toISOString(),
+        blocks: [],
+        status: "draft"
+      };
+      const article = await articleApi.create(payload);
+
+      if (article?.id) return navigate(`${ROUTES.ARTICLE.CREATE}?id=${article.id}`);
+    } catch (error) {
+      toast.error(error?.message);
+    }
+    navigate(ROUTES.ARTICLE.CREATE);
+  };
+
   const handleDetail = (id) => {
     navigate(ROUTES_GEN.articleUpdate(id));
   };
@@ -68,6 +85,13 @@ const ArticleListPage = () => {
 
         <StackRow justifyContent="space-between" alignItems="center">
           <RouteBreadcrumbs />
+          <BaseButton
+            title="CREATE"
+            width={150}
+            icon={<Plus size={20} />}
+            onClick={handleCreate}
+            sx={{ "&:hover": { bgcolor: BG_COLORS.BUTTON_HOVER } }}
+          />
         </StackRow>
 
         <TableContainer
@@ -78,7 +102,6 @@ const ArticleListPage = () => {
             bgcolor: COLORS.WHITE,
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.05)",
             overflow: "hidden",
-            // Giữ bảng cố định, chỉ làm mờ nhẹ nội dung khi đang load lại trang
             opacity: isLoadingTable ? 0.7 : 1,
             transition: "opacity 0.2s"
           }}

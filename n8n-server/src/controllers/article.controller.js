@@ -1,12 +1,33 @@
+import slugify from "slugify";
+import Article from "../models/article.model.js";
 import * as service from "../service/article.service.js";
 
 export const create = async (req, res) => {
   try {
-    const payload = req.validatedBody || req.body;
-    const data = await service.createArticle(payload, req.user._id);
-    res.json({ success: true, data });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const data = req.validatedBody; // ✅ dùng data đã validate
+
+    // 🔥 1. generate slug
+    let baseSlug = slugify(data.title, { lower: true, strict: true });
+    let slug = baseSlug;
+    let count = 1;
+
+    // 🔥 2. check trùng slug
+    while (await Article.findOne({ slug })) {
+      slug = `${baseSlug}-${count++}`;
+    }
+
+    data.slug = slug;
+
+    // 🔥 3. thêm user tạo
+    const article = await Article.create({
+      ...data,
+      created_by: req.user.id,
+      updated_by: req.user.id,
+    });
+
+    return res.status(201).json(article);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
 };
 

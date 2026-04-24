@@ -1720,6 +1720,7 @@ __metadata:
     lodash: "npm:^4.18.1"
     mongoose: "npm:^9.4.1"
     nodemon: "npm:^3.1.14"
+    slugify: "npm:^1.6.9"
     winston: "npm:^3.19.0"
     zod: "npm:^4.3.6"
   languageName: unknown
@@ -1793,6 +1794,13 @@ __metadata:
   dependencies:
     semver: "npm:^7.5.3"
   checksum: 10c0/2a00bd03bfbcbf8a737c47ab230d7920f8bfb92d1159d421bdd194479f6d01ebc995d13fbe13d45dace23066a78a3dc6642999b4e3b38b847e6664191575b20c
+  languageName: node
+  linkType: hard
+
+"slugify@npm:^1.6.9":
+  version: 1.6.9
+  resolution: "slugify@npm:1.6.9"
+  checksum: 10c0/8473c566ae00c5db26bfbf6182a4a9478ab3c912a9c926e1fdb410736a77228bfca4fdc5c755b46fafa7d2d9900de482fd7a9bd5e5c91128c4743c2c072d88da
   languageName: node
   linkType: hard
 
