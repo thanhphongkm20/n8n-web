@@ -39,6 +39,10 @@ const LANGUAGE = {
     DEACTIVATE: "Deactivate",
     UPDATE: "Update",
   },
+
+  ARTICLE: {
+    ARTICLE_TITLE: "Article title",
+  },
 };
 
 export default LANGUAGE;

@@ -29,6 +29,7 @@ export const COLORS = {
   RED: "#F44336",
   DOTS: "#999",
   PLACEHOLDER: "#A8A8A8",
+  BACKGROUND_GRAY: "#f4f6f8",
 };
 
 export const BG_COLORS = {

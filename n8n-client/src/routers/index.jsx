@@ -15,8 +15,9 @@ import UserListPage from "../pages/user/UserListPage.jsx";
 import { APP_STATE, ROLES } from "../configs/constants.js";
 import Page from "../components/common/Page.jsx";
 import RegisterPage from "../pages/auth/RegisterPage.jsx";
-import UserDetailPage from "../pages/user/UserDetailPage.jsx";
+import UserUpdatePage from "../pages/user/UserUpdatePage.jsx";
 import ArticleListPage from "../pages/article/ArticleListPage.jsx";
+import ArticleCreatePage from "../pages/article/ArticleCreatePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -73,7 +74,7 @@ const router = createBrowserRouter([
                 path: ROUTES.USER.DETAIL,
                 element: <Page
                   state={APP_STATE.USER}
-                  element={<UserDetailPage />}
+                  element={<UserUpdatePage />}
                   roles={[ROLES.ADMIN, ROLES.MANAGER]}
                 />,
                 handle: {
@@ -101,19 +102,19 @@ const router = createBrowserRouter([
                   roles={[ROLES.ADMIN]}
                 />,
               },
-              // {
-              //   path: ROUTES.ARTICLE.DETAIL,
-              //   element: <Page
-              //     state={APP_STATE.ARTICLE}
-              //     element={<UserDetailPage />}
-              //     roles={[ROLES.ADMIN, ROLES.MANAGER]}
-              //   />,
-              //   handle: {
-              //     breadcrumb: {
-              //       label: "ARTICLE DETAIL",
-              //     },
-              //   },
-              // },
+              {
+                path: ROUTES.ARTICLE.CREATE,
+                element: <Page
+                  state={APP_STATE.ARTICLE}
+                  element={<ArticleCreatePage />}
+                  roles={[ROLES.ADMIN]}
+                />,
+                handle: {
+                  breadcrumb: {
+                    label: "ARTICLE CREATE",
+                  },
+                },
+              },
             ],
           },
         ],

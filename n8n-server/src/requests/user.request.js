@@ -6,10 +6,8 @@ const ROLE_VALUES = Object.values(USER_ROLE);
 const STATUS_VALUES = Object.values(USER_STATUS);
 
 export const userLoginRequest = z.object({
-  body: z.object({
-    email: z.email().nonempty(),
-    password: z.string().trim().nonempty(),
-  }),
+  email: z.string().email("Invalid email"),
+  password: z.string().min(1, "Password is required"),
 });
 
 export const userCreateRequest = z.object({
@@ -42,13 +40,14 @@ export const userUpdateProfileRequest = z.object({
 });
 
 export const userChangePassRequest = z.object({
-  body: z.object({
-    old_password: z.string().trim().nonempty(),
-    new_password: z.string().trim().nonempty(),
-    new_password_repeat: z.string().trim().nonempty(),
-  }).refine((data) => data.new_password === data.new_password_repeat, {
-    message: "new_password_repeat は new_password と一致する必要があります",
-    path: ["new_password_repeat"],
-  }),
+  body: z
+    .object({
+      old_password: z.string().trim().nonempty(),
+      new_password: z.string().trim().nonempty(),
+      new_password_repeat: z.string().trim().nonempty(),
+    })
+    .refine((data) => data.new_password === data.new_password_repeat, {
+      message: "new_password_repeat は new_password と一致する必要があります",
+      path: ["new_password_repeat"],
+    }),
 });
-

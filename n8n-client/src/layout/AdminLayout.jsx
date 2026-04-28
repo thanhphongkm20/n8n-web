@@ -5,15 +5,19 @@ import TopbarAdmin from "../components/navigation/TopbarAdmin";
 
 const MainLayout = () => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      {/* --- HEADER --- */}
+    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh", bgcolor: "#f4f6f8" }}>
       <TopbarAdmin />
 
-      {/* Khoảng đệm cho Fixed AppBar */}
       <Toolbar sx={{ height: "80px" }} />
 
-      {/* --- CONTENT area --- */}
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column"
+        }}
+      >
         <Outlet />
       </Box>
     </Box>

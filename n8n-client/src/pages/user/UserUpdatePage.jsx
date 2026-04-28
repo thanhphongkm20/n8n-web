@@ -85,7 +85,7 @@ const UserUpdatePage = () => {
         sx={{
           width: { xs: '95%', sm: '80%', md: '60%', lg: '50%' },
           maxWidth: "1200px",
-          gap: 2,
+          gap: 3,
         }}
       >
         {/* Breadcrumbs */}

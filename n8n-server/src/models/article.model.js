@@ -13,6 +13,10 @@ const articleSchema = new Schema(
       enum: ["draft", "published"],
       default: "draft",
     },
+    workflow: {
+      type: Object,
+      default: null,
+    },
 
     created_by: { type: Schema.Types.ObjectId, ref: "User" },
     updated_by: { type: Schema.Types.ObjectId, ref: "User" },
@@ -20,8 +24,8 @@ const articleSchema = new Schema(
   {
     timestamps: true,
     toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-  }
+    toObject: { virtuals: true },
+  },
 );
 
 articleSchema.virtual("price_formatted").get(function () {

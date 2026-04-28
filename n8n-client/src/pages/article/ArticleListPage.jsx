@@ -20,6 +20,7 @@ import CustomPagination from "../../components/pagination/CustomPagination";
 import { ROUTES, ROUTES_GEN } from '../../configs/routes';
 import { LoadingPage } from "../bases/LoadingPage";
 import articleApi from "../../api/article.api";
+import { Plus } from "lucide-react";
 
 const ArticleListPage = () => {
   const navigate = useNavigate();
@@ -32,22 +33,27 @@ const ArticleListPage = () => {
   const [isLoadingTable, setIsLoadingTable] = useState(false);
 
   const fetchArticles = useCallback(async (page) => {
-    try {
-      setIsLoadingTable(true);
-      const response = await articleApi.list({ page });
-      const data = Array.isArray(response.posts) ? response.posts : [];
-      setArticles(data);
+  try {
+    setIsLoadingTable(true);
 
-      if (response.count) {
-        setPageCount(Math.ceil(response.count / 10));
-      }
-    } catch (error) {
-      toast.error(error?.message);
-    } finally {
-      setIsLoadingTable(false);
-      setIsLoading(false);
+    const res = await articleApi.list({ page });
+
+    const response = res.data || res;
+
+    const data = Array.isArray(response.posts) ? response.posts : [];
+    setArticles(data);
+
+    if (response.total) {
+      setPageCount(Math.ceil(response.total / 10));
     }
-  }, []);
+
+  } catch (error) {
+    toast.error(error?.message);
+  } finally {
+    setIsLoadingTable(false);
+    setIsLoading(false);
+  }
+}, []);
 
   useEffect(() => {
     fetchArticles(currentPage);
@@ -57,19 +63,7 @@ const ArticleListPage = () => {
     setSearchParams({ page: value });
   };
 
-  const handleCreate = async () => {
-    try {
-      const payload = {
-        date: new Date().toISOString(),
-        blocks: [],
-        status: "draft"
-      };
-      const article = await articleApi.create(payload);
-
-      if (article?.id) return navigate(`${ROUTES.ARTICLE.CREATE}?id=${article.id}`);
-    } catch (error) {
-      toast.error(error?.message);
-    }
+  const handleCreate = () => {
     navigate(ROUTES.ARTICLE.CREATE);
   };
 
@@ -85,13 +79,18 @@ const ArticleListPage = () => {
 
         <StackRow justifyContent="space-between" alignItems="center">
           <RouteBreadcrumbs />
-          <BaseButton
-            title="CREATE"
-            width={150}
-            icon={<Plus size={20} />}
+          <Button
+            variant="contained"
             onClick={handleCreate}
-            sx={{ "&:hover": { bgcolor: BG_COLORS.BUTTON_HOVER } }}
-          />
+            startIcon={<Plus size={20} />}
+            sx={{
+              width: 150,
+              bgcolor: COLORS.SECONDARY,
+              "&:hover": { bgcolor: BG_COLORS.BUTTON_HOVER }
+            }}
+          >
+            CREATE
+          </Button>
         </StackRow>
 
         <TableContainer

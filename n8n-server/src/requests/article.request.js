@@ -1,15 +1,17 @@
 import { z } from "zod";
 
 export const createArticleSchema = z.object({
-  title: z.string().trim().min(3).max(255),
+  title: z.string().trim().min(1, "Article title is required"),
 
-  description: z.string(),
+  description: z.string().min(1, "Article description is required"),
 
-  price: z.coerce.number().min(0),
+  price: z.coerce.number().min(1, "Price must be greater than 0"),
 
-  image: z.union([z.string().url(), z.literal(""), z.null()]).optional(),
+  slug: z.string().min(1, "Slug is required"),
 
-  status: z.enum(["draft", "published"]).default("draft"),
+  status: z.enum(["draft", "published"], {
+    errorMap: () => ({ message: "Status is required" }),
+  }),
 });
 
 export const updateArticleSchema = z.object({
@@ -19,7 +21,9 @@ export const updateArticleSchema = z.object({
 
   price: z.coerce.number().min(0).optional(),
 
-  image: z.union([z.string().url(), z.literal(""), z.null()]).optional(),
+  image: z.any().optional(),
 
   status: z.enum(["draft", "published"]).default("draft"),
+
+  slug: z.string().optional(),
 });

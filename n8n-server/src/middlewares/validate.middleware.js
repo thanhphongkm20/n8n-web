@@ -1,17 +1,15 @@
 export const validateRequest = (schema) => (req, res, next) => {
-  const result = schema.safeParse({
-    body: req.body,
-    params: req.params,
-    query: req.query,
-  });
+  const result = schema.safeParse(req.body);
 
   if (!result.success) {
-    const firstError =
-      result.error.issues?.[0]?.message || "Invalid request";
+    const firstError = result.error.issues?.[0]?.message || "Invalid request";
 
-    return ApiResponse.BadRequest(res, firstError);
+    return res.status(400).json({
+      success: false,
+      message: firstError,
+    });
   }
 
-  req.validated = result.data; // 🔥 đổi tên
+  req.validated = result.data;
   next();
 };

@@ -37,8 +37,8 @@ export const getArticles = async (query) => {
     filter.title = { $regex: search, $options: "i" };
   }
 
-  if (status) {
-    filter.status = status;
+  if (query.status) {
+    filter.status = query.status;
   }
 
   const pageNum = parseInt(page);
