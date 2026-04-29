@@ -1,9 +1,9 @@
-import { Button, Stack, Typography, Box, IconButton, Chip } from "@mui/material";
+import { Button, Stack, Typography, Box, IconButton } from "@mui/material";
 import { useRef } from "react";
 import { COLORS } from "../../components/common/Colors";
-import { UploadCloud, FileJson, X } from "lucide-react";
+import { UploadCloud, FileJson, X, ExternalLink } from "lucide-react";
 
-const WorkflowDataUpload = ({ value, onChange }) => {
+const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
   const fileRef = useRef();
 
   const handleClick = () => {
@@ -18,14 +18,25 @@ const WorkflowDataUpload = ({ value, onChange }) => {
       alert("Please upload a .json file");
       return;
     }
+
     onChange(file);
   };
 
   const handleClear = (e) => {
     e.stopPropagation();
     fileRef.current.value = "";
-    onChange(null);
+
+    onChange(null);     // clear file mới
+    setOldUrl?.("");    // clear file cũ
   };
+
+  // 👉 lấy tên file từ URL
+  const getFileNameFromUrl = (url) => {
+    if (!url) return "";
+    return url.split("/").pop();
+  };
+
+  const displayName = value?.name || getFileNameFromUrl(oldUrl);
 
   return (
     <Stack gap={1} sx={{ mt: 3 }}>
@@ -41,18 +52,18 @@ const WorkflowDataUpload = ({ value, onChange }) => {
       </Typography>
 
       <Box
-        onClick={!value ? handleClick : undefined}
+        onClick={handleClick} // 👉 luôn cho phép click đổi file
         sx={{
           border: "2px dashed",
-          borderColor: value ? COLORS.BLUE : "#ddd",
+          borderColor: value || oldUrl ? COLORS.BLUE : "#ddd",
           borderRadius: 3,
           p: 4,
-          background: value ? "#f0f7ff" : "#fff",
+          background: value || oldUrl ? "#f0f7ff" : "#fff",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          cursor: !value ? "pointer" : "default",
+          cursor: "pointer",
           transition: "all 0.2s ease-in-out",
           "&:hover": {
             borderColor: COLORS.BLUE,
@@ -60,7 +71,8 @@ const WorkflowDataUpload = ({ value, onChange }) => {
           },
         }}
       >
-        {!value ? (
+        {/* ================= EMPTY ================= */}
+        {!value && !oldUrl && (
           <>
             <UploadCloud size={32} color={COLORS.BLUE} style={{ marginBottom: 12 }} />
             <Button
@@ -79,7 +91,10 @@ const WorkflowDataUpload = ({ value, onChange }) => {
               Choose .json File
             </Button>
           </>
-        ) : (
+        )}
+
+        {/* ================= FILE (OLD + NEW) ================= */}
+        {(value || oldUrl) && (
           <Stack direction="row" alignItems="center" spacing={1.5}>
             <Box
               sx={{
@@ -92,6 +107,7 @@ const WorkflowDataUpload = ({ value, onChange }) => {
               }}
             >
               <FileJson size={20} color={COLORS.BLUE} />
+
               <Typography
                 sx={{
                   mx: 1.5,
@@ -104,14 +120,33 @@ const WorkflowDataUpload = ({ value, onChange }) => {
                   textOverflow: "ellipsis",
                 }}
               >
-                {value.name}
+                {displayName}
               </Typography>
+
+              {/* 👉 VIEW FILE (chỉ cho file cũ) */}
+              {oldUrl && !value && (
+                <IconButton
+                  size="small"
+                  component="a"
+                  href={oldUrl}
+                  target="_blank"
+                  onClick={(e) => e.stopPropagation()}
+                  sx={{
+                    color: COLORS.BLUE,
+                    "&:hover": { background: "#e6f0ff" },
+                  }}
+                >
+                  <ExternalLink size={18} />
+                </IconButton>
+              )}
+
+              {/* 👉 REMOVE (cả old + new đều xóa được) */}
               <IconButton
                 size="small"
                 onClick={handleClear}
                 sx={{
                   color: "#ff4d4f",
-                  "&:hover": { background: "#fff1f0" }
+                  "&:hover": { background: "#fff1f0" },
                 }}
               >
                 <X size={18} />

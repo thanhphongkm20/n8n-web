@@ -18,6 +18,7 @@ import RegisterPage from "../pages/auth/RegisterPage.jsx";
 import UserUpdatePage from "../pages/user/UserUpdatePage.jsx";
 import ArticleListPage from "../pages/article/ArticleListPage.jsx";
 import ArticleCreatePage from "../pages/article/ArticleCreatePage.jsx";
+import ArticleUpdatePage from "../pages/article/ArticleUpdatePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -112,6 +113,19 @@ const router = createBrowserRouter([
                 handle: {
                   breadcrumb: {
                     label: "ARTICLE CREATE",
+                  },
+                },
+              },
+              {
+                path: ROUTES.ARTICLE.UPDATE,
+                element: <Page
+                  state={APP_STATE.ARTICLE}
+                  element={<ArticleUpdatePage />}
+                  roles={[ROLES.ADMIN]}
+                />,
+                handle: {
+                  breadcrumb: {
+                    label: "ARTICLE UPDATE",
                   },
                 },
               },

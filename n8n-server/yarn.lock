@@ -382,6 +382,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cloudinary@npm:^2.10.0":
+  version: 2.10.0
+  resolution: "cloudinary@npm:2.10.0"
+  dependencies:
+    lodash: "npm:^4.17.23"
+  checksum: 10c0/88a6c93ee43427657f82225f9970f5ea9b227787f8c02686b9ff39e9cd434fdb38b7553b8cef65ae447a06c879d623a3bbf5282ae51ce8b72eab71a7e61da1ef
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^3.1.3":
   version: 3.1.3
   resolution: "color-convert@npm:3.1.3"
@@ -1157,7 +1166,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.18.1":
+"lodash@npm:^4.17.23, lodash@npm:^4.18.1":
   version: 4.18.1
   resolution: "lodash@npm:4.18.1"
   checksum: 10c0/757228fc68805c59789e82185135cf85f05d0b2d3d54631d680ca79ec21944ec8314d4533639a14b8bcfbd97a517e78960933041a5af17ecb693ec6eecb99a27
@@ -1795,6 +1804,7 @@ __metadata:
   resolution: "server@workspace:."
   dependencies:
     chalk: "npm:^5.6.2"
+    cloudinary: "npm:^2.10.0"
     cookie-parser: "npm:^1.4.7"
     cookie-session: "npm:^2.1.1"
     cors: "npm:^2.8.6"
@@ -1810,6 +1820,7 @@ __metadata:
     nodemon: "npm:^3.1.14"
     openai: "npm:^6.34.0"
     slugify: "npm:^1.6.9"
+    streamifier: "npm:^0.1.1"
     winston: "npm:^3.19.0"
     zod: "npm:^4.3.6"
   languageName: unknown
@@ -1950,6 +1961,13 @@ __metadata:
   version: 2.0.2
   resolution: "statuses@npm:2.0.2"
   checksum: 10c0/a9947d98ad60d01f6b26727570f3bcceb6c8fa789da64fe6889908fe2e294d57503b14bf2b5af7605c2d36647259e856635cd4c49eab41667658ec9d0080ec3f
+  languageName: node
+  linkType: hard
+
+"streamifier@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "streamifier@npm:0.1.1"
+  checksum: 10c0/132035d8519c65f3903047b06b003201d3eaef6eb164cf5ba86ee22c2203c3a0109198946dc579002e39f704b568bedc8ce61a729e0a8dd00249d0a9658353a4
   languageName: node
   linkType: hard
 

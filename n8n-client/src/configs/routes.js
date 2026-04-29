@@ -9,7 +9,7 @@ export const ROUTES = {
   ARTICLE: {
     LIST: "/articles",
     CREATE: "/articles/create",
-    UPDATE: "/articles/:id",
+    UPDATE: "/articles/:id/update",
   },
 
   CUSTOM_BUILT: "/custom-built",

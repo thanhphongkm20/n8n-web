@@ -1,25 +1,20 @@
 import { toast } from "react-toastify";
 
 // success
-export const showSuccess = (message) => {
+export const showSuccess = (message) =>
   toast.success(message, {
-    position: "top-right",
-    autoClose: 3000,
+    position: "bottom-left",
   });
-};
 
-// error
-export const showError = (message) => {
+export const showError = (message) =>
   toast.error(message, {
-    position: "top-right",
-    autoClose: 3000,
+    position: "bottom-left",
   });
-};
 
 // optional: warning
 export const showWarning = (message) => {
   toast.warning(message);
-};
+}
 
 // optional: info
 export const showInfo = (message) => {

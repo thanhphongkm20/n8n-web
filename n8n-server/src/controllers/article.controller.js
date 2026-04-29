@@ -1,6 +1,7 @@
 import slugify from "slugify";
 import Article from "../models/article.model.js";
 import * as service from "../service/article.service.js";
+import { uploadImage, uploadFile } from "../utils/uploadToCloudinary.js";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -13,44 +14,23 @@ export const create = async (req, res) => {
     const data = req.validated;
 
     // ================= FILE =================
-    if (req.files?.image) {
-      data.image = req.files.image[0].originalname;
-    }
-
-    if (req.files?.workflow) {
-      try {
-        const json = JSON.parse(req.files.workflow[0].buffer.toString());
-
-        if (!json || typeof json !== "object" || Array.isArray(json)) {
-          return res.status(400).json({
-            message: "Invalid workflow format",
-          });
-        }
-
-        data.workflow = json;
-      } catch {
-        return res.status(400).json({
-          message: "Invalid workflow JSON file",
-        });
-      }
-    }
-    if (!req.files?.image) {
+    if (!req.files?.image || !req.files?.workflow) {
       return res.status(400).json({
-        message: "Product image is required",
+        message: "Image and workflow are required",
       });
     }
 
-    if (!req.files?.workflow) {
-      return res.status(400).json({
-        message: "Workflow file is required",
-      });
-    }
+    const imageUrl = await uploadImage(req.files.image[0]);
+
+    const workflowUrl = await uploadFile(req.files.workflow[0]);
+
+    data.image = imageUrl;
+    data.workflow = workflowUrl;
 
     // ================= SLUG =================
-    let baseSlug =
-      data.slug && data.slug.trim() !== ""
-        ? slugify(data.slug, { lower: true, strict: true })
-        : slugify(data.title, { lower: true, strict: true });
+    let baseSlug = data.slug
+      ? slugify(data.slug, { lower: true, strict: true })
+      : slugify(data.title, { lower: true, strict: true });
 
     let slug = baseSlug;
     let count = 1;
@@ -61,7 +41,6 @@ export const create = async (req, res) => {
 
     data.slug = slug;
 
-    // ================= SAVE =================
     const article = await Article.create({
       ...data,
       created_by: req.user.id,
@@ -77,19 +56,14 @@ export const create = async (req, res) => {
 // ================= UPDATE =================
 export const update = async (req, res) => {
   try {
-    const data = req.validated.body;
+    const data = req.validated;
 
-    // FILE
     if (req.files?.image) {
-      data.image = req.files.image[0].originalname;
+      data.image = await uploadImage(req.files.image[0]);
     }
 
     if (req.files?.workflow) {
-      try {
-        data.workflow = JSON.parse(req.files.workflow[0].buffer.toString());
-      } catch {
-        return res.status(400).json({ message: "Invalid JSON file" });
-      }
+      data.workflow = await uploadFile(req.files.workflow[0]);
     }
 
     const updated = await service.updateArticle(
@@ -102,21 +76,9 @@ export const update = async (req, res) => {
       return res.status(404).json({ message: "Article not found" });
     }
 
-    if (data.slug) {
-      let baseSlug = slugify(data.slug, { lower: true, strict: true });
-      let slug = baseSlug;
-      let count = 1;
-
-      while (await Article.findOne({ slug, _id: { $ne: req.params.id } })) {
-        slug = `${baseSlug}-${count++}`;
-      }
-
-      data.slug = slug;
-    }
-
-    res.json({ success: true, data: updated });
+    return res.json(updated);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 };
 
@@ -174,21 +136,48 @@ export const generateSlugAI = async (req, res) => {
     }
 
     const prompt = `
-You are an expert SEO copywriter.
+You are a world-class SEO copywriter and growth marketer.
 
-Rewrite the following title into a highly compelling, click-worthy, SEO-optimized URL slug.
+Your task is to create a highly compelling, curiosity-driven URL slug for selling automation workflows (focused on n8n).
 
-Requirements:
-- Make it catchy, emotional, and attention-grabbing
-- Keep strong keywords for SEO
-- Use lowercase only
-- Use hyphens (-)
-- Remove all special characters
-- Max 8 words
+IMPORTANT:
+
+* DO NOT reuse or summarize the original title
+* The slug must feel like a hook, not a description
+
+Goals:
+
+* Maximize curiosity and click-through rate
+* Emphasize benefits: automation, making money, saving time
+* Use emotional trigger words (secret, hack, auto, fast, scale, hidden)
+
+Rules:
+
+* lowercase only
+* use SPACES between words (NOT hyphens, NOT combined words)
+* no special characters
+* max 6 words
+* keep it short, punchy, and natural to read
+* avoid boring or generic phrasing
+
+Good examples:
+
+* n8n money hack
+* automation secret system
+* auto workflow make money
+* hidden n8n profit system
+* scale fast with automation
+
+Bad examples:
+
+* n8n workflow tutorial
+* how to use n8n
+* automation guide basic
 
 Title: "${title}"
 
 Return ONLY the slug.
+
 `;
 
     const response = await openai.responses.create({
@@ -220,8 +209,6 @@ Return ONLY the slug.
 
     return res.json({ slug });
   } catch (err) {
-    console.error("OPENAI ERROR:", err);
-
     // fallback
     let baseSlug = slugify(req.body.title || "", {
       lower: true,

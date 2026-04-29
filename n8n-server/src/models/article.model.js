@@ -14,7 +14,7 @@ const articleSchema = new Schema(
       default: "draft",
     },
     workflow: {
-      type: Object,
+      type: String,
       default: null,
     },
 
