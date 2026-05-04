@@ -42,9 +42,9 @@ const UserUpdatePage = () => {
   const form = useFormik({
     enableReinitialize: true,
     initialValues: {
-      display_name: userData?.display_name || "",
-      email: userData?.email || "",
-      phone: userData?.phone || "",
+      display_name: userData?.display_name,
+      email: userData?.email,
+      phone: userData?.phone,
     },
     validationSchema: userUpdateSchema,
     onSubmit: async (values) => {

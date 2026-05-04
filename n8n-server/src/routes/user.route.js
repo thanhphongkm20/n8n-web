@@ -9,7 +9,6 @@ import {
   userUpdateRequest,
   userCreateRequest
 } from "../requests/user.request.js";
-import { objectIdSchema } from "../requests/base.request.js";
 
 const router = express.Router();
 
@@ -28,7 +27,6 @@ router.post(
 router.get(
   "/:id",
   adminTokenRequired,
-  validateRequest(objectIdSchema),
   userController.userById,
   userController.getById
 );
@@ -61,7 +59,6 @@ router.put(
 router.put(
   "/:id",
   adminTokenRequired,
-  validateRequest(objectIdSchema),
   validateRequest(userUpdateRequest),
   userController.userById,
   userController.update,

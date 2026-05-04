@@ -150,7 +150,10 @@ const update = async (req, res) => {
     }
 
     const updated = Object.assign(userTarget, userData);
-    updated.display_name = `${updated.last_name} ${updated.first_name}`;
+
+    if (updated.last_name || updated.first_name) {
+      updated.display_name = `${updated.last_name || ""} ${updated.first_name || ""}`.trim();
+    }
 
     const result = await userService.save(updated);
     return ApiResponse.OK(res, result);

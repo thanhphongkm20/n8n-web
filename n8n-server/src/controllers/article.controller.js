@@ -11,7 +11,7 @@ const openai = new OpenAI({
 // ================= CREATE =================
 export const create = async (req, res) => {
   try {
-    const data = req.validated;
+    const data = req.validatedBody;
 
     // ================= FILE =================
     if (!req.files?.image || !req.files?.workflow) {
@@ -56,7 +56,7 @@ export const create = async (req, res) => {
 // ================= UPDATE =================
 export const update = async (req, res) => {
   try {
-    const data = req.validated;
+    const data = req.validatedBody;
 
     if (req.files?.image) {
       data.image = await uploadImage(req.files.image[0]);

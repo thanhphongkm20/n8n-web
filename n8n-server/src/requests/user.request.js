@@ -11,22 +11,17 @@ export const userLoginRequest = z.object({
 });
 
 export const userCreateRequest = z.object({
-  body: z.object({
-    full_name: z.string().trim().nonempty(),
-    email: z.email().nonempty(),
-    password: z.string().trim().nonempty(),
-    phone: z.string().trim().optional(),
-    profile_image: z.string().trim().optional(),
-  }),
+  full_name: z.string().trim().nonempty("Full name is required"),
+  email: z.string().email("Invalid email").nonempty("Email is required"),
+  password: z.string().trim().nonempty("Password is required"),
+  phone: z.string().trim().optional(),
+  profile_image: z.string().trim().optional(),
 });
 
 export const userUpdateRequest = z.object({
-  body: z.object({
-    full_name: z.string().trim().optional(),
-    email: z.email().nonempty(),
-    phone: z.string().trim().optional(),
-    profile_image: z.string().trim().optional(),
-  }),
+  display_name: z.string().trim().optional(),
+  email: z.string().email().nonempty(),
+  phone: z.string().trim().optional(),
 });
 
 export const userUpdateProfileRequest = z.object({

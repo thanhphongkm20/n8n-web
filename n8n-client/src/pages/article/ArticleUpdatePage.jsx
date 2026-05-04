@@ -103,7 +103,7 @@ const ArticleUpdatePage = () => {
 
       await articleApi.update(id, formData, true);
 
-      showSuccess("Article updated successfully!🚀");
+      showSuccess("Article updated successfully");
       setTimeout(() => navigate(ROUTES.ARTICLE.LIST), 1000);
     } catch (err) {
       showError(err?.response?.data?.message);
