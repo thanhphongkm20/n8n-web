@@ -80,6 +80,7 @@ const ArticleSidePanel = ({
         <FormLabelField
           title="PRICE"
           type="number"
+          placeholder="PRICE"
           form={formik}
           id="price"
           sx={{
@@ -90,6 +91,7 @@ const ArticleSidePanel = ({
         <FormLabelField
           title="SLUG"
           disabled
+          placeholder="GENERATE SLUG"
           form={formik}
           id="slug"
           sx={{
