@@ -2,11 +2,11 @@ import * as Yup from "yup";
 import LANGUAGE from "../utils/language.util";
 
 const quoteValidation = Yup.object({
-  company: Yup.string()
+  companyName: Yup.string()
     .trim()
     .required(LANGUAGE.FIELD_REQUIRED("Company name")),
 
-  contact_person: Yup.string()
+  contactPerson: Yup.string()
     .trim()
     .required(LANGUAGE.FIELD_REQUIRED("Contact person")),
 

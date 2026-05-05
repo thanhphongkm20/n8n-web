@@ -22,8 +22,8 @@ import FormQuoteSelect from "../../components/form/FormQuoteSelect";
 const CustomBuiltPage = () => {
   const form = useFormik({
     initialValues: {
-      company: "",
-      contact_person: "",
+      companyName: "",
+      contactPerson: "",
       email: "",
       budget: "",
       timeline: "",
@@ -33,8 +33,8 @@ const CustomBuiltPage = () => {
     onSubmit: async (values, { resetForm, setSubmitting }) => {
       try {
         const payload = {
-          company: values.company.trim(),
-          contact_person: values.contact_person.trim(),
+          companyName: values.companyName.trim(),
+          contactPerson: values.contactPerson.trim(),
           email: values.email.trim(),
           budget: values.budget,
           timeline: values.timeline,
@@ -134,7 +134,7 @@ const CustomBuiltPage = () => {
           <Box component="form" onSubmit={form.handleSubmit} noValidate>
             {/* Company */}
             <FormQuoteField
-              id="company"
+              id="companyName"
               title="Company Name"
               placeholder="Enter company name"
               form={form}
@@ -145,7 +145,7 @@ const CustomBuiltPage = () => {
               sx={{ mb: 3 }}
             />
             <FormQuoteField
-              id="contact_person"
+              id="contactPerson"
               title="Contact Person"
               placeholder="Enter contact person"
               form={form}
