@@ -1491,6 +1491,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nodemailer@npm:^8.0.7":
+  version: 8.0.7
+  resolution: "nodemailer@npm:8.0.7"
+  checksum: 10c0/f1580263ad7fba64a493c47c4d78f06679c0da9cc3becbe6b628311a16474c07286fc4e530006ea262537594ccc475dc569fd519275222fd01f99c315976aeac
+  languageName: node
+  linkType: hard
+
 "nodemon@npm:^3.1.14":
   version: 3.1.14
   resolution: "nodemon@npm:3.1.14"
@@ -1817,6 +1824,7 @@ __metadata:
     lodash: "npm:^4.18.1"
     mongoose: "npm:^9.4.1"
     multer: "npm:^2.1.1"
+    nodemailer: "npm:^8.0.7"
     nodemon: "npm:^3.1.14"
     openai: "npm:^6.34.0"
     slugify: "npm:^1.6.9"

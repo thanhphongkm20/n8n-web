@@ -13,11 +13,17 @@ export const create = async (req, res) => {
   try {
     const data = req.validatedBody;
 
+    if (data.description) {
+      data.description = data.description
+        .replace(/<[^>]*>?/gm, "")
+        .replace(/&nbsp;/g, " ")
+        .trim();
+    }
     // ================= FILE =================
     if (!req.files?.image || !req.files?.workflow) {
-      return res.status(400).json({
-        message: "Image and workflow are required",
-      });
+      return res
+        .status(400)
+        .json({ message: "Image and workflow are required" });
     }
 
     const imageUrl = await uploadImage(req.files.image[0]);
@@ -190,8 +196,6 @@ Return ONLY the slug.
     if (!baseSlug) {
       throw new Error("Empty AI response");
     }
-
-    // clean slug
     baseSlug = baseSlug
       .toLowerCase()
       .trim()
@@ -199,7 +203,6 @@ Return ONLY the slug.
       .replace(/\s+/g, "-")
       .replace(/-+/g, "-");
 
-    // ✅ CHECK DUPLICATE
     let slug = baseSlug;
     let count = 1;
 
@@ -209,7 +212,6 @@ Return ONLY the slug.
 
     return res.json({ slug });
   } catch (err) {
-    // fallback
     let baseSlug = slugify(req.body.title || "", {
       lower: true,
       strict: true,
