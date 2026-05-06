@@ -19,7 +19,7 @@ import UserUpdatePage from "../pages/user/UserUpdatePage.jsx";
 import ArticleListPage from "../pages/article/ArticleListPage.jsx";
 import ArticleCreatePage from "../pages/article/ArticleCreatePage.jsx";
 import ArticleUpdatePage from "../pages/article/ArticleUpdatePage.jsx";
-import CustomBuiltPage from "../pages/customBuilt/CustomBuiltPage.jsx"
+import CustomBuiltPage from "../pages/customBuilt/CustomBuiltPage.jsx";
 
 const router = createBrowserRouter([
   {
