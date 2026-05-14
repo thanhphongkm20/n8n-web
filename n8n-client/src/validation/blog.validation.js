@@ -1,0 +1,70 @@
+import * as Yup from "yup";
+
+import LANGUAGE from "../utils/language.util";
+
+export const blogValidationSchema = Yup.object({
+  title: Yup.string()
+    .trim()
+    .min(5, "Title must be at least 5 characters")
+    .max(200, "Title must not exceed 200 characters")
+    .required(LANGUAGE.FIELD_REQUIRED("Blog title")),
+
+  slug: Yup.string()
+    .trim()
+    .matches(
+      "Slug must be lowercase and use hyphens only"
+    )
+    .required(LANGUAGE.FIELD_REQUIRED("Slug")),
+
+  excerpt: Yup.string()
+    .trim()
+    .min(20, "Excerpt must be at least 20 characters")
+    .max(300, "Excerpt must not exceed 300 characters")
+    .required(LANGUAGE.FIELD_REQUIRED("Blog excerpt")),
+
+  content: Yup.string()
+    .trim()
+    .min(50, "Content must be at least 50 characters")
+    .required(LANGUAGE.FIELD_REQUIRED("Blog content")),
+
+  thumbnail: Yup.string()
+    .trim()
+    .url("Thumbnail must be a valid URL")
+    .nullable()
+    .notRequired(),
+
+  type: Yup.string()
+    .oneOf(
+      ["case_study", "update_news", "technical_guide"],
+      "Invalid blog type"
+    )
+    .required(LANGUAGE.FIELD_REQUIRED("Blog type")),
+
+  tags: Yup.array()
+    .of(Yup.string().trim())
+    .max(10, "Maximum 10 tags allowed"),
+
+  seo_title: Yup.string()
+    .trim()
+    .max(
+      60,
+      "SEO title should not exceed 60 characters"
+    ),
+
+  seo_description: Yup.string()
+    .trim()
+    .max(
+      160,
+      "SEO description should not exceed 160 characters"
+    ),
+
+  status: Yup.string()
+    .oneOf(["draft", "published"], "Invalid status")
+    .required(LANGUAGE.FIELD_REQUIRED("Status")),
+
+  is_featured: Yup.boolean(),
+
+  published_at: Yup.date().nullable(),
+});
+
+export default blogValidationSchema;
