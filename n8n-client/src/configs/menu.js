@@ -49,6 +49,20 @@ const menuAdmin = [
     path: ROUTES.ARTICLE.LIST,
     roles: [ROLES.ADMIN],
   },
+  {
+    mainTitle: "RESOURCES",
+    mainIcon: BookOpen,
+    appState: APP_STATE.RESOURCES,
+    path: ROUTES.RESOURCE.LIST,
+    roles: [ROLES.ADMIN],
+  },
+  // {
+  //   mainTitle: "BLOG",
+  //   mainIcon: BookOpen,
+  //   appState: APP_STATE.BLOG,
+  //   path: ROUTES.BLOG_ADMIN.LIST,
+  //   roles: [ROLES.ADMIN],
+  // },
 ];
 
 const menuConfigs = {

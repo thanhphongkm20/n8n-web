@@ -15,7 +15,9 @@ const MainLayout = () => {
         sx={{
           flexGrow: 1,
           display: "flex",
-          flexDirection: "column"
+          flexDirection: "column",
+          position: "relative",
+          minHeight: "calc(100vh - 80px)",
         }}
       >
         <Outlet />

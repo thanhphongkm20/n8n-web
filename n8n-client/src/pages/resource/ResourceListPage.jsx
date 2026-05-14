@@ -19,15 +19,15 @@ import StackRow from "../../components/common/StackRow";
 import CustomPagination from "../../components/pagination/CustomPagination";
 import { ROUTES, ROUTES_GEN } from '../../configs/routes';
 import { LoadingPage } from "../bases/LoadingPage";
-import articleApi from "../../api/article.api";
+import resourceApi from "../../api/resource.api";
 import { Plus } from "lucide-react";
 
-const ArticleListPage = () => {
+const ResourceListPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get("page") || "1");
 
-  const [articles, setArticles] = useState([]);
+  const [resources, setResources] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingTable, setIsLoadingTable] = useState(false);
@@ -39,21 +39,24 @@ const ArticleListPage = () => {
   useEffect(() => {
     let isMounted = true;
 
-    const fetchArticles = async () => {
+    const fetchResource = async () => {
       try {
         setIsLoadingTable(true);
 
-        const res = await articleApi.list({ page: currentPage });
-        const response = res.data || res;
+        const res = await resourceApi.list({ page: currentPage });
+
+        const payload = res?.data?.data || res?.data || res;
 
         if (!isMounted) return;
 
-        const data = Array.isArray(response.posts) ? response.posts : [];
-        setArticles(data);
+        const data = Array.isArray(payload?.items)
+          ? payload.items
+          : [];
 
-        if (response.total) {
-          setPageCount(Math.ceil(response.total / 10));
-        }
+        setResources(data);
+
+        const totalPages = payload?.pagination?.total_pages || 1;
+        setPageCount(totalPages);
       } catch (error) {
         if (isMounted) {
           toast.error(error?.message);
@@ -66,7 +69,7 @@ const ArticleListPage = () => {
       }
     };
 
-    fetchArticles();
+    fetchResource();
 
     return () => {
       isMounted = false;
@@ -74,11 +77,11 @@ const ArticleListPage = () => {
   }, [currentPage]);
 
   const handleCreate = () => {
-    navigate(ROUTES.ARTICLE.CREATE);
+    navigate(ROUTES.RESOURCE.CREATE);
   };
 
   const handleDetail = (id) => {
-    navigate(ROUTES_GEN.articleUpdate(id));
+    navigate(ROUTES_GEN.resourceUpdate(id));
   };
 
   if (isLoading) return <LoadingPage />;
@@ -130,8 +133,9 @@ const ArticleListPage = () => {
                   sx={{
                     fontWeight: 600,
                     color: COLORS.BLUE
-                  }}>
-                  PRICE
+                  }}
+                >
+                  TYPE
                 </TableCell>
                 <TableCell
                   sx={{
@@ -144,24 +148,33 @@ const ArticleListPage = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {articles.map((item) => (
+              {resources.map((item) => (
                 <TableRow key={item._id || item.id} hover>
-                  <TableCell sx={{ pl: "30px" }}>{item.title}</TableCell>
-                  <TableCell>{item.price_formatted}</TableCell>
+                  <TableCell sx={{ pl: "30px" }}>
+                    {item.title}
+                  </TableCell>
+
                   <TableCell>
-                    <Box sx={{ fontWeight: 500, textTransform: 'uppercase' }}>
+                    {item.type}
+                  </TableCell>
+
+                  <TableCell>
+                    <Box sx={{ fontWeight: 500, textTransform: "uppercase" }}>
                       {item.status}
                     </Box>
                   </TableCell>
+
                   <TableCell align="right" sx={{ pr: "30px" }}>
-                    <ButtonEdit onClick={() => handleDetail(item._id || item.id)} />
+                    <ButtonEdit
+                      onClick={() => handleDetail(item._id || item.id)}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
-        {articles.length > 0 && (
+        {resources.length > 0 && (
           <StackRow justifyContent="flex-start">
             <CustomPagination
               page={currentPage}
@@ -175,4 +188,4 @@ const ArticleListPage = () => {
   );
 };
 
-export default ArticleListPage;
+export default ResourceListPage;

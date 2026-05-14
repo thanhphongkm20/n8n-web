@@ -61,7 +61,6 @@ const ArticleCreatePage = () => {
   const handleApiError = (err) => {
     const message = err?.response?.data?.message || "Something went wrong";
 
-    // map message → field
     const fieldMap = {
       title: "title",
       description: "description",
@@ -84,10 +83,8 @@ const ArticleCreatePage = () => {
   };
 
   const handleSubmit = async () => {
-    // validate form trước
     const errors = await formik.validateForm();
-
-    // check file
+    
     if (!workflowFile) errors.workflow = "Workflow is required";
     if (!imageFile) errors.image = "Image is required";
 

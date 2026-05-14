@@ -2,6 +2,10 @@ export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
   REGISTER: "/register",
+  RESOURCES: "/resources",
+  CUSTOM_BUILT: "/custom-built",
+  BLOG: "/blog",
+
   USER: {
     LIST: "/users",
     DETAIL: "/users/:id",
@@ -12,9 +16,18 @@ export const ROUTES = {
     UPDATE: "/articles/:id/update",
   },
 
-  CUSTOM_BUILT: "/custom-built",
-  RESOURCES: "/resources",
-  BLOG: "/blog",
+  RESOURCE: {
+    LIST: "/admin/resources",
+    CREATE: "/admin/resources/create",
+    UPDATE: "/admin/resources/:id/update",
+  },
+
+  BLOG_ADMIN: {
+    LIST: "/admin/blogs",
+    CREATE: "/admin/blogs/create",
+    UPDATE: "/admin/blogs/:id/update",
+  },
+
   ACCOUNT: {
     SETTINGS: "/account/settings",
     EDIT_NAME: "/account/edit/name",
@@ -27,4 +40,6 @@ export const ROUTES = {
 export const ROUTES_GEN = {
   userDetail: (id) => `/users/${id}`,
   articleUpdate: (id) => `/articles/${id}/update`,
+  resourceUpdate: (id) => `/admin/resources/${id}/update`,
+  blogUpdate: (id) => `/admin/blogs/${id}/update`,
 };

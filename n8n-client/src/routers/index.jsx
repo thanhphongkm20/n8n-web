@@ -20,6 +20,14 @@ import ArticleListPage from "../pages/article/ArticleListPage.jsx";
 import ArticleCreatePage from "../pages/article/ArticleCreatePage.jsx";
 import ArticleUpdatePage from "../pages/article/ArticleUpdatePage.jsx";
 import CustomBuiltPage from "../pages/customBuilt/CustomBuiltPage.jsx";
+// import ResourcePage from "../pages/resource/ResourcePage.jsx";
+// import BlogPage from "../pages/blog/BlogPage.jsx";
+import ResourceListPage from "../pages/resource/ResourceListPage.jsx";
+import ResourceCreatePage from "../pages/resource/ResourceCreatePage.jsx";
+// import ResourceUpdatePage from "../pages/resource/ResourceUpdatePage.jsx";
+// import BlogListPage from "../pages/blog/BlogListPage.jsx";
+// import BlogCreatePage from "../pages/blog/BlogCreatePage.jsx";
+// import BlogUpdatePage from "../pages/blog/BlogUpdatePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +48,14 @@ const router = createBrowserRouter([
             path: ROUTES.CUSTOM_BUILT,
             element: <CustomBuiltPage />,
           },
+          // {
+          //   path: ROUTES.RESOURCES,
+          //   element: <ResourcePage />,
+          // },
+          // {
+          //   path: ROUTES.BLOG,
+          //   element: <BlogPage />,
+          // },
         ],
       },
       {
@@ -136,6 +152,108 @@ const router = createBrowserRouter([
               },
             ],
           },
+          {
+            path: ROUTES.RESOURCE.LIST,
+            handle: {
+              breadcrumb: {
+                label: "RESOURCE LIST",
+                path: ROUTES.RESOURCE.LIST,
+              },
+            },
+            children: [
+              {
+                index: true,
+                element: (
+                  <Page
+                    state={APP_STATE.RESOURCES}
+                    element={<ResourceListPage />}
+                    roles={[ROLES.ADMIN]}
+                  />
+                ),
+              },
+              {
+                path: ROUTES.RESOURCE.CREATE,
+                element: (
+                  <Page
+                    state={APP_STATE.RESOURCES}
+                    element={<ResourceCreatePage />}
+                    roles={[ROLES.ADMIN]}
+                  />
+                ),
+                handle: {
+                  breadcrumb: {
+                    label: "RESOURCE CREATE",
+                  },
+                },
+              },
+              // {
+              //   path: ROUTES.RESOURCE.UPDATE,
+              //   element: (
+              //     <Page
+              //       state={APP_STATE.RESOURCES}
+              //       element={<ResourceUpdatePage />}
+              //       roles={[ROLES.ADMIN]}
+              //     />
+              //   ),
+              //   handle: {
+              //     breadcrumb: {
+              //       label: "RESOURCE UPDATE",
+              //     },
+              //   },
+              // },
+            ],
+          },
+          // {
+          //   path: ROUTES.BLOG_ADMIN.LIST,
+          //   handle: {
+          //     breadcrumb: {
+          //       label: "BLOG LIST",
+          //       path: ROUTES.BLOG_ADMIN.LIST,
+          //     },
+          //   },
+          //   children: [
+          //     {
+          //       index: true,
+          //       element: (
+          //         <Page
+          //           state={APP_STATE.BLOG}
+          //           element={<BlogListPage />}
+          //           roles={[ROLES.ADMIN]}
+          //         />
+          //       ),
+          //     },
+          //     {
+          //       path: ROUTES.BLOG_ADMIN.CREATE,
+          //       element: (
+          //         <Page
+          //           state={APP_STATE.BLOG}
+          //           element={<BlogCreatePage />}
+          //           roles={[ROLES.ADMIN]}
+          //         />
+          //       ),
+          //       handle: {
+          //         breadcrumb: {
+          //           label: "BLOG CREATE",
+          //         },
+          //       },
+          //     },
+          //     {
+          //       path: ROUTES.BLOG_ADMIN.UPDATE,
+          //       element: (
+          //         <Page
+          //           state={APP_STATE.BLOG}
+          //           element={<BlogUpdatePage />}
+          //           roles={[ROLES.ADMIN]}
+          //         />
+          //       ),
+          //       handle: {
+          //         breadcrumb: {
+          //           label: "BLOG UPDATE",
+          //         },
+          //       },
+          //     },
+          //   ],
+          // },
         ],
       },
     ],

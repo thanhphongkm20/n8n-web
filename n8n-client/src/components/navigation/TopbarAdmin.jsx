@@ -133,6 +133,7 @@ const TopBarDashboard = ({ onOpenMobileMenu }) => {
                 onClose={closeMenu}
                 onAccountSettings={handleAccountSettings}
                 onLogout={handleLogout}
+                isAdmin={user?.role === "admin" || user?.role === "ADMIN"}
               />
             </Box>
           )}

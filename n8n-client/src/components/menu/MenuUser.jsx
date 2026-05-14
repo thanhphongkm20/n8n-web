@@ -1,18 +1,17 @@
 import { ListItemIcon, Menu, MenuItem } from "@mui/material";
-import { LogOut, UserRoundCog } from "lucide-react";
+import { LogOut, UserRoundCog, UsersRound } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import { ROUTES } from "../../configs/routes";
 import { COLORS } from "../common/Colors";
-
-import LANGUAGE from "../../utils/language.util";
 
 const MenuUser = ({
   anchorEl,
   open,
   onClose,
   onAccountSettings,
-  onLogout
+  onLogout,
+  isAdmin = false,
 }) => {
   const navigate = useNavigate();
 
@@ -50,6 +49,20 @@ const MenuUser = ({
         },
       }}
     >
+      {isAdmin && (
+        <MenuItem
+          onClick={() => {
+            navigate(ROUTES.USER.LIST);
+            onClose?.();
+          }}
+        >
+          <ListItemIcon>
+            <UsersRound size={20} />
+          </ListItemIcon>
+          USER LIST
+        </MenuItem>
+      )}
+
       <MenuItem
         onClick={() => {
           navigate(ROUTES.ACCOUNT.SETTINGS);
@@ -62,6 +75,7 @@ const MenuUser = ({
         </ListItemIcon>
         ACCOUNT SETTINGS
       </MenuItem>
+
       <MenuItem
         onClick={() => {
           onLogout?.();

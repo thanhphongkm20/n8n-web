@@ -12,7 +12,8 @@ export const resourceValidationSchema = Yup.object({
   slug: Yup.string()
     .trim()
     .matches(
-      "Slug must be lowercase and use hyphens only"
+      /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+      "Slug must be lowercase and use hyphens only",
     )
     .required(LANGUAGE.FIELD_REQUIRED("Slug")),
 
@@ -20,30 +21,31 @@ export const resourceValidationSchema = Yup.object({
     .trim()
     .min(10, "Description must be at least 10 characters")
     .max(500, "Description must not exceed 500 characters")
-    .required(
-      LANGUAGE.FIELD_REQUIRED("Resource description")
-    ),
+    .required(LANGUAGE.FIELD_REQUIRED("Resource description")),
 
   content: Yup.string().trim().nullable(),
 
-  type: Yup.string()
+  resource_type: Yup.string()
     .oneOf(
-      ["documentation", "tool_script", "community"],
-      "Invalid resource type"
+      [
+        "documentation",
+        "tool_script",
+        "community",
+        "tutorial",
+        "template",
+        "other",
+      ],
+      "Invalid resource type",
     )
-    .required(
-      LANGUAGE.FIELD_REQUIRED("Resource type")
-    ),
+    .required(LANGUAGE.FIELD_REQUIRED("Resource type")),
 
-  thumbnail: Yup.string()
+  thumbnail_url: Yup.string()
     .trim()
-    .url("Thumbnail must be a valid URL")
+    .url("Thumbnail URL must be a valid URL")
     .nullable()
     .notRequired(),
 
-  tags: Yup.array()
-    .of(Yup.string().trim())
-    .max(10, "Maximum 10 tags allowed"),
+  tags: Yup.array().of(Yup.string().trim()).max(10, "Maximum 10 tags allowed"),
 
   download_url: Yup.string()
     .trim()
@@ -62,6 +64,8 @@ export const resourceValidationSchema = Yup.object({
     .required(LANGUAGE.FIELD_REQUIRED("Status")),
 
   is_featured: Yup.boolean(),
+  allow_comments: Yup.boolean(),
+  notify_subscribers: Yup.boolean(),
 });
 
 export default resourceValidationSchema;

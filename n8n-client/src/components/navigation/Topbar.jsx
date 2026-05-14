@@ -150,6 +150,7 @@ const Topbar = () => {
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
                 onClose={handleCloseMenu}
+                isAdmin={user?.role === "admin" || user?.role === "ADMIN"}
                 onLogout={() => {
                   localStorage.removeItem("access_token");
                   window.location.reload();

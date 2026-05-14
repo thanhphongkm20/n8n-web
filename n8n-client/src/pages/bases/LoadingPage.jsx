@@ -1,22 +1,16 @@
-import { Box, CircularProgress } from '@mui/material';
-
-import StackCol from '../../components/common/StackCol';
+import { Box, CircularProgress } from "@mui/material";
 
 export const LoadingPage = () => (
-  <StackCol
-    alignItems="center"
-    justifyContent="center"
+  <Box
     sx={{
-      height: "100%",
-      width: "100%",
       position: "absolute",
-      top: 0,
-      left: 0,
+      inset: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       zIndex: 1000,
     }}
   >
-    <Box>
-      <CircularProgress size={80} />
-    </Box>
-  </StackCol>
+    <CircularProgress size={80} />
+  </Box>
 );

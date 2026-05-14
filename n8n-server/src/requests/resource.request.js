@@ -14,6 +14,9 @@ export const createResourceRequest = z.object({
     RESOURCE_TYPES.DOCUMENTATION,
     RESOURCE_TYPES.TOOL_SCRIPT,
     RESOURCE_TYPES.COMMUNITY,
+    RESOURCE_TYPES.TUTORIAL,
+    RESOURCE_TYPES.TEMPLATE,
+    RESOURCE_TYPES.OTHER,
   ]),
 
   thumbnail: z.string().optional(),
@@ -24,13 +27,9 @@ export const createResourceRequest = z.object({
 
   external_url: z.string().optional(),
 
-  status: z.enum([
-    RESOURCE_STATUS.DRAFT,
-    RESOURCE_STATUS.PUBLISHED,
-  ]),
+  status: z.enum([RESOURCE_STATUS.DRAFT, RESOURCE_STATUS.PUBLISHED]),
 
   is_featured: z.boolean().optional(),
 });
 
-export const updateResourceRequest =
-  createResourceRequest.partial();
+export const updateResourceRequest = createResourceRequest.partial();
