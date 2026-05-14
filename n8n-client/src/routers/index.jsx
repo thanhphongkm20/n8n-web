@@ -24,7 +24,7 @@ import CustomBuiltPage from "../pages/customBuilt/CustomBuiltPage.jsx";
 // import BlogPage from "../pages/blog/BlogPage.jsx";
 import ResourceListPage from "../pages/resource/ResourceListPage.jsx";
 import ResourceCreatePage from "../pages/resource/ResourceCreatePage.jsx";
-// import ResourceUpdatePage from "../pages/resource/ResourceUpdatePage.jsx";
+import ResourceUpdatePage from "../pages/resource/ResourceUpdatePage.jsx";
 // import BlogListPage from "../pages/blog/BlogListPage.jsx";
 // import BlogCreatePage from "../pages/blog/BlogCreatePage.jsx";
 // import BlogUpdatePage from "../pages/blog/BlogUpdatePage.jsx";
@@ -186,21 +186,21 @@ const router = createBrowserRouter([
                   },
                 },
               },
-              // {
-              //   path: ROUTES.RESOURCE.UPDATE,
-              //   element: (
-              //     <Page
-              //       state={APP_STATE.RESOURCES}
-              //       element={<ResourceUpdatePage />}
-              //       roles={[ROLES.ADMIN]}
-              //     />
-              //   ),
-              //   handle: {
-              //     breadcrumb: {
-              //       label: "RESOURCE UPDATE",
-              //     },
-              //   },
-              // },
+              {
+                path: ROUTES.RESOURCE.UPDATE,
+                element: (
+                  <Page
+                    state={APP_STATE.RESOURCES}
+                    element={<ResourceUpdatePage />}
+                    roles={[ROLES.ADMIN]}
+                  />
+                ),
+                handle: {
+                  breadcrumb: {
+                    label: "RESOURCE UPDATE",
+                  },
+                },
+              },
             ],
           },
           // {
