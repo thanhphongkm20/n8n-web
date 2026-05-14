@@ -13,4 +13,13 @@ export const USER_SEARCH_FIELDS = {
   DISPLAY_NAME: "display_name",
 };
 
+export const RESOURCE_TYPES = {
+  DOCUMENTATION: "documentation",
+  TOOL_SCRIPT: "tool_script",
+  COMMUNITY: "community",
+};
 
+export const RESOURCE_STATUS = {
+  DRAFT: "draft",
+  PUBLISHED: "published",
+};
