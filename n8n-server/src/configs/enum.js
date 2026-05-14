@@ -23,3 +23,14 @@ export const RESOURCE_STATUS = {
   DRAFT: "draft",
   PUBLISHED: "published",
 };
+
+export const BLOG_TYPES = {
+  CASE_STUDY: "case_study",
+  UPDATE_NEWS: "update_news",
+  TECHNICAL_GUIDE: "technical_guide",
+};
+
+export const BLOG_STATUS = {
+  DRAFT: "draft",
+  PUBLISHED: "published",
+};
