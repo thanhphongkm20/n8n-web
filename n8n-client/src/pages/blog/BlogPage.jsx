@@ -89,7 +89,7 @@ const BlogResourcePage = () => {
             mb: 1,
           }}
         >
-          Chia sẻ kiến thức...
+          Chia sẻ kiến thức
         </Typography>
 
         <Typography
