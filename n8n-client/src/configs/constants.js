@@ -85,3 +85,23 @@ export const RESOURCE_TYPES = [
     icon: Ellipsis,
   },
 ];
+
+export const UI = {
+  bg: "#000000",
+  panel: "#242421",
+  panel2: "#2B2B28",
+  border: "rgba(255,255,255,0.16)",
+  muted: "#9A9894",
+  text: "#F5F3EE",
+  sub: "#C9C5BF",
+  purple: "#5B4AC8",
+  green: "#159F7B",
+  orange: "#E35A32",
+};
+
+export const FILTERS = [
+  { label: "Tất cả", value: "" },
+  { label: "Case Study", value: "case_study" },
+  { label: "Update News", value: "news" },
+  { label: "Hướng dẫn kỹ thuật", value: "guide" },
+];

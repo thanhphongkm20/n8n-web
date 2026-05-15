@@ -50,3 +50,11 @@ export const COLORS_BTN = {
   DELETE: "#CDD6DD",
 };
 
+export const CARD_COLORS = [
+  "#6D5BFF",
+  "#14B8A6",
+  "#F97316",
+  "#D946EF",
+  "#38BDF8",
+  "#F59E0B",
+];

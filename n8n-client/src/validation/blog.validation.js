@@ -12,7 +12,8 @@ export const blogValidationSchema = Yup.object({
   slug: Yup.string()
     .trim()
     .matches(
-      "Slug must be lowercase and use hyphens only"
+      /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+      "Slug must be lowercase and use hyphens only",
     )
     .required(LANGUAGE.FIELD_REQUIRED("Slug")),
 
@@ -36,27 +37,19 @@ export const blogValidationSchema = Yup.object({
   type: Yup.string()
     .oneOf(
       ["case_study", "update_news", "technical_guide"],
-      "Invalid blog type"
+      "Invalid blog type",
     )
     .required(LANGUAGE.FIELD_REQUIRED("Blog type")),
 
-  tags: Yup.array()
-    .of(Yup.string().trim())
-    .max(10, "Maximum 10 tags allowed"),
+  tags: Yup.array().of(Yup.string().trim()).max(10, "Maximum 10 tags allowed"),
 
   seo_title: Yup.string()
     .trim()
-    .max(
-      60,
-      "SEO title should not exceed 60 characters"
-    ),
+    .max(60, "SEO title should not exceed 60 characters"),
 
   seo_description: Yup.string()
     .trim()
-    .max(
-      160,
-      "SEO description should not exceed 160 characters"
-    ),
+    .max(160, "SEO description should not exceed 160 characters"),
 
   status: Yup.string()
     .oneOf(["draft", "published"], "Invalid status")
