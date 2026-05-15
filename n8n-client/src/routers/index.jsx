@@ -20,7 +20,7 @@ import ArticleListPage from "../pages/article/ArticleListPage.jsx";
 import ArticleCreatePage from "../pages/article/ArticleCreatePage.jsx";
 import ArticleUpdatePage from "../pages/article/ArticleUpdatePage.jsx";
 import CustomBuiltPage from "../pages/customBuilt/CustomBuiltPage.jsx";
-// import ResourcePage from "../pages/resource/ResourcePage.jsx";
+import ResourcePage from "../pages/resource/ResourcePage.jsx";
 import BlogPage from "../pages/blog/BlogPage.jsx";
 import ResourceListPage from "../pages/resource/ResourceListPage.jsx";
 import ResourceCreatePage from "../pages/resource/ResourceCreatePage.jsx";
@@ -48,10 +48,10 @@ const router = createBrowserRouter([
             path: ROUTES.CUSTOM_BUILT,
             element: <CustomBuiltPage />,
           },
-          // {
-          //   path: ROUTES.RESOURCES,
-          //   element: <ResourcePage />,
-          // },
+          {
+            path: ROUTES.RESOURCES,
+            element: <ResourcePage />,
+          },
           {
             path: ROUTES.BLOG,
             element: <BlogPage />,

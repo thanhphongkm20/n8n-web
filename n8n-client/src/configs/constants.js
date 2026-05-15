@@ -5,7 +5,10 @@ import {
   Play,
   Users,
   Wrench,
+  FileText,
+  MessageSquare
 } from "lucide-react";
+import { createTheme } from "@mui/material/styles";
 
 export const API_URL =
   import.meta.env.VITE_API_URL || "http://127.0.0.1:5000/api/v1/";
@@ -79,11 +82,6 @@ export const RESOURCE_TYPES = [
     label: "Template",
     icon: Calculator,
   },
-  {
-    value: "other",
-    label: "Other",
-    icon: Ellipsis,
-  },
 ];
 
 export const UI = {
@@ -104,4 +102,69 @@ export const FILTERS = [
   { label: "Case Study", value: "case_study" },
   { label: "Update News", value: "news" },
   { label: "Hướng dẫn kỹ thuật", value: "guide" },
+];
+
+export const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: { main: "#00C9A7" },
+    secondary: { main: "#0ea5e9" },
+    background: {
+      default: "#060B14",
+      paper: "#0D1525",
+    },
+    text: {
+      primary: "#E8EDF5",
+      secondary: "#8B9BB4",
+    },
+    divider: "rgba(255,255,255,0.07)",
+  },
+  typography: {
+    fontFamily: "'Sora', 'Inter', sans-serif",
+  },
+  shape: {
+    borderRadius: 12,
+  },
+});
+
+export const TYPE_CONFIG = {
+  documentation: {
+    label: "Documentation",
+    Icon: FileText,
+    color: "#00C9A7",
+    bg: "rgba(0,201,167,0.1)",
+  },
+  tool_script: {
+    label: "Tools & Scripts",
+    Icon: Wrench,
+    color: "#0ea5e9",
+    bg: "rgba(14,165,233,0.1)",
+  },
+  community: {
+    label: "Community",
+    Icon: MessageSquare,
+    color: "#a78bfa",
+    bg: "rgba(167,139,250,0.1)",
+  },
+  tutorial: {
+    label: "Tutorial",
+    Icon: FileText,
+    color: "#f59e0b",
+    bg: "rgba(245,158,11,0.1)",
+  },
+  template: {
+    label: "Template",
+    Icon: FileText,
+    color: "#38bdf8",
+    bg: "rgba(56,189,248,0.1)",
+  },
+};
+
+export const RESOURCE_TABS = [
+  { value: "all", label: "Tất cả", Icon: FileText },
+  { value: "documentation", label: "Documentation", Icon: BookOpen },
+  { value: "tool_script", label: "Tools & Scripts", Icon: Wrench },
+  { value: "community", label: "Community", Icon: MessageSquare },
+  { value: "tutorial", label: "Tutorial", Icon: Play },
+  { value: "template", label: "Template", Icon: Calculator },
 ];

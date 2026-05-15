@@ -19,7 +19,6 @@ export const RESOURCE_TYPES = {
   COMMUNITY: "community",
   TUTORIAL: "tutorial",
   TEMPLATE: "template",
-  OTHER: "other",
 };
 
 export const RESOURCE_STATUS = {

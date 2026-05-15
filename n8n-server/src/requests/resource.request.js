@@ -16,7 +16,6 @@ export const createResourceRequest = z.object({
     RESOURCE_TYPES.COMMUNITY,
     RESOURCE_TYPES.TUTORIAL,
     RESOURCE_TYPES.TEMPLATE,
-    RESOURCE_TYPES.OTHER,
   ]),
 
   thumbnail: z.string().optional(),

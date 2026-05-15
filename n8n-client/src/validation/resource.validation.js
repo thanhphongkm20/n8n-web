@@ -33,7 +33,6 @@ export const resourceValidationSchema = Yup.object({
         "community",
         "tutorial",
         "template",
-        "other",
       ],
       "Invalid resource type",
     )
