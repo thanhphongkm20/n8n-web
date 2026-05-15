@@ -102,7 +102,7 @@ const BlogResourcePage = () => {
             mb: 1.5,
           }}
         >
-          Blog & Tài nguyên
+          Blog & Tài ngthức?
         </Typography>
 
         <Typography
