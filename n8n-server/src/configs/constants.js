@@ -25,6 +25,6 @@ export const CONSTANTS = {
   ALLOWED_ORIGINS: [
     "http://127.0.0.1:3000",
     "http://localhost:3000",
-    "http://13.158.85.154/"
+    "http://13.158.85.154"
   ],
 };
