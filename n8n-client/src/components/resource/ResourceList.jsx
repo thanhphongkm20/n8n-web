@@ -13,7 +13,6 @@ const ResourceList = ({ loading, resources = [] }) => {
   const maxStartIndex = Math.max(0, resources.length - VISIBLE_ITEMS);
   const canSlide = resources.length > VISIBLE_ITEMS;
 
-  // clamp lại index nếu resources thay đổi
   const safeStartIndex = Math.min(startIndex, maxStartIndex);
 
   const visibleResources = useMemo(() => {

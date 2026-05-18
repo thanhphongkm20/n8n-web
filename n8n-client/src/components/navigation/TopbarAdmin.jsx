@@ -81,9 +81,9 @@ const TopBarDashboard = ({ onOpenMobileMenu }) => {
         >
           {/* Desktop menu */}
           <Stack
-            direction="row"
-            alignItems="stretch"
             sx={{
+              flexDirection: "row",
+              alignItems: "stretch",
               height: "100%",
               display: { xs: "none", lg: "flex" },
             }}
@@ -139,7 +139,7 @@ const TopBarDashboard = ({ onOpenMobileMenu }) => {
           )}
         </Box>
       </Toolbar>
-    </AppBar>
+    </AppBar >
   );
 };
 

@@ -166,8 +166,8 @@ const ResourceCard = ({ resource }) => {
 
         <Stack
           direction="row"
-          flexWrap="wrap"
           sx={{
+            flexWrap: "wrap",
             gap: 1,
             minHeight: 58,
             maxHeight: 58,
@@ -216,7 +216,7 @@ const ResourceCard = ({ resource }) => {
         <Box sx={{ mt: "auto" }}>
           <Divider sx={{ my: 2 }} />
 
-          <Stack direction="row" alignItems="center" gap={0.6}>
+          <Stack direction="row" gap={0.6} sx={{ alignItems: "center" }}>
             <Clock3 size={14} color="#8B9BB4" />
             <Typography sx={{ color: "text.secondary", fontSize: "0.74rem" }}>
               {formatDate(resource.createdAt)}

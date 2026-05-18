@@ -89,7 +89,7 @@ const BlogResourcePage = () => {
             mb: 1,
           }}
         >
-          Chia sẻ kiến thức
+          Share knowledge
         </Typography>
 
         <Typography
@@ -102,7 +102,7 @@ const BlogResourcePage = () => {
             mb: 1.5,
           }}
         >
-          Blog & Tài ngthức?
+          Blogs & Resources
         </Typography>
 
         <Typography
@@ -117,8 +117,8 @@ const BlogResourcePage = () => {
             mx: "auto",
           }}
         >
-          Case study thực tế, cập nhật tính năng n8n, và hướng dẫn kỹ thuật
-          chuyên sâu về AI automation.
+          Real-world case studies, n8n feature updates, and in-depth technical guides
+          on AI automation.
         </Typography>
 
         {/* SECTION 1 */}

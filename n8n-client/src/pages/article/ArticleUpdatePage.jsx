@@ -142,10 +142,13 @@ const ArticleUpdatePage = () => {
     >
       <Container maxWidth="xl">
         <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          mb={5}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 5,
+          }}
         >
           <RouteBreadcrumbs />
         </Stack>
@@ -158,7 +161,7 @@ const ArticleUpdatePage = () => {
               <MPaper sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 3, borderRadius: 3 }}>
                 <Typography variant="h6" fontWeight="bold">ARTICLE CONTENT</Typography>
                 <Box>
-                  <Stack direction="row" alignItems="flex-end" gap={2}>
+                  <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "flex-end", gap: 2 }}>
                     <FormLabelField
                       title="ARTICLE TITLE"
                       placeholder="TITLE"

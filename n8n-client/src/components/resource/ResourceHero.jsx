@@ -26,7 +26,7 @@ const ResourceHero = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Box textAlign="center" position="relative">
+        <Box sx={{ textAlign: "center" }} position="relative">
           <Typography
             sx={{
               color: UI.muted,
@@ -37,7 +37,7 @@ const ResourceHero = () => {
               mb: 1,
             }}
           >
-            Chia sẻ kiến thức
+            Share Knowledge
           </Typography>
 
           <Typography
@@ -50,7 +50,7 @@ const ResourceHero = () => {
               mb: 1.5,
             }}
           >
-            Tài nguyên & Công cụ
+            Resources & Tools
           </Typography>
 
           <Typography
@@ -65,8 +65,8 @@ const ResourceHero = () => {
               mx: "auto",
             }}
           >
-            Case study thực tế, cập nhật tính năng n8n, và hướng dẫn kỹ thuật
-            chuyên sâu về AI automation.
+            Real-world case studies, n8n feature updates, and in-depth technical guides
+            on AI automation.
           </Typography>
 
           <Box

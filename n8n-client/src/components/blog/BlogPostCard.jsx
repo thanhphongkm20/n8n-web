@@ -135,9 +135,9 @@ const BlogPostCard = ({
         {/* FOOTER */}
         <Stack
           direction="row"
-          justifyContent="space-between"
-          alignItems="center"
           sx={{
+            justifyContent: "space-between",
+            alignItems: "center",
             mt: 3,
             pt: 1,
             borderTop:
@@ -149,8 +149,8 @@ const BlogPostCard = ({
         >
           <Stack
             direction="row"
-            alignItems="center"
             gap={1}
+            sx={{ alignItems: "center" }}
           >
             <CalendarDays size={14} />
             {formatDate(
@@ -159,8 +159,8 @@ const BlogPostCard = ({
           </Stack>
           <Stack
             direction="row"
-            alignItems="center"
             gap={0.7}
+            sx={{ alignItems: "center" }}
           >
             {post.reading_time}
           </Stack>

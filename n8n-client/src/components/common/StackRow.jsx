@@ -11,9 +11,10 @@ const StackRow = ({
 }) => {
   return (
     <Stack
-      direction={direction}
-      gap={gap}
       sx={{
+        display: "flex",
+        flexDirection: direction,
+        gap,
         justifyContent,
         alignItems,
         ...sx,

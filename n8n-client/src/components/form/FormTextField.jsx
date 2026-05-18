@@ -33,11 +33,15 @@ const FormTextField = ({
   return (
     <>
       <Stack
-        justifyContent="flex-start"
-        direction={direction}
-        alignItems="center"
-        gap={{ xs: 1, md: gap }}
-        sx={{ width: '100%', ...sx }}
+        sx={{
+          width: "100%",
+          display: "flex",
+          flexDirection: direction,
+          justifyContent: "flex-start",
+          alignItems: "center",
+          gap: { xs: 1, md: gap },
+          ...sx,
+        }}
       >
         {title && (
           <StackRow

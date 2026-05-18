@@ -33,11 +33,14 @@ const FormQuoteField = ({
   return (
     <>
       <Stack
-        justifyContent="flex-start"
         direction={direction}
-        alignItems="center"
         gap={{ xs: 1, md: gap }}
-        sx={{ width: '100%', ...sx }}
+        sx={{
+          width: '100%',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          ...sx,
+        }}
       >
         {title && (
           <StackRow

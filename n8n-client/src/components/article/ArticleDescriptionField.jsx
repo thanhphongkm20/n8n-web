@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Box, ToggleButton, Divider, Select, MenuItem, FormControl } from "@mui/material";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import { TextStyle } from "@tiptap/extension-text-style";
 import {
@@ -62,7 +61,6 @@ const ArticleDescriptionField = ({ value, onChange }) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Underline,
       FontSize,
       TextAlign.configure({
         types: ["heading", "paragraph"],

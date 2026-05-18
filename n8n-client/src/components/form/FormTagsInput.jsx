@@ -94,8 +94,10 @@ const FormTagsInput = ({
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}
         disabled={tags.length >= maxTags}
-        InputProps={{
-          disableUnderline: true,
+        slotProps={{
+          input: {
+            disableUnderline: true,
+          },
         }}
         sx={{
           flex: 1,

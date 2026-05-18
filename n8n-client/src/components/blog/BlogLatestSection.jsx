@@ -26,7 +26,7 @@ const BlogLatestSection = ({ blogs = [] }) => {
           mb: 2,
         }}
       >
-        Bài viết mới nhất
+        Latest article
       </Typography>
       <Divider
         sx={{

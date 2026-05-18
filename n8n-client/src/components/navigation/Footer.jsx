@@ -46,8 +46,8 @@ const Footer = () => {
       <Container maxWidth="lg">
         <StackRow
           justifyContent="space-between"
-          alignItems="flex-start"
           sx={{
+            alignItems: "flex-start",
             flexDirection: { xs: "column", md: "row" },
             gap: 6,
             mb: 8,
@@ -141,8 +141,8 @@ const Footer = () => {
         {/* BOTTOM */}
         <StackRow
           justifyContent="space-between"
-          alignItems="center"
           sx={{
+            alignItems: "center",
             flexDirection: { xs: "column-reverse", sm: "row" },
             gap: 3,
           }}
@@ -150,9 +150,14 @@ const Footer = () => {
           <Typography variant="caption" sx={{ color: "#64748b" }}>
             © {new Date().getFullYear()} n8n Hub. All rights reserved.
           </Typography>
-
-          <StackRow gap={3}>
+          <StackRow
+            sx={{
+              alignItems: "center",
+              columnGap: "20px",
+            }}
+          >
             <FooterLink small>Privacy Policy</FooterLink>
+
             <FooterLink small>Terms of Service</FooterLink>
           </StackRow>
         </StackRow>
@@ -166,8 +171,8 @@ const ContactItem = ({ icon, text }) => (
   <Stack
     direction="row"
     spacing={2}
-    alignItems="center"
     sx={{
+      alignItems: "center",
       px: 2,
       py: 1.2,
       borderRadius: "10px",

@@ -44,7 +44,7 @@ const FormQuoteSelect = ({
 
   return (
     <FormControl sx={{ width }} error={hasError}>
-      <Stack direction="column" alignItems="flex-start" gap={1} sx={{ width: "100%" }}>
+      <Stack sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 1 }}>
 
         {/* LABEL */}
         {title && (

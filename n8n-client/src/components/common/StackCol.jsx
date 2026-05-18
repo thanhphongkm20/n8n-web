@@ -9,11 +9,14 @@ const StackCol = ({
 }) => {
   return (
     <Stack
-      gap={gap}
-      direction="column"
-      justifyContent={justifyContent}
-      alignItems={alignItems}
-      sx={sx}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent,
+        alignItems,
+        gap,
+        ...sx,
+      }}
     >
       {children}
     </Stack>

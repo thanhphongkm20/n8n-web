@@ -116,7 +116,6 @@ const FormLabelField = ({
 
           ...sx,
         }}
-        {...props}
       />
     </Stack>
   );

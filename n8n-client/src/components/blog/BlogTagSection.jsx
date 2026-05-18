@@ -35,7 +35,7 @@ const BlogTagSection = ({ tags = [] }) => {
           mb: 2,
         }}
       >
-        Chủ đề phổ biến
+        Popular topic
       </Typography>
 
       <Divider
@@ -53,11 +53,11 @@ const BlogTagSection = ({ tags = [] }) => {
       >
         <Stack
           direction="row"
-          flexWrap="wrap"
-          justifyContent="flex-start"
           sx={{
             width: "100%",
             columnGap: 2,
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
           }}
         >
           {tags.map((tag, index) => {

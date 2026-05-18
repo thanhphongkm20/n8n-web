@@ -30,19 +30,21 @@ const Search = ({
           alignItems: "center",
         },
       }}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <SearchIcon size={18} color="#94a3b8" />
-          </InputAdornment>
-        ),
-        endAdornment: value ? (
-          <InputAdornment position="end">
-            <IconButton size="small" onClick={() => onChange("")}>
-              <X size={16} />
-            </IconButton>
-          </InputAdornment>
-        ) : null,
+      slotProps={{
+        input: {
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon size={18} color="#94a3b8" />
+            </InputAdornment>
+          ),
+          endAdornment: value ? (
+            <InputAdornment position="end">
+              <IconButton size="small" onClick={() => onChange("")}>
+                <X size={16} />
+              </IconButton>
+            </InputAdornment>
+          ) : null,
+        },
       }}
     />
   );

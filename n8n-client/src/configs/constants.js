@@ -6,7 +6,7 @@ import {
   Users,
   Wrench,
   FileText,
-  MessageSquare
+  MessageSquare,
 } from "lucide-react";
 import { createTheme } from "@mui/material/styles";
 
@@ -98,10 +98,10 @@ export const UI = {
 };
 
 export const FILTERS = [
-  { label: "Tất cả", value: "" },
-  { label: "Case Study", value: "case_study" },
-  { label: "Update News", value: "news" },
-  { label: "Hướng dẫn kỹ thuật", value: "guide" },
+  { label: "All", value: "" },
+  { label: "Case Studies", value: "case_study" },
+  { label: "News Updates", value: "news" },
+  { label: "Technical Guides", value: "guide" },
 ];
 
 export const darkTheme = createTheme({
@@ -161,7 +161,7 @@ export const TYPE_CONFIG = {
 };
 
 export const RESOURCE_TABS = [
-  { value: "all", label: "Tất cả", Icon: FileText },
+  { value: "all", label: "All", Icon: FileText },
   { value: "documentation", label: "Documentation", Icon: BookOpen },
   { value: "tool_script", label: "Tools & Scripts", Icon: Wrench },
   { value: "community", label: "Community", Icon: MessageSquare },

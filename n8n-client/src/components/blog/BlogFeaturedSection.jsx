@@ -56,13 +56,13 @@ const BlogFeaturedSection = ({
         >
           <Stack
             direction="row"
-            flexWrap="wrap"
-            justifyContent="center"
             sx={{
               gap: 1.8,
               width: "fit-content",
               maxWidth: "100%",
               mx: "auto",
+              justifyContent: "center",
+              flexWrap: "wrap",
             }}
           >
             {FILTERS.map((item) => {
@@ -128,9 +128,9 @@ const BlogFeaturedSection = ({
             }}
           >
             {[
-              ["40h", "Tiết kiệm mỗi tuần"],
-              [`${blogs.length}+`, "Case study thực tế"],
-              ["98%", "Tự động hóa thành công"],
+              ["40h", "Savings per week"],
+              [`${blogs.length}+`, "Real-life case study"],
+              ["98%", "Successful automation"],
             ].map(([val, lbl]) => (
               <Box
                 key={lbl}
@@ -260,7 +260,7 @@ const BlogFeaturedSection = ({
                     whiteSpace: "nowrap",
                   }}
                 >
-                  {getTypeLabel(featuredBlog.type)} nổi bật
+                  {getTypeLabel(featuredBlog.type)} featured
                 </Typography>
               </Box>
               <Typography
@@ -296,22 +296,23 @@ const BlogFeaturedSection = ({
                 {featuredBlog.excerpt}
               </Typography>
               <Stack
-                direction="row"
-                flexWrap="wrap"
-                alignItems="center"
-                gap={2.2}
                 sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 2.2,
                   color: "rgba(255,255,255,0.48)",
                   fontSize: 14,
                   mb: 4,
+                  flexWrap: "wrap",
                 }}
               >
-                <Stack direction="row" alignItems="center" gap={0.7}>
+                <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 0.7 }}>
                   <CalendarDays size={15} />
                   {formatDate(featuredBlog.published_at || featuredBlog.created_at)}
                 </Stack>
 
-                <Stack direction="row" alignItems="center" gap={0.7}>
+                <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 0.7 }}>
                   {featuredBlog.reading_time}
                 </Stack>
               </Stack>
@@ -334,7 +335,7 @@ const BlogFeaturedSection = ({
                   },
                 }}
               >
-                Đọc case study
+                Read case study
               </Button>
             </Box>
           </Box>
