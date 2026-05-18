@@ -1,6 +1,9 @@
 import * as Yup from "yup";
 
 import LANGUAGE from "../utils/language.util";
+import { FILTERS } from "../configs/constants";
+
+const BLOG_TYPES = FILTERS.map((item) => item.value).filter(Boolean);
 
 export const blogValidationSchema = Yup.object({
   title: Yup.string()
@@ -30,13 +33,27 @@ export const blogValidationSchema = Yup.object({
 
   thumbnail: Yup.string()
     .trim()
-    .url("Thumbnail must be a valid URL")
+    .test(
+      "thumbnail-format",
+      "Thumbnail must be a valid URL or image file",
+      (value) => {
+        if (!value) return true;
+
+        const isUrl = /^https?:\/\/.+/.test(value);
+
+        const isBase64Image = /^data:image\/(png|jpg|jpeg|webp);base64,/.test(
+          value,
+        );
+
+        return isUrl || isBase64Image;
+      },
+    )
     .nullable()
     .notRequired(),
 
   type: Yup.string()
     .oneOf(
-      ["case_study", "update_news", "technical_guide"],
+      FILTERS.map((item) => item.value).filter(Boolean),
       "Invalid blog type",
     )
     .required(LANGUAGE.FIELD_REQUIRED("Blog type")),

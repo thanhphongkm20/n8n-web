@@ -93,7 +93,7 @@ export const resourceService = {
     }
 
     const resource = await Resource.findByIdAndUpdate(id, payload, {
-      new: true,
+      returnDocument: "after",
       runValidators: true,
     });
 

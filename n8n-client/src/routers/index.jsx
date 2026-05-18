@@ -26,8 +26,8 @@ import ResourceListPage from "../pages/resource/ResourceListPage.jsx";
 import ResourceCreatePage from "../pages/resource/ResourceCreatePage.jsx";
 import ResourceUpdatePage from "../pages/resource/ResourceUpdatePage.jsx";
 import BlogListPage from "../pages/blog/BlogListPage.jsx";
-// import BlogCreatePage from "../pages/blog/BlogCreatePage.jsx";
-// import BlogUpdatePage from "../pages/blog/BlogUpdatePage.jsx";
+import BlogCreatePage from "../pages/blog/BlogCreatePage.jsx";
+import BlogUpdatePage from "../pages/blog/BlogUpdatePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -222,36 +222,36 @@ const router = createBrowserRouter([
                   />
                 ),
               },
-          //     {
-          //       path: ROUTES.BLOG_ADMIN.CREATE,
-          //       element: (
-          //         <Page
-          //           state={APP_STATE.BLOG}
-          //           element={<BlogCreatePage />}
-          //           roles={[ROLES.ADMIN]}
-          //         />
-          //       ),
-          //       handle: {
-          //         breadcrumb: {
-          //           label: "BLOG CREATE",
-          //         },
-          //       },
-          //     },
-          //     {
-          //       path: ROUTES.BLOG_ADMIN.UPDATE,
-          //       element: (
-          //         <Page
-          //           state={APP_STATE.BLOG}
-          //           element={<BlogUpdatePage />}
-          //           roles={[ROLES.ADMIN]}
-          //         />
-          //       ),
-          //       handle: {
-          //         breadcrumb: {
-          //           label: "BLOG UPDATE",
-          //         },
-          //       },
-          //     },
+              {
+                path: ROUTES.BLOG_ADMIN.CREATE,
+                element: (
+                  <Page
+                    state={APP_STATE.BLOG}
+                    element={<BlogCreatePage />}
+                    roles={[ROLES.ADMIN]}
+                  />
+                ),
+                handle: {
+                  breadcrumb: {
+                    label: "BLOG CREATE",
+                  },
+                },
+              },
+              {
+                path: ROUTES.BLOG_ADMIN.UPDATE,
+                element: (
+                  <Page
+                    state={APP_STATE.BLOG}
+                    element={<BlogUpdatePage />}
+                    roles={[ROLES.ADMIN]}
+                  />
+                ),
+                handle: {
+                  breadcrumb: {
+                    label: "BLOG UPDATE",
+                  },
+                },
+              },
             ],
           },
         ],

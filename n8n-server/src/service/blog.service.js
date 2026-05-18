@@ -12,9 +12,7 @@ export const blogService = {
 
     const reading_time = Math.max(
       1,
-      Math.ceil(
-        payload.content?.split(" ").length / 200
-      )
+      Math.ceil(payload.content?.split(" ").length / 200),
     );
 
     return Blog.create({
@@ -24,14 +22,7 @@ export const blogService = {
   },
 
   async getAll(query) {
-    const {
-      page = 1,
-      limit = 10,
-      type,
-      keyword,
-      status,
-      is_featured,
-    } = query;
+    const { page = 1, limit = 10, type, keyword, status, is_featured } = query;
 
     const filter = {};
 
@@ -40,8 +31,7 @@ export const blogService = {
     if (status) filter.status = status;
 
     if (is_featured !== undefined) {
-      filter.is_featured =
-        is_featured === "true";
+      filter.is_featured = is_featured === "true";
     }
 
     if (keyword) {
@@ -67,14 +57,10 @@ export const blogService = {
       ];
     }
 
-    const skip =
-      (Number(page) - 1) * Number(limit);
+    const skip = (Number(page) - 1) * Number(limit);
 
     const [items, total] = await Promise.all([
-      Blog.find(filter)
-        .sort("-createdAt")
-        .skip(skip)
-        .limit(Number(limit)),
+      Blog.find(filter).sort("-createdAt").skip(skip).limit(Number(limit)),
 
       Blog.countDocuments(filter),
     ]);
@@ -85,9 +71,7 @@ export const blogService = {
         page: Number(page),
         limit: Number(limit),
         total,
-        total_pages: Math.ceil(
-          total / Number(limit)
-        ),
+        total_pages: Math.ceil(total / Number(limit)),
       },
     };
   },
@@ -117,13 +101,9 @@ export const blogService = {
   },
 
   async update(id, payload) {
-    const blog = await Blog.findByIdAndUpdate(
-      id,
-      payload,
-      {
-        new: true,
-      }
-    );
+    const blog = await Blog.findByIdAndUpdate(id, payload, {
+      returnDocument: "after",
+    });
 
     if (!blog) {
       throw new Error("Blog not found");
@@ -133,9 +113,7 @@ export const blogService = {
   },
 
   async remove(id) {
-    const blog = await Blog.findByIdAndDelete(
-      id
-    );
+    const blog = await Blog.findByIdAndDelete(id);
 
     if (!blog) {
       throw new Error("Blog not found");

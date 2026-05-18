@@ -12,7 +12,7 @@ export const updateArticle = async (id, data, userId) => {
   return await Article.findByIdAndUpdate(
     id,
     { ...data, updated_by: userId },
-    { new: true },
+    { returnDocument: "after" },
   );
 };
 

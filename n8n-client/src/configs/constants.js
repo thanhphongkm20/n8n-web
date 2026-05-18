@@ -23,7 +23,7 @@ export const APP_STATE = {
   USER: "USER",
   ARTICLE: "ARTICLE",
   RESOURCES: "RESOURCES",
-  // BLOG: "BLOG",
+  BLOG: "BLOG",
 };
 
 export const ROLES = {

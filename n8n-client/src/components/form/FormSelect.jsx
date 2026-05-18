@@ -19,7 +19,7 @@ const getOptionValue = (option) => (
 
 const FormSelect = ({
   id,
-  form = { values: {}, touched: {}, errors: {}, handleChange: () => {} },
+  form = { values: {}, touched: {}, errors: {}, handleChange: () => { } },
   data = [],
   sx = {},
   onChange,
@@ -43,7 +43,12 @@ const FormSelect = ({
 
   return (
     <FormControl sx={{ width }} error={hasError}>
-      <Stack direction="column" alignItems="flex-start" gap={1} sx={{ width: "100%" }}>
+      <Stack
+        direction="column"
+        alignItems="flex-start"
+        spacing={1.9}
+        sx={{ width: "100%" }}
+      >
 
         {/* LABEL */}
         {title && (

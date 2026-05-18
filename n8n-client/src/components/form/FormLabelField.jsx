@@ -20,11 +20,11 @@ const FormLabelField = ({
   label,
   error,
   helperText,
-
   multiline = false,
   rows,
   minRows,
   maxRows,
+  ...props
 }) => {
   const fieldValue = value ?? getIn(form?.values, id) ?? "";
 
@@ -116,6 +116,7 @@ const FormLabelField = ({
 
           ...sx,
         }}
+        {...props}
       />
     </Stack>
   );
