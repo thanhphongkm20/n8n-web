@@ -25,7 +25,7 @@ import BlogPage from "../pages/blog/BlogPage.jsx";
 import ResourceListPage from "../pages/resource/ResourceListPage.jsx";
 import ResourceCreatePage from "../pages/resource/ResourceCreatePage.jsx";
 import ResourceUpdatePage from "../pages/resource/ResourceUpdatePage.jsx";
-// import BlogListPage from "../pages/blog/BlogListPage.jsx";
+import BlogListPage from "../pages/blog/BlogListPage.jsx";
 // import BlogCreatePage from "../pages/blog/BlogCreatePage.jsx";
 // import BlogUpdatePage from "../pages/blog/BlogUpdatePage.jsx";
 
@@ -203,25 +203,25 @@ const router = createBrowserRouter([
               },
             ],
           },
-          // {
-          //   path: ROUTES.BLOG_ADMIN.LIST,
-          //   handle: {
-          //     breadcrumb: {
-          //       label: "BLOG LIST",
-          //       path: ROUTES.BLOG_ADMIN.LIST,
-          //     },
-          //   },
-          //   children: [
-          //     {
-          //       index: true,
-          //       element: (
-          //         <Page
-          //           state={APP_STATE.BLOG}
-          //           element={<BlogListPage />}
-          //           roles={[ROLES.ADMIN]}
-          //         />
-          //       ),
-          //     },
+          {
+            path: ROUTES.BLOG_ADMIN.LIST,
+            handle: {
+              breadcrumb: {
+                label: "BLOG LIST",
+                path: ROUTES.BLOG_ADMIN.LIST,
+              },
+            },
+            children: [
+              {
+                index: true,
+                element: (
+                  <Page
+                    state={APP_STATE.BLOG}
+                    element={<BlogListPage />}
+                    roles={[ROLES.ADMIN]}
+                  />
+                ),
+              },
           //     {
           //       path: ROUTES.BLOG_ADMIN.CREATE,
           //       element: (
@@ -252,8 +252,8 @@ const router = createBrowserRouter([
           //         },
           //       },
           //     },
-          //   ],
-          // },
+            ],
+          },
         ],
       },
     ],
