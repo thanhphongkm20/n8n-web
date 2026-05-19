@@ -168,3 +168,26 @@ export const RESOURCE_TABS = [
   { value: "tutorial", label: "Tutorial", Icon: Play },
   { value: "template", label: "Template", Icon: Calculator },
 ];
+
+export const faqs = [
+  {
+    question: "Do I need coding knowledge?",
+    answer:
+      "No. This workflow is designed to be used without coding knowledge. You only need to import the workflow and follow the setup guide.",
+  },
+  {
+    question: "Does this workflow run on n8n Cloud or self-hosted?",
+    answer:
+      "Yes. It can run on both n8n Cloud and self-hosted n8n, as long as the required credentials and integrations are configured correctly.",
+  },
+  {
+    question: "Will I receive future updates after purchase?",
+    answer:
+      "Yes. You will receive future workflow updates when improvements or fixes are released.",
+  },
+  {
+    question: "What if I can't get the setup working?",
+    answer:
+      "You can follow the included documentation and walkthrough. If you still have trouble, support is available to help you complete the setup.",
+  },
+];

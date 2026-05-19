@@ -12,7 +12,7 @@ import menuConfigs from "../../configs/menu.js";
 import MenuUser from "../menu/MenuUser";
 import StackRow from "../common/StackRow.jsx";
 
-const Topbar = () => {
+const Topbar = ({ authReady = true }) => {
   const navigate = useNavigate();
   const user = useSelector((state) => state?.user?.user);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -49,11 +49,10 @@ const Topbar = () => {
           sx={{
             display: "flex",
             alignItems: "center",
+            flexShrink: 0,
           }}
         >
-          <Animate type="fade" delay={0.2}>
-            <Logo />
-          </Animate>
+          <Logo />
         </Box>
 
         {/* MENU */}
@@ -96,8 +95,18 @@ const Topbar = () => {
             );
           })}
         </StackRow>
-        <StackRow sx={{ ml: "auto" }}>
-          {user ? (
+        <StackRow
+          sx={{
+            ml: "auto",
+            width: 230,
+            minWidth: 230,
+            justifyContent: "flex-end",
+            flexShrink: 0,
+          }}
+        >
+          {!authReady ? (
+            <Box sx={{ width: 120, height: 36 }} />
+          ) : user ? (
             <>
               <Box
                 onClick={handleOpenMenu}

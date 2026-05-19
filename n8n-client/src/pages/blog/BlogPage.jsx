@@ -8,7 +8,7 @@ import BlogTagSection from "../../components/blog/BlogTagSection";
 
 import blogApi from "../../api/blog.api";
 
-const BlogResourcePage = () => {
+const BlogPage = () => {
   const [blogs, setBlogs] = useState([]);
   const [activeType, setActiveType] = useState("");
   const [loading, setLoading] = useState(false);
@@ -140,4 +140,4 @@ const BlogResourcePage = () => {
   );
 };
 
-export default BlogResourcePage;
+export default BlogPage;

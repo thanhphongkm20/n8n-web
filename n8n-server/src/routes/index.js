@@ -4,13 +4,15 @@ import articleRoute from "./article.route.js";
 import quoteRoutes from "./quote.route.js"
 import resourceRoute from "./resource.route.js";
 import blogRoute from "./blog.route.js";
+import orderRoute from "./order.route.js";
 
 const router = express.Router();
 
 router.use("/users", userRoute);
 router.use("/articles", articleRoute);
-router.use("/", quoteRoutes);
+router.use("/quotes", quoteRoutes);
 router.use("/resources", resourceRoute);
 router.use("/blogs", blogRoute);
+router.use("/orders", orderRoute);
 
 export default router;

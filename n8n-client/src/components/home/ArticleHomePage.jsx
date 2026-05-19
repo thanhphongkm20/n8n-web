@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+
 import {
   Typography,
-  Grid,
   Card,
   CardContent,
   Box,
   Container,
   Button,
-  Skeleton
+  Skeleton,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Search from "../common/Search";
@@ -15,6 +15,7 @@ import { COLORS } from "../common/Colors";
 import StackRow from "../common/StackRow";
 import Animate from "../common/Animate";
 import articleApi from "../../api/article.api";
+import { ROUTES_GEN } from "../../configs/routes";
 
 const ArticleHomePage = () => {
   const navigate = useNavigate();
@@ -26,8 +27,8 @@ const ArticleHomePage = () => {
     const fetchArticles = async () => {
       try {
         setLoading(true);
-        const response = await articleApi.list({ search });
-        if (response && response.success) {
+        const response = await articleApi.list();
+        if (response?.success) {
           setArticles(response.posts);
         } else {
           setArticles([]);
@@ -40,12 +41,37 @@ const ArticleHomePage = () => {
       }
     };
     fetchArticles();
-  }, [search]);
+  }, []);
+
+  const filteredArticles = useMemo(() => {
+    const keyword = search.trim().toLowerCase();
+
+    if (!keyword) return articles;
+
+    return articles.filter((article) => {
+      const title = article.title?.toLowerCase();
+      const description = article.description?.toLowerCase();
+      const type = article.type?.toLowerCase();
+      const slug = article.slug?.toLowerCase();
+      const tags = Array.isArray(article.tags)
+        ? article.tags.join(" ").toLowerCase()
+        : "";
+
+      return (
+        title.includes(keyword) ||
+        description.includes(keyword) ||
+        type.includes(keyword) ||
+        slug.includes(keyword) ||
+        tags.includes(keyword)
+      );
+    });
+  }, [articles, search]);
+
+  const visibleArticles = filteredArticles.slice(0, 6);
 
   return (
     <Box sx={{ flexGrow: 1, width: "100%", py: 2 }}>
       <Container maxWidth="lg">
-        {/* Header Section */}
         <StackRow
           justifyContent="space-between"
           alignItems="center"
@@ -75,18 +101,22 @@ const ArticleHomePage = () => {
           }}
         >
           {loading ? (
-            [1, 2, 3].map((n) => (
+            [1, 2, 3, 4, 5, 6].map((n) => (
               <Box key={n} sx={{ display: "flex" }}>
-                <Skeleton variant="rectangular" height={350} sx={{ borderRadius: 4, width: "100%" }} />
+                <Skeleton
+                  variant="rectangular"
+                  height={350}
+                  sx={{ borderRadius: 4, width: "100%" }}
+                />
               </Box>
             ))
-          ) : (
-            articles.map((article) => (
+          ) : visibleArticles.length > 0 ? (
+            visibleArticles.map((article) => (
               <Box key={article._id} sx={{ display: "flex" }}>
                 <Animate type="fade" sx={{ width: "100%" }}>
                   <Card
                     sx={{
-                      width: '100%',
+                      width: "100%",
                       display: "flex",
                       flexDirection: "column",
                       borderRadius: 4,
@@ -100,7 +130,16 @@ const ArticleHomePage = () => {
                       },
                     }}
                   >
-                    <Box sx={{ width: '100%', height: 180, overflow: 'hidden', flexShrink: 0, position: 'relative' }}>
+                    <Box
+                      sx={{
+                        width: "100%",
+                        height: 180,
+                        overflow: "hidden",
+                        flexShrink: 0,
+                        position: "relative",
+                        bgcolor: "#f1f5f9",
+                      }}
+                    >
                       {article.image && (
                         <Box
                           component="div"
@@ -136,12 +175,12 @@ const ArticleHomePage = () => {
                           variant="h6"
                           sx={{
                             mb: 1,
-                            fontSize: '1.1rem',
+                            fontSize: "1.1rem",
                             display: "-webkit-box",
                             WebkitLineClamp: 2,
                             WebkitBoxOrient: "vertical",
                             overflow: "hidden",
-                            minHeight: '2.8rem'
+                            minHeight: "2.8rem",
                           }}
                         >
                           {article.title}
@@ -162,27 +201,39 @@ const ArticleHomePage = () => {
                         </Typography>
                       </Box>
 
-                      {/* NÚT BẤM */}
-                      <Box sx={{ display: "flex", gap: 1.5, mt: 'auto' }}>
+                      <Box sx={{ display: "flex", gap: 1.5, mt: "auto" }}>
                         <Button
                           fullWidth
                           variant="outlined"
                           size="small"
-                          onClick={() => navigate(`/article/${article.slug}`)}
-                          sx={{ borderRadius: 2, textTransform: 'none', fontWeight: 600 }}
+                          onClick={() =>
+                            navigate(ROUTES_GEN.articleDetail(article.slug))
+                          }
+                          sx={{
+                            borderRadius: 2,
+                            textTransform: "none",
+                            fontWeight: 600,
+                          }}
                         >
                           Preview
                         </Button>
+
                         <Button
                           fullWidth
                           variant="contained"
                           size="small"
+                          onClick={() =>
+                            navigate(ROUTES_GEN.articleDetail(article.slug))
+                          }
                           sx={{
                             bgcolor: COLORS.SECONDARY,
                             borderRadius: 2,
-                            textTransform: 'none',
+                            textTransform: "none",
                             fontWeight: 600,
-                            "&:hover": { bgcolor: COLORS.SECONDARY, opacity: 0.9 }
+                            "&:hover": {
+                              bgcolor: COLORS.SECONDARY,
+                              opacity: 0.9,
+                            },
                           }}
                         >
                           Buy
@@ -193,6 +244,10 @@ const ArticleHomePage = () => {
                 </Animate>
               </Box>
             ))
+          ) : (
+            <Typography sx={{ color: "#64748b", gridColumn: "1 / -1" }}>
+              No workflows found.
+            </Typography>
           )}
         </Box>
       </Container>
