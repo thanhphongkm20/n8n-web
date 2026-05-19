@@ -108,20 +108,20 @@ const ResourceUpdatePage = () => {
         setPageLoading(true);
 
         const response = await resourceApi.getById(id);
-        const resource = response?.data || response;
+        const resource = response?.data;
 
         formik.setValues({
-          title: resource?.title || "",
-          slug: resource?.slug || "",
-          description: resource?.description || "",
-          content: resource?.content || "",
-          resource_type: resource?.type || "community",
+          title: resource?.title,
+          slug: resource?.slug,
+          description: resource?.description,
+          content: resource?.content,
+          resource_type: resource?.type,
           tags: Array.isArray(resource?.tags) ? resource.tags : [],
-          status: resource?.status || "published",
-          thumbnail_url: resource?.thumbnail || "",
+          status: resource?.status,
+          thumbnail_url: resource?.thumbnail,
           thumbnail_file: null,
-          download_url: resource?.download_url || "",
-          external_url: resource?.external_url || "",
+          download_url: resource?.download_url,
+          external_url: resource?.external_url,
           is_featured: resource?.is_featured ?? true,
           allow_comments: resource?.allow_comments ?? true,
           notify_subscribers: resource?.notify_subscribers ?? false,

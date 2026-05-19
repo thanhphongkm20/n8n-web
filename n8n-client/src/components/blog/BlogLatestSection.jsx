@@ -48,7 +48,7 @@ const BlogLatestSection = ({ blogs = [] }) => {
       >
         {latestBlogs.map((post, index) => (
           <BlogPostCard
-            key={post._id || post.id || post.slug}
+            key={post._id}
             post={post}
             index={index}
           />

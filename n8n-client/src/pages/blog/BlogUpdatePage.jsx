@@ -52,25 +52,25 @@ const normalizePayload = (values) => ({
   ...values,
 
   ...Object.fromEntries(
-    trimFields.map((key) => [key, values[key]?.trim?.() || ""]),
+    trimFields.map((key) => [key, values[key]?.trim?.()]),
   ),
 
-  published_at: values.published_at || "",
-  tags: values.tags || [],
+  published_at: values.published_at,
+  tags: values.tags,
   is_featured: !!values.is_featured,
 });
 
 const normalizeBlogValues = (blog = {}) => ({
-  title: blog.title || "",
-  slug: blog.slug || "",
-  excerpt: blog.excerpt || "",
-  content: blog.content || "",
-  thumbnail: blog.thumbnail || "",
-  type: blog.type || "",
+  title: blog.title,
+  slug: blog.slug,
+  excerpt: blog.excerpt,
+  content: blog.content,
+  thumbnail: blog.thumbnail,
+  type: blog.type,
   tags: Array.isArray(blog.tags) ? blog.tags : [],
-  seo_title: blog.seo_title || "",
-  seo_description: blog.seo_description || "",
-  status: blog.status || "draft",
+  seo_title: blog.seo_title,
+  seo_description: blog.seo_description,
+  status: blog.status,
   is_featured: !!blog.is_featured,
   published_at: blog.published_at
     ? String(blog.published_at).slice(0, 16)

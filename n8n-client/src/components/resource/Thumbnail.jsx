@@ -12,7 +12,7 @@ const Thumbnail = ({ formik }) => {
     return URL.createObjectURL(file);
   }, [file]);
 
-  const previewSrc = filePreview || url;
+  const previewSrc = filePreview;
   const showPreview = previewSrc && !imgError;
 
   const handleChange = (e) => {

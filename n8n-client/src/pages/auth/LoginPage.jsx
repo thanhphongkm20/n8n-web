@@ -77,7 +77,7 @@ const LoginPage = () => {
           navigate(ROUTES.HOME);
         }
       } catch (error) {
-        toast.error(error.message || "Đã có lỗi xảy ra");
+        toast.error(error.message);
         progressReset();
         setIsLoginRequest(false);
       }

@@ -54,23 +54,18 @@ const TopBarDashboard = ({ onOpenMobileMenu }) => {
           alignItems: "center",
         }}
       >
-        {/* TopBar left*/}
         <StackRow gap={2} alignItems="center">
-          {/* Mobile only */}
           <IconButton
             onClick={onOpenMobileMenu}
             sx={{ display: { xs: "inline-flex", lg: "none" }, p: 0 }}
           >
             <TextAlignJustify />
           </IconButton>
-
-          {/* Logo */}
           <Logo />
         </StackRow>
 
         <Box sx={{ flexGrow: 1 }} />
 
-        {/* TopBar right */}
         <Box
           sx={{
             display: "flex",
@@ -98,9 +93,9 @@ const TopBarDashboard = ({ onOpenMobileMenu }) => {
             <Box>
               <Stack
                 direction="row"
-                alignItems="center"
                 spacing={1}
                 sx={{
+                  alignItems: 'center',
                   cursor: "pointer",
                   color: COLORS.BLACK,
                   "&:active": { opacity: 0.6 },
@@ -120,7 +115,7 @@ const TopBarDashboard = ({ onOpenMobileMenu }) => {
                     fontWeight: 500,
                   }}
                 >
-                  {user?.display_name || "System Administrator"}
+                  {user?.display_name}
                 </Typography>
 
                 <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -133,7 +128,7 @@ const TopBarDashboard = ({ onOpenMobileMenu }) => {
                 onClose={closeMenu}
                 onAccountSettings={handleAccountSettings}
                 onLogout={handleLogout}
-                isAdmin={user?.role === "admin" || user?.role === "ADMIN"}
+                isAdmin={user?.role === "admin"}
               />
             </Box>
           )}

@@ -12,7 +12,6 @@ import {
 import { FONT_SIZES } from "../../configs/constants";
 import { COLORS } from "../../components/common/Colors";
 
-// --- Extension FontSize ---
 const FontSize = TextStyle.extend({
   addAttributes() {
     return {
@@ -29,7 +28,6 @@ const FontSize = TextStyle.extend({
   },
 });
 
-// --- Toolbar Button Component ---
 const ToolbarButton = ({ active, onClick, icon }) => (
   <ToggleButton
     value="check"
@@ -54,7 +52,6 @@ const ToolbarButton = ({ active, onClick, icon }) => (
   </ToggleButton>
 );
 
-// --- Main Component ---
 const ArticleDescriptionField = ({ value, onChange }) => {
   const [currentSize, setCurrentSize] = useState("16px");
 
@@ -68,7 +65,7 @@ const ArticleDescriptionField = ({ value, onChange }) => {
         defaultAlignment: 'left',
       }),
     ],
-    content: value || "",
+    content: value,
     onUpdate: ({ editor }) => {
       onChange?.(editor.getHTML());
     },
@@ -110,7 +107,6 @@ const ArticleDescriptionField = ({ value, onChange }) => {
         },
       }}
     >
-      {/* Toolbar */}
       <Box
         sx={{
           display: "flex",
@@ -122,7 +118,6 @@ const ArticleDescriptionField = ({ value, onChange }) => {
           borderBottom: "1px solid #efefef",
         }}
       >
-        {/* Font Size Select */}
         <FormControl variant="standard" sx={{ mx: 1, minWidth: 80 }}>
           <Select
             value={currentSize}
@@ -145,8 +140,6 @@ const ArticleDescriptionField = ({ value, onChange }) => {
         </FormControl>
 
         <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5 }} />
-
-        {/* Text Style Group */}
         <Box sx={{ display: "flex", gap: 0.5 }}>
           <ToolbarButton
             active={editor.isActive("bold")}
@@ -166,8 +159,6 @@ const ArticleDescriptionField = ({ value, onChange }) => {
         </Box>
 
         <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5 }} />
-
-        {/* List Group */}
         <Box sx={{ display: "flex", gap: 0.5 }}>
           <ToolbarButton
             active={editor.isActive("bulletList")}
@@ -183,7 +174,6 @@ const ArticleDescriptionField = ({ value, onChange }) => {
 
         <Divider orientation="vertical" flexItem sx={{ mx: 0.5, my: 0.5 }} />
 
-        {/* Alignment Group */}
         <Box sx={{ display: "flex", gap: 0.5 }}>
           <ToolbarButton
             active={editor.isActive({ textAlign: "left" })}

@@ -175,7 +175,7 @@ const ResourceCard = ({ resource }) => {
             alignContent: "flex-start",
           }}
         >
-          {(resource.tags || []).map((tag) => (
+          {(resource.tags).map((tag) => (
             <Chip
               key={tag}
               label={tag}

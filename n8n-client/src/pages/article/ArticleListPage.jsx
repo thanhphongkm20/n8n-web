@@ -25,7 +25,7 @@ import { Plus } from "lucide-react";
 const ArticleListPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = parseInt(searchParams.get("page") || "1");
+  const currentPage = parseInt(searchParams.get("page"));
 
   const [articles, setArticles] = useState([]);
   const [pageCount, setPageCount] = useState(1);
@@ -106,7 +106,7 @@ const ArticleListPage = () => {
         <TableContainer
           component={Paper}
           sx={{
-            border: `1px solid ${COLORS.BORDER_COLOR || '#e0e0e0'}`,
+            border: `1px solid ${COLORS.BORDER_COLOR}`,
             borderRadius: "12px",
             bgcolor: COLORS.WHITE,
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.05)",

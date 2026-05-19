@@ -59,7 +59,7 @@ const ArticleCreatePage = () => {
   };
 
   const handleApiError = (err) => {
-    const message = err?.response?.data?.message || "Something went wrong";
+    const message = err?.response?.data?.message;
 
     const fieldMap = {
       title: "title",
@@ -84,7 +84,7 @@ const ArticleCreatePage = () => {
 
   const handleSubmit = async () => {
     const errors = await formik.validateForm();
-    
+
     if (!workflowFile) errors.workflow = "Workflow is required";
     if (!imageFile) errors.image = "Image is required";
 
@@ -143,16 +143,14 @@ const ArticleCreatePage = () => {
       <Container maxWidth="xl">
         <Stack
           direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          mb={5}
+          sx={{ justifyContent: 'space-between', alignItems: 'center', mb: 5 }}
         >
           <RouteBreadcrumbs />
         </Stack>
 
         <Grid container spacing={3} columns={12} sx={{ mt: 3, alignItems: 'flex-start' }}>
           {/* LEFT COLUMN - Article Content Area */}
-          <Grid item xs={12} sm={8} md={9} lg={9} xl={9} sx={{ flexBasis: { sm: '66.6667%', md: '60%' } }}>
+          <Box sx={{ flexBasis: { sm: '66.6667%', md: '60%' }, width: '100%' }}>
             <Stack gap={3}>
 
               <MPaper sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 3, borderRadius: 3 }}>
@@ -209,9 +207,9 @@ const ArticleCreatePage = () => {
                 />
               </MPaper>
             </Stack>
-          </Grid>
+          </Box>
 
-          <Grid item xs={12} sm={4} md={3} lg={3} xl={3} sx={{ flexBasis: { sm: '33.3333%', md: '25%' }, maxWidth: { sm: '33.3333%', md: '25%' } }}>
+          <Box sx={{ flexBasis: { sm: '33.3333%', md: '25%' }, maxWidth: { sm: '33.3333%', md: '25%' }, width: '100%' }}>
             <Stack gap={3}>
               <MPaper sx={{ p: 3, borderRadius: 3 }}>
                 <ArticleSidePanel
@@ -242,7 +240,7 @@ const ArticleCreatePage = () => {
                 {loading ? "Publishing..." : "PUBLISH ARTICLE"}
               </Button>
             </Stack>
-          </Grid>
+          </Box>
         </Grid>
       </Container>
     </Box>

@@ -32,8 +32,8 @@ const normalizePayload = (values) => ({
     trimFields.map((key) => [key, values[key]?.trim?.()]),
   ),
 
-  published_at: values.published_at || "",
-  tags: values.tags || [],
+  published_at: values.published_at,
+  tags: values.tags,
   is_featured: !!values.is_featured,
 });
 
@@ -87,8 +87,7 @@ const BlogCreatePage = () => {
         showToast(
           "error",
           error?.response?.data?.message ||
-          error?.message ||
-          "Create blog failed",
+          error?.message,
         );
       } finally {
         setSubmitting(false);

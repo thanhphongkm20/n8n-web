@@ -90,7 +90,7 @@ const ThumbnailUpload = ({ form, onChange }) => {
         fullWidth
         size="small"
         placeholder="https://example.com/image.png"
-        value={form.thumbnail || ""}
+        value={form.thumbnail}
         onChange={onChange("thumbnail")}
         InputProps={{
           startAdornment: (

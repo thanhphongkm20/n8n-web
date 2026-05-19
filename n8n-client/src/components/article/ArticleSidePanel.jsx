@@ -27,7 +27,7 @@ const ArticleSidePanel = ({
 
   const preview = useMemo(() => {
     if (imageFile) return URL.createObjectURL(imageFile);
-    return oldImageUrl || null;
+    return oldImageUrl;
   }, [imageFile, oldImageUrl]);
 
   useEffect(() => {

@@ -87,7 +87,7 @@ const FormQuoteSelect = ({
               width: "100%",
               height: 50,
               borderRadius: 2,
-              backgroundColor: backgroundColor || "rgba(255,255,255,0.05)",
+              backgroundColor: backgroundColor,
               '& .MuiSelect-select': {
                 display: 'flex',
                 alignItems: 'center',

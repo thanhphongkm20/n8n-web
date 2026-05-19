@@ -128,8 +128,7 @@ const BlogPostCard = ({
             mb: "auto",
           }}
         >
-          {post.excerpt ||
-            post.description}
+          {post.excerpt}
         </Typography>
 
         {/* FOOTER */}

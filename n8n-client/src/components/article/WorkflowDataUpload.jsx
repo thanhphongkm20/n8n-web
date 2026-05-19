@@ -26,11 +26,10 @@ const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
     e.stopPropagation();
     fileRef.current.value = "";
 
-    onChange(null);     // clear file mới
-    setOldUrl?.("");    // clear file cũ
+    onChange(null);
+    setOldUrl?.("");
   };
 
-  // 👉 lấy tên file từ URL
   const getFileNameFromUrl = (url) => {
     if (!url) return "";
     return url.split("/").pop();
@@ -52,7 +51,7 @@ const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
       </Typography>
 
       <Box
-        onClick={handleClick} // 👉 luôn cho phép click đổi file
+        onClick={handleClick}
         sx={{
           border: "2px dashed",
           borderColor: value || oldUrl ? COLORS.BLUE : "#ddd",
@@ -71,7 +70,6 @@ const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
           },
         }}
       >
-        {/* ================= EMPTY ================= */}
         {!value && !oldUrl && (
           <>
             <UploadCloud size={32} color={COLORS.BLUE} style={{ marginBottom: 12 }} />
@@ -92,8 +90,6 @@ const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
             </Button>
           </>
         )}
-
-        {/* ================= FILE (OLD + NEW) ================= */}
         {(value || oldUrl) && (
           <Stack direction="row" alignItems="center" spacing={1.5}>
             <Box
@@ -123,7 +119,6 @@ const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
                 {displayName}
               </Typography>
 
-              {/* 👉 VIEW FILE (chỉ cho file cũ) */}
               {oldUrl && !value && (
                 <IconButton
                   size="small"
@@ -140,7 +135,6 @@ const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
                 </IconButton>
               )}
 
-              {/* 👉 REMOVE (cả old + new đều xóa được) */}
               <IconButton
                 size="small"
                 onClick={handleClear}
@@ -155,7 +149,6 @@ const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
           </Stack>
         )}
 
-        {/* Hidden Input */}
         <input
           type="file"
           accept=".json"

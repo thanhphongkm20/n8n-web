@@ -25,7 +25,7 @@ const ResourcesPage = () => {
 
         if (ignore) return;
 
-        const data = response?.data?.items || [];
+        const data = response?.data?.items;
 
         setResources(Array.isArray(data) ? data : []);
       } catch (error) {

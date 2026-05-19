@@ -45,9 +45,8 @@ const FormSelect = ({
     <FormControl sx={{ width }} error={hasError}>
       <Stack
         direction="column"
-        alignItems="flex-start"
         spacing={1.9}
-        sx={{ width: "100%" }}
+        sx={{ width: "100%", alignItems: 'flex-start' }}
       >
 
         {/* LABEL */}

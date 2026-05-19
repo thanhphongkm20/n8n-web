@@ -11,7 +11,7 @@ const FormTagsInput = ({
 }) => {
   const [input, setInput] = useState("");
 
-  const tags = getIn(form.values, id) || [];
+  const tags = getIn(form.values, id);
 
   const addTag = (value) => {
     const trimmed = value.trim();
@@ -29,7 +29,7 @@ const FormTagsInput = ({
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" || e.key === ",") {
+    if (e.key === "Enter") {
       e.preventDefault();
       addTag(input);
       setInput("");

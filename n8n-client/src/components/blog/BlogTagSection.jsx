@@ -2,15 +2,7 @@ import { Box, Divider, Stack, Typography } from "@mui/material";
 import { Hash } from "lucide-react";
 
 import { UI } from "../../configs/constants";
-
-const TAG_COLORS = [
-  "#6D5BFF",
-  "#14B8A6",
-  "#F97316",
-  "#D946EF",
-  "#38BDF8",
-  "#F59E0B",
-];
+import { TAG_COLORS } from "../common/Colors";
 
 const BlogTagSection = ({ tags = [] }) => {
   if (!tags.length) return null;

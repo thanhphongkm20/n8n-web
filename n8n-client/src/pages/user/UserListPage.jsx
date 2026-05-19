@@ -28,7 +28,7 @@ const UserListPage = () => {
 
   const initialPage = useMemo(() => {
     const params = getParams();
-    return Number(params.page) || 1;
+    return Number(params.page);
   }, [getParams]);
 
   const [users, setUsers] = useState([]);

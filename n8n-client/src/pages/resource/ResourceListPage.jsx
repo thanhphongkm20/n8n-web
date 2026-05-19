@@ -25,7 +25,7 @@ import { Plus } from "lucide-react";
 const ResourceListPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = parseInt(searchParams.get("page") || "1");
+  const currentPage = parseInt(searchParams.get("page"));
 
   const [resources, setResources] = useState([]);
   const [pageCount, setPageCount] = useState(1);
@@ -45,7 +45,7 @@ const ResourceListPage = () => {
 
         const res = await resourceApi.list({ page: currentPage });
 
-        const payload = res?.data?.data || res?.data || res;
+        const payload =res?.data;
 
         if (!isMounted) return;
 
@@ -55,7 +55,7 @@ const ResourceListPage = () => {
 
         setResources(data);
 
-        const totalPages = payload?.pagination?.total_pages || 1;
+        const totalPages = payload?.pagination?.total_pages;
         setPageCount(totalPages);
       } catch (error) {
         if (isMounted) {
@@ -109,7 +109,7 @@ const ResourceListPage = () => {
         <TableContainer
           component={Paper}
           sx={{
-            border: `1px solid ${COLORS.BORDER_COLOR || '#e0e0e0'}`,
+            border: `1px solid ${COLORS.BORDER_COLOR}`,
             borderRadius: "12px",
             bgcolor: COLORS.WHITE,
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.05)",

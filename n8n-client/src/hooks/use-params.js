@@ -22,7 +22,7 @@ const useParams = () => {
 
     return {
       page,
-      search: searchParam || "",
+      search: searchParam,
     };
   }, []);
 

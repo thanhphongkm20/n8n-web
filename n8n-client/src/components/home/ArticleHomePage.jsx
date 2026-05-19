@@ -28,7 +28,7 @@ const ArticleHomePage = () => {
         setLoading(true);
         const response = await articleApi.list({ search });
         if (response && response.success) {
-          setArticles(response.posts || []);
+          setArticles(response.posts);
         } else {
           setArticles([]);
         }
@@ -105,7 +105,7 @@ const ArticleHomePage = () => {
                         <Box
                           component="div"
                           role="img"
-                          aria-label={article.title || "Article image"}
+                          aria-label={article.title}
                           sx={{
                             width: "100%",
                             height: "100%",

@@ -117,7 +117,7 @@ const ResourceFilterBar = ({ filter, counts = {}, onFilterChange }) => {
                     flexShrink: 0,
                   }}
                 >
-                  {counts[tab.value] || 0}
+                  {counts[tab.value]}
                 </Box>
               </ToggleButton>
             );

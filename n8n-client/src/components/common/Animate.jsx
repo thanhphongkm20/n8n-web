@@ -22,7 +22,7 @@ const Animate = ({ sx, ...props }) => {
         ...sx,
         transition: "opacity 1s ease",
         opacity: opacity,
-        transitionDelay: props.delay + "s" || "unset",
+        transitionDelay: props.delay + "s",
         display: "flex",
       }}>
         {props.children}
@@ -36,7 +36,7 @@ const Animate = ({ sx, ...props }) => {
       transform: `translateY(${translateY}px)`,
       transition: "transform 1s ease, opacity 2s ease",
       opacity: opacity,
-      transitionDelay: props.delay + "s" || "unset"
+      transitionDelay: props.delay + "s"
     }}>
       {props.children}
     </Box>

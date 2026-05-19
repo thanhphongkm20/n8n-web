@@ -51,7 +51,7 @@ const BlogResourcePage = () => {
   }, [activeType]);
 
   const featuredBlog = useMemo(
-    () => blogs.find((b) => b.is_featured) || blogs[0] || null,
+    () => blogs.find((b) => b.is_featured) || blogs[0],
     [blogs]
   );
 
@@ -64,7 +64,7 @@ const BlogResourcePage = () => {
   }, [blogs, featuredBlog]);
 
   const tags = useMemo(() => {
-    const all = blogs.flatMap((b) => b.tags || []);
+    const all = blogs.flatMap((b) => b.tags);
 
     return [...new Set(all)].slice(0, 12);
   }, [blogs]);

@@ -6,9 +6,9 @@ import StackRow from "../common/StackRow";
 import FormLabelField from "../form/FormLabelField";
 
 const SeoSettings = ({ formik }) => {
-  const values = formik?.values || {};
+  const values = formik?.values;
 
-  const seoDescLength = values.seo_description?.length || 0;
+  const seoDescLength = values.seo_description?.length;
 
   const seoDescColor =
     seoDescLength > 160

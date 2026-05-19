@@ -309,7 +309,7 @@ const BlogFeaturedSection = ({
               >
                 <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 0.7 }}>
                   <CalendarDays size={15} />
-                  {formatDate(featuredBlog.published_at || featuredBlog.created_at)}
+                  {formatDate(featuredBlog.published_at)}
                 </Stack>
 
                 <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 0.7 }}>

@@ -19,7 +19,7 @@ const SectionTitle = ({ icon, children }) => {
   const IconComponent = icon;
 
   return (
-    <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1.5 }}>
+    <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mb: 1.5 }}>
       <IconComponent size={15} />
 
       <Typography
@@ -38,7 +38,7 @@ const SectionTitle = ({ icon, children }) => {
 
 const PublishSidebar = ({ form, onChange, onTagsChange }) => {
   const [tagInput, setTagInput] = useState("");
-  const tags = form.tags || [];
+  const tags = form.tags;
 
   const addTag = () => {
     const tag = tagInput.trim().toLowerCase();
@@ -115,7 +115,6 @@ const PublishSidebar = ({ form, onChange, onTagsChange }) => {
           />
         </Stack>
       </Paper>
-
       <Paper
         elevation={0}
         sx={{
@@ -139,7 +138,6 @@ const PublishSidebar = ({ form, onChange, onTagsChange }) => {
             }
           }}
         />
-
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.75, mt: 1.5 }}>
           {tags.map((tag) => (
             <Chip
