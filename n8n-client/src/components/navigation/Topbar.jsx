@@ -1,12 +1,11 @@
 import { AppBar, Toolbar, Button, Box, Link, Avatar } from "@mui/material";
 import { ChevronDown } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import { COLORS } from "../common/Colors.jsx";
 import { ROUTES } from "../../configs/routes.js";
-import Animate from "../common/Animate.jsx";
 import Logo from "../common/Logo.jsx";
 import menuConfigs from "../../configs/menu.js";
 import MenuUser from "../menu/MenuUser";
@@ -14,16 +13,13 @@ import StackRow from "../common/StackRow.jsx";
 
 const Topbar = ({ authReady = true }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const user = useSelector((state) => state?.user?.user);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleOpenMenu = (e) => {
-    setAnchorEl(e.currentTarget);
-  };
+  const handleOpenMenu = (e) => setAnchorEl(e.currentTarget);
+  const handleCloseMenu = () => setAnchorEl(null);
 
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
-  };
   return (
     <AppBar
       position="fixed"
@@ -44,49 +40,48 @@ const Topbar = ({ authReady = true }) => {
           height: "72px",
         }}
       >
-        {/* LOGO */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            flexShrink: 0,
-          }}
-        >
+        <Box sx={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
           <Logo />
         </Box>
 
-        {/* MENU */}
         <StackRow
-          gap={5}
+          gap={0}
           sx={{
             display: { xs: "none", md: "flex" },
-            mx: 7,
+            ml: 7,
           }}
         >
           {menuConfigs.topBar?.map((item) => {
             const Icon = item.mainIcon;
+            const isActive =
+              location.pathname === item.path ||
+              location.pathname.startsWith(`${item.path}/`);
 
             return (
               <Link
                 key={item.path}
-                href={item.path}
+                component="button"
                 underline="none"
+                onClick={() => navigate(item.path)}
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   gap: 1,
-                  px: 1.5,
-                  py: 0.5,
-                  color: COLORS.BLACK,
-                  fontWeight: 600,
+                  px: 2.2,
+                  height: "72px",
+                  color: isActive ? COLORS.SECONDARY : COLORS.BLACK,
+                  bgcolor: isActive,
+                  fontWeight: 700,
                   fontSize: "0.95rem",
                   letterSpacing: "0.3px",
-                  borderRadius: "6px",
+                  border: "none",
+                  borderRadius: 0,
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
                   "&:hover": {
                     color: COLORS.SECONDARY,
-                    bgcolor: "rgba(0,0,0,0.04)",
+                    bgcolor: "rgba(0, 201, 167, 0.10)",
                   },
-                  transition: "all 0.2s ease",
                 }}
               >
                 {Icon && <Icon size={16} />}
@@ -98,7 +93,6 @@ const Topbar = ({ authReady = true }) => {
         <StackRow
           sx={{
             ml: "auto",
-            width: 230,
             minWidth: 230,
             justifyContent: "flex-end",
             flexShrink: 0,
@@ -115,11 +109,9 @@ const Topbar = ({ authReady = true }) => {
                   alignItems: "center",
                   gap: 1.2,
                   cursor: "pointer",
-                  px: 1.5,
-                  py: 0.6,
-                  borderRadius: "999px",
+                  px: 2,
+                  height: "72px",
                   transition: "all 0.2s ease",
-
                   "&:hover": {
                     bgcolor: "rgba(0,0,0,0.04)",
                   },
@@ -169,9 +161,7 @@ const Topbar = ({ authReady = true }) => {
           ) : (
             <Button
               variant="contained"
-              sx={{
-                bgcolor: COLORS.SECONDARY,
-              }}
+              sx={{ bgcolor: COLORS.SECONDARY }}
               onClick={() => navigate(ROUTES.LOGIN)}
             >
               LOGIN

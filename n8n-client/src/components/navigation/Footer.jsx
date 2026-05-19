@@ -17,6 +17,7 @@ import {
   HatGlasses
 } from "lucide-react";
 import StackRow from "../common/StackRow";
+import FormTextField from "../form/FormTextField";
 
 const Footer = () => {
   return (
@@ -75,7 +76,7 @@ const Footer = () => {
             </Typography>
 
             <Box sx={{ display: "flex", gap: 1 }}>
-              <TextField
+              <FormTextField
                 size="small"
                 placeholder="Your email..."
                 fullWidth
@@ -128,10 +129,29 @@ const Footer = () => {
             </Typography>
 
             <Stack spacing={1.5}>
-              <ContactItem icon={<Mail size={18} />} text="contact@n8n.io" />
-              <ContactItem icon={<Phone size={18} />} text="+84 123 456 789" />
-              <ContactItem icon={<Globe size={18} />} text="n8n.io" />
-              <ContactItem icon={<HatGlasses size={18} />} text="Zalo: n8nHub" />
+              <ContactItem
+                icon={<Mail size={18} />}
+                text="contact@n8n.io"
+                href="mailto:contact@n8n.io"
+              />
+
+              <ContactItem
+                icon={<Phone size={18} />}
+                text="+84 123 456 789"
+                href="tel:+84123456789"
+              />
+
+              <ContactItem
+                icon={<Globe size={18} />}
+                text="n8n.io"
+                href="https://n8n.io"
+              />
+
+              <ContactItem
+                icon={<HatGlasses size={18} />}
+                text="Zalo: n8nHub"
+                href="https://zalo.me"
+              />
             </Stack>
           </Box>
         </StackRow>
@@ -167,17 +187,22 @@ const Footer = () => {
 };
 
 /* CONTACT ITEM */
-const ContactItem = ({ icon, text }) => (
-  <Stack
-    direction="row"
-    spacing={2}
+const ContactItem = ({ icon, text, href }) => (
+  <Box
+    component="a"
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
     sx={{
+      display: "flex",
       alignItems: "center",
+      gap: 2,
       px: 2,
       py: 1.2,
       borderRadius: "10px",
       cursor: "pointer",
       transition: "all 0.25s ease",
+      textDecoration: "none",
       "&:hover": {
         bgcolor: "rgba(34, 197, 94, 0.08)",
         transform: "translateX(4px)",
@@ -185,11 +210,18 @@ const ContactItem = ({ icon, text }) => (
     }}
   >
     <Box sx={{ color: "#22c55e" }}>{icon}</Box>
-    <Typography variant="body2" sx={{ color: "#cbd5f5", flex: 1 }}>
+
+    <Typography
+      variant="body2"
+      sx={{ color: "#cbd5f5", flex: 1 }}
+    >
       {text}
     </Typography>
-    <Typography sx={{ color: "#22c55e", fontSize: 12 }}>→</Typography>
-  </Stack>
+
+    <Typography sx={{ color: "#22c55e", fontSize: 12 }}>
+      →
+    </Typography>
+  </Box>
 );
 
 /* LINK */

@@ -68,11 +68,6 @@ const blogSchema = new mongoose.Schema(
       default: false,
     },
 
-    reading_time: {
-      type: Number,
-      default: 1,
-    },
-
     view_count: {
       type: Number,
       default: 0,

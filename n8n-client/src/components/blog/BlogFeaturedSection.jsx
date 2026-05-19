@@ -313,7 +313,7 @@ const BlogFeaturedSection = ({
                 </Stack>
 
                 <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 0.7 }}>
-                  {featuredBlog.reading_time}
+                  {featuredBlog.createdAt}
                 </Stack>
               </Stack>
               <Button

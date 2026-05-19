@@ -13,7 +13,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 
 import { COLORS } from "../../components/common/Colors";
-import { BUDGET_OPTIONS, TIMELINE_OPTIONS } from "../../configs/constants";
+import { BUDGET_OPTIONS, TIMELINE_OPTIONS, UI } from "../../configs/constants";
 import quoteApi from "../../api/quote.api";
 import quoteValidation from "../../validation/quote.validation";
 import FormQuoteField from "../../components/form/FormQuoteField";
@@ -63,37 +63,55 @@ const CustomBuiltPage = () => {
   });
 
   return (
-    <Box sx={{ bgcolor: "#020617", minHeight: "100vh", color: "white" }}>
-      {/* HERO */}
-      <Box sx={{ pt: 18, pb: 10, textAlign: "center" }}>
-        <Container maxWidth="md">
-          <Typography
-            variant="h2"
-            fontWeight={900}
-            sx={{ letterSpacing: "-0.05em", lineHeight: 1.1, mb: 3 }}
-          >
-            Custom Built{" "}
-            <Box component="span" sx={{ color: COLORS.SECONDARY }}>
-              Automation Services
-            </Box>
-          </Typography>
+    <Box
+      sx={{
+        bgcolor: UI.bg,
+        minHeight: "100vh",
+        py: { xs: 4, md: 6 },
+      }}
+    >
+      <Typography
+        sx={{
+          color: UI.muted,
+          fontSize: 14,
+          fontWeight: 700,
+          letterSpacing: "0.16em",
+          textTransform: "uppercase",
+          mb: 1,
+        }}
+      >
+        BUILD CUSTOM AUTOMATION
+      </Typography>
+      <Typography
+        sx={{
+          color: UI.text,
+          fontSize: { xs: 34, md: 44 },
+          fontWeight: 800,
+          lineHeight: 1.1,
+          fontFamily: "Georgia, serif",
+          mb: 1.5,
+        }}
+      >
+        CUSTOM SOLUTIONS
+      </Typography>
 
-          <Typography
-            variant="h6"
-            sx={{
-              color: "#94a3b8",
-              mb: 4,
-              lineHeight: 1.8,
-              px: { md: 10 },
-            }}
-          >
-            Submit your automation brief and get a tailored solution.
-          </Typography>
-        </Container>
-      </Box>
+      <Typography
+        sx={{
+          color: UI.sub,
+          fontSize: { xs: 16, md: 18 },
+          lineHeight: 1.7,
+          maxWidth: 820,
+          mb: 5,
+
+          textAlign: "center",
+          mx: "auto",
+        }}
+      >
+        Tailored AI automation systems built for your workflows, business goals, and operational needs.
+      </Typography>
 
       {/* FORM */}
-      <Container maxWidth="lg" sx={{ pb: 15 }}>
+      <Container maxWidth="lg">
         <Box
           sx={{
             mx: "auto",

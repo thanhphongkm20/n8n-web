@@ -161,7 +161,7 @@ const BlogPostCard = ({
             gap={0.7}
             sx={{ alignItems: "center" }}
           >
-            {post.reading_time}
+            {post.createdAt}
           </Stack>
         </Stack>
       </CardContent>

@@ -9,16 +9,6 @@ export const blogService = {
     if (existed) {
       throw new Error("Blog slug already exists");
     }
-
-    const reading_time = Math.max(
-      1,
-      Math.ceil(payload.content?.split(" ").length / 200),
-    );
-
-    return Blog.create({
-      ...payload,
-      reading_time,
-    });
   },
 
   async getAll(query) {
