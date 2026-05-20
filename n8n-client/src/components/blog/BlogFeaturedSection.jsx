@@ -21,6 +21,8 @@ import {
 } from "../../utils/blog-resource.util";
 
 import { FILTERS } from "../../configs/constants";
+import { useNavigate } from "react-router-dom";
+import { ROUTES_GEN } from "../../configs/routes";
 
 const BlogFeaturedSection = ({
   blogs = [],
@@ -29,6 +31,7 @@ const BlogFeaturedSection = ({
   activeType,
   setActiveType,
 }) => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -319,6 +322,9 @@ const BlogFeaturedSection = ({
               <Button
                 variant="outlined"
                 endIcon={<ArrowRight size={17} />}
+                onClick={() =>
+                  navigate(ROUTES_GEN.blogDetail(featuredBlog.slug))
+                }
                 sx={{
                   width: "fit-content",
                   height: 54,

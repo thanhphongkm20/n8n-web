@@ -20,7 +20,6 @@ const initAdminUser = async () => {
     // Check if admin user already exists
     const existingAdmin = await userService.findOne({ role: "admin" });
     if (existingAdmin) {
-      console.log("Admin user already exists, skipping initialization");
       return;
     }
 
@@ -40,8 +39,6 @@ const initAdminUser = async () => {
 
     // TODO: Create admin user in database
     const adminSaved = await userService.save(adminData);
-
-    console.log(`Admin user initialized successfully: ${adminSaved.email}`);
   } catch (error) {
     logError(error);
   }

@@ -73,7 +73,7 @@ const BlogPage = () => {
     <Box
       sx={{
         bgcolor: UI.bg,
-        minHeight: "100vh",
+        minHeight: "70vh",
         py: { xs: 4, md: 6 },
       }}
     >

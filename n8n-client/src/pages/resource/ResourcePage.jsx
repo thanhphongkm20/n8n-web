@@ -82,7 +82,7 @@ const ResourcesPage = () => {
     <ThemeProvider theme={darkTheme}>
       <Box
         sx={{
-          minHeight: "100vh",
+          minHeight: "80vh",
           bgcolor: "background.default",
           fontFamily: "'Sora', sans-serif",
         }}

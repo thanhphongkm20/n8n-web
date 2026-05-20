@@ -80,8 +80,6 @@ const ArticleDetailPage = () => {
       try {
         const res = await orderApi.getById(currentOrder.orderId);
 
-        console.log("CHECK PAYMENT:", res);
-
         if (res?.success && res?.data?.status === "paid") {
           setPaid(true);
           setOpenPayment(false);
@@ -102,11 +100,7 @@ const ArticleDetailPage = () => {
     try {
       setCreatingOrder(true);
 
-      console.log("ARTICLE:", article);
-
       const res = await orderApi.create(article._id);
-
-      console.log("CREATE ORDER RESPONSE:", res);
 
       if (res?.success && res?.data) {
         setCurrentOrder(res.data);

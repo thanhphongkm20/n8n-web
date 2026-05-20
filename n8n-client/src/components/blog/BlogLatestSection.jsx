@@ -1,10 +1,14 @@
 import { Box, Divider, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 import { UI } from "../../configs/constants";
 import BlogPostCard from "./BlogPostCard";
+import { ROUTES_GEN } from "../../configs/routes";
 
 const BlogLatestSection = ({ blogs = [] }) => {
   const latestBlogs = blogs.slice(0, 6);
+
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -37,7 +41,6 @@ const BlogLatestSection = ({ blogs = [] }) => {
       <Box
         sx={{
           display: "grid",
-
           gridTemplateColumns: {
             xs: "1fr",
             md: "repeat(2, minmax(0, 1fr))",
@@ -47,11 +50,16 @@ const BlogLatestSection = ({ blogs = [] }) => {
         }}
       >
         {latestBlogs.map((post, index) => (
-          <BlogPostCard
+          <Box
             key={post._id}
-            post={post}
-            index={index}
-          />
+            onClick={() => navigate(ROUTES_GEN.blogDetail(post.slug))}
+            sx={{
+              cursor: "pointer",
+              height: "100%",
+            }}
+          >
+            <BlogPostCard post={post} index={index} />
+          </Box>
         ))}
       </Box>
     </Box>
