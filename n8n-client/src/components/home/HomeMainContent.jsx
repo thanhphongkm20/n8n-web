@@ -74,59 +74,6 @@ const HomeMainContent = () => {
               >
                 Ready-To-Use Workflows & Custom Automation Solutions Tailored For Your Business. Scale Your Operations Without The Complexity.
               </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: { xs: "column", sm: "row" },
-                  gap: 3,
-                  justifyContent: "center",
-                  width: "100%"
-                }}
-              >
-                <Button
-                  variant="contained"
-                  sx={{
-                    bgcolor: COLORS.SECONDARY,
-                    px: 6,
-                    py: 2,
-                    borderRadius: "14px",
-                    fontWeight: 700,
-                    textTransform: "none",
-                    fontSize: "1rem",
-                    boxShadow: `0 10px 25px -5px ${COLORS.SECONDARY}55`,
-                    "&:hover": {
-                      bgcolor: COLORS.SECONDARY,
-                      transform: "translateY(-3px)",
-                      transition: "0.3s",
-                      boxShadow: `0 15px 30px -5px ${COLORS.SECONDARY}77`,
-                    }
-                  }}
-                >
-                  Explore Workflows
-                </Button>
-
-                <Button
-                  variant="outlined"
-                  sx={{
-                    borderColor: "rgba(255,255,255,0.2)",
-                    color: "white",
-                    px: 6,
-                    py: 2,
-                    borderRadius: "14px",
-                    textTransform: "none",
-                    fontSize: "1rem",
-                    backdropFilter: "blur(8px)",
-                    "&:hover": {
-                      borderColor: "white",
-                      background: "rgba(255,255,255,0.08)",
-                      transform: "translateY(-3px)",
-                      transition: "0.3s"
-                    }
-                  }}
-                >
-                  Get Custom Quote
-                </Button>
-              </Box>
             </Box>
           </Animate>
         </Container>
