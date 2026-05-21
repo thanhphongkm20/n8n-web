@@ -1,7 +1,8 @@
 import { Button, Stack, Typography, Box, IconButton } from "@mui/material";
-import { useRef } from "react";
-import { COLORS } from "../../components/common/Colors";
 import { UploadCloud, FileJson, X, ExternalLink } from "lucide-react";
+import { useRef } from "react";
+
+import { COLORS } from "../../components/common/Colors";
 
 const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
   const fileRef = useRef();

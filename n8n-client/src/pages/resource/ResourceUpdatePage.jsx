@@ -1,19 +1,20 @@
 import { Box, Button, Container, Stack } from "@mui/material";
-import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import { useFormik } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { LoadingPage } from "../bases/LoadingPage";
+import { ROUTES } from "../../configs/routes";
+import { showError, showSuccess } from "../../utils/toast";
 import BasicInformation from "../../components/resource/BasicInformation";
-import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import Classification from "../../components/resource/Classification";
-import Thumbnail from "../../components/resource/Thumbnail";
 import LinksDownloads from "../../components/resource/Linksdownloads";
 import Options from "../../components/resource/Options";
+import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
+import Thumbnail from "../../components/resource/Thumbnail";
 
 import resourceApi from "../../api/resource.api";
 import resourceValidationSchema from "../../validation/resource.validation";
-import { showError, showSuccess } from "../../utils/toast";
-import { ROUTES } from "../../configs/routes";
 
 const ResourceUpdatePage = () => {
   const { id } = useParams();
@@ -139,6 +140,10 @@ const ResourceUpdatePage = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  if (pageLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <Box

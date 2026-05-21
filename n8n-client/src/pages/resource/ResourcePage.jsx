@@ -1,12 +1,13 @@
 import { Box, ThemeProvider } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 
+import { darkTheme } from "../../configs/constants";
+import { LoadingPage } from "../bases/LoadingPage";
 import ResourceFilterBar from "../../components/resource/ResourceFilterBar";
 import ResourceHero from "../../components/resource/ResourceHero";
 import ResourceList from "../../components/resource/ResourceList";
 
 import resourceApi from "../../api/resource.api";
-import { darkTheme } from "../../configs/constants";
 
 const ResourcesPage = () => {
   const [filter, setFilter] = useState("all");
@@ -77,6 +78,10 @@ const ResourcesPage = () => {
       return matchType && matchSearch;
     });
   }, [resources, filter, search]);
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <ThemeProvider theme={darkTheme}>

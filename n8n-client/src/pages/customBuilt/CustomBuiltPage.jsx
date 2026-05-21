@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Box,
   Container,
@@ -12,6 +13,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 
+import { LoadingPage } from "../bases/LoadingPage";
 import { COLORS } from "../../components/common/Colors";
 import { BUDGET_OPTIONS, TIMELINE_OPTIONS, UI } from "../../configs/constants";
 import quoteApi from "../../api/quote.api";
@@ -61,6 +63,10 @@ const CustomBuiltPage = () => {
       }
     },
   });
+
+  if (form.isSubmitting) {
+    return <LoadingPage />;
+  }
 
   return (
     <Box

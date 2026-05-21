@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
 import { Box, ToggleButton, Divider, Select, MenuItem, FormControl } from "@mui/material";
+import { TextStyle } from "@tiptap/extension-text-style";
 import { useEditor, EditorContent } from "@tiptap/react";
+import React, { useState, useEffect } from "react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
-import { TextStyle } from "@tiptap/extension-text-style";
+
 import {
   Bold, Italic, Underline as UnderlineIcon,
   AlignLeft, AlignCenter, AlignRight,

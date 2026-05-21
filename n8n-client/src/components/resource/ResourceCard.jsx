@@ -11,8 +11,8 @@ import {
   Typography,
 } from "@mui/material";
 import { Clock3, Download, Eye, ExternalLink, Sparkles } from "lucide-react";
-import { TYPE_CONFIG } from "../../configs/constants";
 
+import { TYPE_CONFIG } from "../../configs/constants";
 
 const formatDate = (date) => {
   if (!date) return "";

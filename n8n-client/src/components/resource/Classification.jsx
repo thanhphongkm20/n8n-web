@@ -1,9 +1,10 @@
 import { Box, MenuItem, Paper, TextField, Typography } from "@mui/material";
 import { Tag } from "lucide-react";
 
+import FormTagsInput from "../form/FormTagsInput";
 import StackCol from "../common/StackCol";
 import StackRow from "../common/StackRow";
-import FormTagsInput from "../form/FormTagsInput";
+
 import {
   RESOURCE_STATUS_OPTIONS,
   RESOURCE_TYPES,

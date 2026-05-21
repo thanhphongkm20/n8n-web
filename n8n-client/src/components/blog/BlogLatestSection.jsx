@@ -1,9 +1,9 @@
 import { Box, Divider, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+import { ROUTES_GEN } from "../../configs/routes";
 import { UI } from "../../configs/constants";
 import BlogPostCard from "./BlogPostCard";
-import { ROUTES_GEN } from "../../configs/routes";
 
 const BlogLatestSection = ({ blogs = [] }) => {
   const latestBlogs = blogs.slice(0, 6);

@@ -20,8 +20,9 @@ import {
   getTypeLabel,
 } from "../../utils/blog-resource.util";
 
-import { FILTERS } from "../../configs/constants";
 import { useNavigate } from "react-router-dom";
+
+import { FILTERS } from "../../configs/constants";
 import { ROUTES_GEN } from "../../configs/routes";
 
 const BlogFeaturedSection = ({

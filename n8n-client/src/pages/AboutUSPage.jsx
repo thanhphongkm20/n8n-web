@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
+
 import { ROUTES } from "../configs/routes";
 
 const SERVICES = [
@@ -111,7 +112,7 @@ const STATS = [
 const SectionBadge = ({ children, color = "#14b8a6", borderColor }) => (
   <Box
     sx={{
-      display: "inline-flex",         // ← inline-flex so it hugs content
+      display: "inline-flex",
       alignItems: "center",
       gap: 0.8,
       px: 2,

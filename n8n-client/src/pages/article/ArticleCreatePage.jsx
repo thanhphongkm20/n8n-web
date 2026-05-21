@@ -5,15 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { COLORS } from "../../components/common/Colors";
+import { LoadingPage } from "../bases/LoadingPage";
 import { ROUTES } from "../../configs/routes";
+import { showError, showSuccess } from "../../utils/toast";
 import ArticleDescriptionField from "../../components/article/ArticleDescriptionField";
 import ArticleSidePanel from "../../components/article/ArticleSidePanel";
 import FormLabelField from "../../components/form/FormLabelField";
 import MPaper from "../../components/common/MPaper";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import WorkflowDataUpload from "../../components/article/WorkflowDataUpload";
-import { showError, showSuccess } from "../../utils/toast";
-
 
 import articleApi from "../../api/article.api";
 import validationSchema from "../../validation/article.validation";
@@ -132,6 +132,11 @@ const ArticleCreatePage = () => {
       setLoading(false);
     }
   };
+
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <Box

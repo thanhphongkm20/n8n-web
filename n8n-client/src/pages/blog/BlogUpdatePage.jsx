@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import {
   Alert,
   Box,
@@ -12,6 +13,7 @@ import { Save } from "lucide-react";
 import { useFormik } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 
+import { LoadingPage } from "../bases/LoadingPage";
 import BasicInformation from "../../components/blog/BasicInformation";
 import SeoSettings from "../../components/blog/SeoSettings";
 import PublishSidebar from "../../components/blog/PublishSidebar";
@@ -115,8 +117,8 @@ const BlogUpdatePage = () => {
         showToast(
           "error",
           error?.response?.data?.message ||
-            error?.message ||
-            "Update blog failed",
+          error?.message ||
+          "Update blog failed",
         );
       } finally {
         setSubmitting(false);
@@ -141,8 +143,8 @@ const BlogUpdatePage = () => {
         showToast(
           "error",
           error?.response?.data?.message ||
-            error?.message ||
-            "Get blog detail failed",
+          error?.message ||
+          "Get blog detail failed",
         );
       } finally {
         setLoading(false);
@@ -175,23 +177,7 @@ const BlogUpdatePage = () => {
   };
 
   if (loading) {
-    return (
-      <Box
-        sx={{
-          minHeight: "70vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Stack spacing={2} alignItems="center">
-          <CircularProgress size={34} />
-          <Typography sx={{ fontSize: 14, color: "text.secondary" }}>
-            Loading blog detail...
-          </Typography>
-        </Stack>
-      </Box>
-    );
+    return <LoadingPage />;
   }
 
   return (

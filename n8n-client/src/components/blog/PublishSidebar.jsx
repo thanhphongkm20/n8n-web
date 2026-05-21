@@ -12,8 +12,8 @@ import { Send, Tags } from "lucide-react";
 import { useState } from "react";
 
 import { FILTERS, RESOURCE_STATUS_OPTIONS } from "../../configs/constants";
-import FormSelect from "../form/FormSelect";
 import FormLabelField from "../form/FormLabelField";
+import FormSelect from "../form/FormSelect";
 
 const SectionTitle = ({ icon, children }) => {
   const IconComponent = icon;

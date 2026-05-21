@@ -9,12 +9,13 @@ import {
 import { useFormik } from "formik";
 import { useState } from "react";
 
+import { LoadingPage } from "../bases/LoadingPage";
 import BasicInformation from "../../components/resource/BasicInformation";
-import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import Classification from "../../components/resource/Classification";
-import Thumbnail from "../../components/resource/Thumbnail";
 import LinksDownloads from "../../components/resource/Linksdownloads";
 import Options from "../../components/resource/Options";
+import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
+import Thumbnail from "../../components/resource/Thumbnail";
 
 import resourceApi from "../../api/resource.api";
 import resourceValidationSchema from "../../validation/resource.validation";
@@ -104,6 +105,10 @@ const ResourceCreatePage = () => {
       }
     },
   });
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <Box

@@ -10,6 +10,7 @@ import {
 
 import { Image, ImagePlus, Link2, Upload, X } from "lucide-react";
 import { useRef, useState } from "react";
+
 import FormLabelField from "../form/FormLabelField";
 
 const toBase64 = (file) =>
@@ -114,9 +115,8 @@ const ThumbnailUpload = ({ form, onChange }) => {
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
         sx={{
-          border: `1.5px dashed ${
-            dragOver ? "#00a389" : "rgba(0,0,0,0.12)"
-          }`,
+          border: `1.5px dashed ${dragOver ? "#00a389" : "rgba(0,0,0,0.12)"
+            }`,
           borderRadius: "10px",
           p: 2,
           minHeight: 220,

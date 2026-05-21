@@ -85,7 +85,6 @@ const HomeMainContent = () => {
           <ArticleHomePage />
         </Container>
       </Box>
-
     </Box>
   );
 };

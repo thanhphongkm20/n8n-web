@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
 import {
   Box,
   Stack,
@@ -12,6 +13,7 @@ import {
 import { useFormik } from "formik";
 
 import { COLORS } from "../../components/common/Colors";
+import { LoadingPage } from "../bases/LoadingPage";
 import { ROUTES } from "../../configs/routes";
 import ArticleDescriptionField from "../../components/article/ArticleDescriptionField";
 import ArticleSidePanel from "../../components/article/ArticleSidePanel";
@@ -126,11 +128,7 @@ const ArticleUpdatePage = () => {
   };
 
   if (fetching) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <CircularProgress />
-      </Box>
-    );
+    return <LoadingPage />;
   }
 
   return (

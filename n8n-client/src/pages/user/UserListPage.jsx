@@ -8,19 +8,20 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { toast } from "react-toastify";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
-import userApi from "../../api/user.api";
 import { ButtonEdit } from "../../components/common/ButtonEdit";
 import { COLORS } from "../../components/common/Colors";
+import { LoadingPage } from "../bases/LoadingPage";
+import { ROUTES_GEN } from "../../configs/routes";
+import CustomPagination from "../../components/pagination/CustomPagination";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import StackRow from "../../components/common/StackRow";
-import CustomPagination from "../../components/pagination/CustomPagination";
-import { ROUTES_GEN } from "../../configs/routes";
 import useParams from "../../hooks/use-params";
-import { LoadingPage } from "../bases/LoadingPage";
+
+import userApi from "../../api/user.api";
 
 const UserListPage = () => {
   const navigate = useNavigate();

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import {
   Box,
   Button,
@@ -13,6 +14,7 @@ import {
 import { Check, HelpCircle, ShieldCheck, ShoppingCart } from "lucide-react";
 
 import articleApi from "../../api/article.api";
+import { LoadingPage } from "../bases/LoadingPage";
 import orderApi from "../../api/order.api";
 import ArticleHeroMedia from "../../components/article/ArticleHeroMedia";
 import ArticleFaq from "../../components/article/ArticleFaq";
@@ -122,17 +124,7 @@ const ArticleDetailPage = () => {
   };
 
   if (loading) {
-    return (
-      <Box sx={{ bgcolor: "#05070d", minHeight: "100vh", py: 5 }}>
-        <Container maxWidth="lg">
-          <Skeleton
-            variant="rounded"
-            height={520}
-            sx={{ bgcolor: "#111827", borderRadius: 4 }}
-          />
-        </Container>
-      </Box>
-    );
+    return <LoadingPage />;
   }
 
   if (error || !article) {

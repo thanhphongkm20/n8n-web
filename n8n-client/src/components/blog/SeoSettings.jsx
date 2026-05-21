@@ -1,9 +1,9 @@
 import { Box, Paper, Typography } from "@mui/material";
 import { Search } from "lucide-react";
 
+import FormLabelField from "../form/FormLabelField";
 import StackCol from "../common/StackCol";
 import StackRow from "../common/StackRow";
-import FormLabelField from "../form/FormLabelField";
 
 const SeoSettings = ({ formik }) => {
   const values = formik?.values;

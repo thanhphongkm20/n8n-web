@@ -33,10 +33,10 @@ const ArticleFaq = ({ items = [] }) => {
           sx={{
             textAlign: "left",
           }}
-            >
-            { item.answer }
+        >
+          {item.answer}
         </Typography>
-    </AccordionDetails>
+      </AccordionDetails>
     </Accordion >
   ));
 };

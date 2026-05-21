@@ -1,6 +1,7 @@
 import { Box, Container, IconButton, Skeleton } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useMemo, useState } from "react";
+
 import ResourceCard from "./ResourceCard";
 
 const COLUMN_SIZE = 2;

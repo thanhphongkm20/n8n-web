@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Box,
   Container,
@@ -10,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
+import { LoadingPage } from "../bases/LoadingPage";
 import MPaper from "../../components/common/MPaper";
 import StackCol from "../../components/common/StackCol";
 import StackRow from "../../components/common/StackRow";
@@ -83,6 +85,10 @@ const LoginPage = () => {
       }
     }
   });
+
+  if (isLoginRequest) {
+    return <LoadingPage />;
+  }
 
   return (
     <Box

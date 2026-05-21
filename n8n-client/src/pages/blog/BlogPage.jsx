@@ -1,6 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
 
+import { LoadingPage } from "../bases/LoadingPage";
 import { UI } from "../../configs/constants";
 import BlogFeaturedSection from "../../components/blog/BlogFeaturedSection";
 import BlogLatestSection from "../../components/blog/BlogLatestSection";
@@ -68,6 +69,10 @@ const BlogPage = () => {
 
     return [...new Set(all)].slice(0, 12);
   }, [blogs]);
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <Box

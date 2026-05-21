@@ -1,19 +1,20 @@
-import { useState } from "react";
 import { Alert, Box, Button, Snackbar, Stack } from "@mui/material";
 import { Save } from "lucide-react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-import BasicInformation from "../../components/blog/BasicInformation";
-import SeoSettings from "../../components/blog/SeoSettings";
-import PublishSidebar from "../../components/blog/PublishSidebar";
-import ThumbnailUpload from "../../components/blog/ThumbnailUpload";
-import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
-
-import blogApi from "../../api/blog.api";
-import blogValidationSchema from "../../validation/blog.validation.js";
+import { LoadingPage } from "../bases/LoadingPage";
 import { ROUTES } from "../../configs/routes.js";
 import { slugify } from "../../utils/slugify.js";
+import BasicInformation from "../../components/blog/BasicInformation";
+import blogValidationSchema from "../../validation/blog.validation.js";
+import PublishSidebar from "../../components/blog/PublishSidebar";
+import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
+import SeoSettings from "../../components/blog/SeoSettings";
+import ThumbnailUpload from "../../components/blog/ThumbnailUpload";
+
+import blogApi from "../../api/blog.api";
 
 const trimFields = [
   "title",
@@ -113,6 +114,10 @@ const BlogCreatePage = () => {
       }
     }
   };
+
+  if (formik.isSubmitting) {
+    return <LoadingPage />;
+  }
 
   return (
     <Box sx={{ minHeight: "100vh" }}>

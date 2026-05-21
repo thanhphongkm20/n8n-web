@@ -1,10 +1,11 @@
+import { Image as ImageIcon, X } from "lucide-react";
 import { Typography, Box, Paper, IconButton } from "@mui/material";
 import { useRef, useMemo, useEffect } from "react";
-import FormLabelField from "../../components/form/FormLabelField";
-import { COLORS } from "../../components/common/Colors";
+
 import { ARTICLE_STATUS_OPTIONS } from "../../configs/constants";
+import { COLORS } from "../../components/common/Colors";
+import FormLabelField from "../../components/form/FormLabelField";
 import FormSelect from "../../components/form/FormSelect";
-import { Image as ImageIcon, X } from "lucide-react";
 
 const labelStyle = {
   fontSize: 16,

@@ -10,18 +10,19 @@ import {
   TableRow,
 } from "@mui/material";
 import { Plus } from "lucide-react";
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { toast } from "react-toastify";
 
-import blogApi from "../../api/blog.api";
-import { ButtonEdit } from "../../components/common/ButtonEdit";
 import { BG_COLORS, COLORS } from "../../components/common/Colors";
+import { ButtonEdit } from "../../components/common/ButtonEdit";
+import { LoadingPage } from "../bases/LoadingPage";
+import { ROUTES, ROUTES_GEN } from "../../configs/routes";
+import CustomPagination from "../../components/pagination/CustomPagination";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import StackRow from "../../components/common/StackRow";
-import CustomPagination from "../../components/pagination/CustomPagination";
-import { ROUTES, ROUTES_GEN } from "../../configs/routes";
-import { LoadingPage } from "../bases/LoadingPage";
+
+import blogApi from "../../api/blog.api";
 
 const BlogListPage = () => {
   const navigate = useNavigate();
