@@ -22,17 +22,12 @@ import {
 
 import blogApi from "../../api/blog.api";
 import { LoadingPage } from "../bases/LoadingPage";
-
-const TYPE_LABEL = {
-  case_study: "Case Study",
-  news: "Update News",
-  guide: "Technical Guide",
-};
+import { FILTERS } from "../../configs/constants";
 
 const TYPE_COLOR = {
   case_study: "#60a5fa",
-  news: "#34d399",
-  guide: "#fbbf24",
+  news_update: "#34d399",
+  technical_guide: "#fbbf24",
 };
 
 const BlogDetailPage = () => {
@@ -64,7 +59,7 @@ const BlogDetailPage = () => {
 
   if (isLoading) return <LoadingPage />;
 
-  const typeLabel = TYPE_LABEL[blog.type] || blog.type || "Blog";
+  const typeLabel = FILTERS.find((f) => f.value === blog.type)?.label || blog.type || "Blog";
   const typeColor = TYPE_COLOR[blog.type] || "#a78bfa";
   const tags = Array.isArray(blog.tags) ? blog.tags : [];
 

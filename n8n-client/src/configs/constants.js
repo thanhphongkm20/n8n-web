@@ -103,9 +103,9 @@ export const UI = {
 
 export const FILTERS = [
   { label: "All", value: "" },
-  { label: "Case Studies", value: "case_study" },
-  { label: "News Updates", value: "news" },
-  { label: "Technical Guides", value: "guide" },
+  { label: "CASE STUDY", value: "case_study" },
+  { label: "UPDATE NEWS", value: "update_news" },
+  { label: "TECHNICAL GUIDE", value: "technical_guide" },
 ];
 
 export const darkTheme = createTheme({
