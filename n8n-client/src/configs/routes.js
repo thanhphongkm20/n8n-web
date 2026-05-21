@@ -4,6 +4,7 @@ export const ROUTES = {
   REGISTER: "/register",
   RESOURCES: "/resources",
   CUSTOM_BUILT: "/custom-built",
+  ABOUT: "/about",
   BLOG: "/blog",
 
   USER: {

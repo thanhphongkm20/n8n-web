@@ -21,21 +21,40 @@ const PageLoadingSkeleton = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Stack spacing={2.5} alignItems="center">
+          <Stack
+            spacing={2.5}
+            sx={{
+              alignItems: "center",
+            }}
+          >
             <Skeleton
               variant="text"
               width={520}
               height={72}
-              sx={{ bgcolor: "rgba(255,255,255,0.12)" }}
+              sx={{
+                maxWidth: "100%",
+                bgcolor: "rgba(255,255,255,0.12)",
+              }}
             />
             <Skeleton
               variant="text"
               width={380}
               height={34}
-              sx={{ bgcolor: "rgba(255,255,255,0.1)" }}
+              sx={{
+                maxWidth: "100%",
+                bgcolor: "rgba(255,255,255,0.1)",
+              }}
             />
-
-            <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+            <Stack
+              direction="row"
+              spacing={2}
+              sx={{
+                mt: 2,
+                justifyContent: "center",
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}
+            >
               <Skeleton
                 variant="rounded"
                 width={170}
@@ -62,9 +81,12 @@ const PageLoadingSkeleton = () => {
       <Container maxWidth="lg" sx={{ py: 7 }}>
         <Stack
           direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          sx={{ mb: 4 }}
+          sx={{
+            mb: 4,
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 2,
+          }}
         >
           <Skeleton variant="text" width={220} height={42} />
           <Skeleton
@@ -104,7 +126,14 @@ const PageLoadingSkeleton = () => {
               <Skeleton variant="text" width="100%" height={22} />
               <Skeleton variant="text" width="75%" height={22} />
 
-              <Stack direction="row" spacing={1.5} sx={{ mt: 2 }}>
+              <Stack
+                direction="row"
+                spacing={1.5}
+                sx={{
+                  mt: 2,
+                  alignItems: "center",
+                }}
+              >
                 <Skeleton
                   variant="rounded"
                   width="50%"
@@ -172,14 +201,21 @@ const MainLayout = () => {
       <Topbar authReady={!isVerifying} />
 
       <Toolbar
+        disableGutters
         sx={{
           minHeight: "72px !important",
-          height: "72px",
+          height: 72,
           flexShrink: 0,
         }}
       />
 
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          width: "100%",
+        }}
+      >
         {isVerifying ? <PageLoadingSkeleton /> : <Outlet />}
       </Box>
 

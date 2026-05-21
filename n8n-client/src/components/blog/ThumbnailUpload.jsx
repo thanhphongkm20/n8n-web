@@ -5,7 +5,6 @@ import {
   IconButton,
   Paper,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 
@@ -25,7 +24,6 @@ const toBase64 = (file) =>
 
 const ThumbnailUpload = ({ form, onChange }) => {
   const [dragOver, setDragOver] = useState(false);
-
   const fileInputRef = useRef(null);
 
   const handleClear = () => {
@@ -68,8 +66,10 @@ const ThumbnailUpload = ({ form, onChange }) => {
       <Stack
         direction="row"
         spacing={1}
-        alignItems="center"
-        sx={{ mb: 1.5 }}
+        sx={{
+          mb: 1.5,
+          alignItems: "center",
+        }}
       >
         <ImagePlus size={16} color="#111827" />
 
@@ -84,8 +84,6 @@ const ThumbnailUpload = ({ form, onChange }) => {
           THUMBNAIL
         </Typography>
       </Stack>
-
-      {/* URL INPUT */}
       <FormLabelField
         fullWidth
         size="small"
@@ -107,7 +105,6 @@ const ThumbnailUpload = ({ form, onChange }) => {
 
       <Divider sx={{ my: 2 }}>OR</Divider>
 
-      {/* UPLOAD AREA */}
       <Box
         onDragOver={(e) => {
           e.preventDefault();
@@ -117,8 +114,9 @@ const ThumbnailUpload = ({ form, onChange }) => {
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
         sx={{
-          border: `1.5px dashed ${dragOver ? "#00a389" : "rgba(0,0,0,0.12)"
-            }`,
+          border: `1.5px dashed ${
+            dragOver ? "#00a389" : "rgba(0,0,0,0.12)"
+          }`,
           borderRadius: "10px",
           p: 2,
           minHeight: 220,
@@ -146,15 +144,15 @@ const ThumbnailUpload = ({ form, onChange }) => {
               bgcolor: "#f3f4f6",
             }}
           >
-            <img
+            <Box
+              component="img"
               src={form.thumbnail}
               alt="thumbnail"
-              style={{
+              sx={{
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
                 display: "block",
-                mt: 2
               }}
             />
             <IconButton
@@ -180,17 +178,16 @@ const ThumbnailUpload = ({ form, onChange }) => {
         ) : (
           <Stack
             spacing={1.5}
-            alignItems="center"
-            justifyContent="center"
             sx={{
               height: "100%",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <Box
               sx={{
+                width: 100,
                 height: 100,
-                minWidth: 100,
-                minHeight: 100,
                 borderRadius: "20px",
                 bgcolor: "#f3f4f6",
                 display: "flex",
@@ -207,7 +204,7 @@ const ThumbnailUpload = ({ form, onChange }) => {
                 fontWeight: 900,
                 letterSpacing: 1,
                 color: "#0f172a",
-                mb: 2,
+                mb: 1,
                 textAlign: "center",
               }}
             >

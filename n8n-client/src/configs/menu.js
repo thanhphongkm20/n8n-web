@@ -6,6 +6,7 @@ import {
   Building,
   Phone,
   Users,
+  Info,
 } from "lucide-react";
 
 import { ROUTES } from "./routes";
@@ -31,6 +32,11 @@ const menuTop = [
     mainTitle: "Blog",
     mainIcon: Newspaper,
     path: ROUTES.BLOG,
+  },
+  {
+    mainTitle: "About Us",
+    mainIcon: Info,
+    path: ROUTES.ABOUT,
   },
 ];
 

@@ -25,116 +25,123 @@ const FormQuoteField = ({
   error,
   helperText,
   sx,
+  multiline = false,
+  rows,
+  minRows,
+  maxRows,
 }) => {
   const fieldValue = value ?? getIn(form?.values, id) ?? '';
   const isError = error ?? (form?.touched?.[id] && Boolean(form?.errors?.[id]));
   const helper = helperText ?? (form?.touched?.[id] && form?.errors?.[id]);
 
   return (
-    <>
-      <Stack
-        direction={direction}
-        gap={{ xs: 1, md: gap }}
-        sx={{
-          width: '100%',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          ...sx,
-        }}
-      >
-        {title && (
-          <StackRow
-            alignItems="center"
-            justifyContent={titleJustify}
-            sx={{
-              width: titleWidth,
-              whiteSpace: 'normal',
-              color: titleColor,
-              pr: { md: 2 },
-              mb: 1,
-            }}
-          >
-            <Typography fontSize={{ xs: 14, md: 16 }}>
-              {title}
-            </Typography>
-
-            {required && (
-              <ChipRequired sx={{ ml: 1 }} />
-            )}
-            {subRequired && (
-              <Typography
-                sx={{
-                  bgcolor: COLORS.PRIMARY,
-                  color: COLORS.WHITE,
-                  p: 0.8,
-                  fontSize: 13,
-                  borderRadius: 0,
-                  ml: 1,
-                }}
-              >
-                {subRequired}
-              </Typography>
-            )}
-          </StackRow>
-        )}
-        <TextField
-          fullWidth
-          disabled={disabled}
-          size="medium"
-          id={id}
-          name={id}
-          placeholder={placeholder}
-          type={type}
-          value={fieldValue}
-          onChange={onChange ?? form?.handleChange}
-          onBlur={form?.handleBlur}
-          error={isError}
-          helperText={helper}
-          slotProps={{
-            htmlInput: autoComplete ? undefined : { autoComplete: "new-password" },
-          }}
+    <Stack
+      direction={direction}
+      gap={{ xs: 1, md: gap }}
+      sx={{
+        width: '100%',
+        justifyContent: 'flex-start',
+        alignItems: direction === 'column' ? 'stretch' : 'center',
+        ...sx,
+      }}
+    >
+      {title && (
+        <StackRow
+          alignItems="center"
+          justifyContent={titleJustify}
           sx={{
-            "& .MuiOutlinedInput-root": {
-              height: 48,
-              borderRadius: "10px",
-              backgroundColor: "rgba(255,255,255,0.05)",
-
-              "& fieldset": {
-                borderColor: "rgba(255,255,255,0.3)",
-                borderWidth: "1px",
-              },
-              "&:hover fieldset": {
-                borderColor: "rgba(255,255,255,0.5)",
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "rgba(255,255,255,0.8)",
-                borderWidth: "2px",
-              },
-            },
-
-            "& input": {
-              fontSize: 14,
-              padding: "12px 14px",
-              color: "#ffffff",
-            },
-
-            "& textarea": {
-              color: "#ffffff",
-            },
-
-            "& input::placeholder": {
-              color: "rgba(255,255,255,0.6)",
-              opacity: 1,
-            },
-
-            "& textarea::placeholder": {
-              color: "rgba(255,255,255,0.6)",
-              opacity: 1,
-            },
+            width: titleWidth,
+            whiteSpace: 'normal',
+            color: titleColor,
+            pr: { md: 2 },
+            mb: 1,
           }}
-        />
-      </Stack>
-    </>
+        >
+          <Typography fontSize={{ xs: 14, md: 16 }}>
+            {title}
+          </Typography>
+
+          {required && <ChipRequired sx={{ ml: 1 }} />}
+
+          {subRequired && (
+            <Typography
+              sx={{
+                bgcolor: COLORS.PRIMARY,
+                color: COLORS.WHITE,
+                p: 0.8,
+                fontSize: 13,
+                borderRadius: 0,
+                ml: 1,
+              }}
+            >
+              {subRequired}
+            </Typography>
+          )}
+        </StackRow>
+      )}
+
+      <TextField
+        fullWidth
+        disabled={disabled}
+        size="medium"
+        id={id}
+        name={id}
+        placeholder={placeholder}
+        type={type}
+        value={fieldValue}
+        onChange={onChange ?? form?.handleChange}
+        onBlur={form?.handleBlur}
+        error={isError}
+        helperText={helper}
+        multiline={multiline}
+        rows={rows}
+        minRows={minRows}
+        maxRows={maxRows}
+        slotProps={{
+          htmlInput: autoComplete ? undefined : { autoComplete: 'new-password' },
+        }}
+        sx={{
+          '& .MuiOutlinedInput-root': {
+            height: multiline ? 'auto' : 48,
+            minHeight: multiline ? 120 : 48,
+            alignItems: multiline ? 'flex-start' : 'center',
+            borderRadius: '10px',
+            backgroundColor: 'rgba(255,255,255,0.05)',
+
+            '& fieldset': {
+              borderColor: 'rgba(255,255,255,0.3)',
+              borderWidth: '1px',
+            },
+
+            '&:hover fieldset': {
+              borderColor: 'rgba(255,255,255,0.5)',
+            },
+
+            '&.Mui-focused fieldset': {
+              borderColor: 'rgba(255,255,255,0.8)',
+              borderWidth: '2px',
+            },
+          },
+
+          '& input': {
+            fontSize: 14,
+            padding: '12px 14px',
+            color: '#ffffff',
+          },
+
+          '& textarea': {
+            fontSize: 14,
+            color: '#ffffff',
+            resize: 'vertical',
+          },
+
+          '& input::placeholder, & textarea::placeholder': {
+            color: 'rgba(255,255,255,0.6)',
+            opacity: 1,
+          },
+        }}
+      />
+    </Stack>
   );
 };
 

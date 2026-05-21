@@ -39,16 +39,20 @@ export const ARTICLE_STATUS_OPTIONS = [
 ];
 
 export const BUDGET_OPTIONS = [
-  { title: "<$2k", value: "<$2k" },
-  { title: "$2k-$5k", value: "$2k-$5k" },
-  { title: "$5k-$10k", value: "$5k-$10k" },
-  { title: "$10k+", value: "$10k+" },
+  { title: "Under $2,000", value: "under_2k" },
+  { title: "$2,000 - $5,000", value: "2k_5k" },
+  { title: "$5,000 - $10,000", value: "5k_10k" },
+  { title: "$10,000 - $25,000", value: "10k_25k" },
+  { title: "Over $25,000", value: "over_25k" },
+  { title: "Not Sure Yet", value: "not_sure" },
 ];
 
 export const TIMELINE_OPTIONS = [
-  { title: "2 Weeks", value: "2 Weeks" },
-  { title: "1 Month", value: "1 Month" },
-  { title: "Flexible", value: "Flexible" },
+  { title: "ASAP", value: "asap" },
+  { title: "Within 2 Weeks", value: "2_weeks" },
+  { title: "Within 1 Month", value: "1_month" },
+  { title: "1 - 3 Months", value: "1_3_months" },
+  { title: "Flexible", value: "flexible" },
 ];
 
 export const RESOURCE_STATUS_OPTIONS = [
