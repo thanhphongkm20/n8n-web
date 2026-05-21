@@ -6,7 +6,6 @@ const CustomPagination = ({
   pageCount,
   onChange,
   justify = { xs: "center", lg: "center" },
-  // sx,
   ...props
 }) => {
   return (

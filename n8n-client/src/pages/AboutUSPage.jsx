@@ -108,7 +108,6 @@ const STATS = [
   { value: "24h", label: "Support Response" },
 ];
 
-// ─── Reusable inline pill badge ────────────────────────────
 const SectionBadge = ({ children, color = "#14b8a6", borderColor }) => (
   <Box
     sx={{

@@ -10,13 +10,11 @@ const axiosClient = axios.create({
   paramsSerializer: queryString.stringify,
 });
 
-/** Returns headers for multipart/form-data requests (e.g. file uploads). */
 export const multipartHeaders = () => ({
   "Content-Type": "multipart/form-data",
   Authorization: `Bearer ${getToken()}`,
 });
 
-// Request interceptor — attach bearer token when available
 axiosClient.interceptors.request.use(
   (config) => {
     const token = getToken();
@@ -28,7 +26,6 @@ axiosClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor — unwrap data or normalize errors
 axiosClient.interceptors.response.use(
   (response) => response?.data ?? response,
   (error) => {
@@ -40,8 +37,8 @@ axiosClient.interceptors.response.use(
 /**
  * @param {"get"|"post"|"put"|"patch"|"delete"} method
  * @param {string} url
- * @param {object} [data]   — request body (ignored for GET)
- * @param {object} [params] — URL query parameters
+ * @param {object} [data]
+ * @param {object} [params]
  */
 export const callApi = (method, url, data, params) =>
   axiosClient({ method, url, data, params });

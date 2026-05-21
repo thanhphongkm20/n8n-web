@@ -27,7 +27,6 @@ const Page = ({
     }
   }, [dispatch, state, stateChild]);
 
-  // Helper to check role permissions
   const hasPermission = useMemo(() => {
     if (!roles) return true;
     if (!user) return false;
