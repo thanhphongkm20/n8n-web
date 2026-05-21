@@ -1,25 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  Alert,
   Box,
-  Container,
-  Typography,
-  Link,
-  Divider,
-  TextField,
   Button,
+  CircularProgress,
+  Container,
+  Divider,
   IconButton,
+  Link,
+  Snackbar,
   Stack,
+  Typography,
 } from "@mui/material";
-import {
-  Mail,
-  Phone,
-  Globe,
-  HatGlasses
-} from "lucide-react";
+import { Globe, HatGlasses, Mail, Phone } from "lucide-react";
+
+import subscribeApi from "../../api/subscribe.api";
 import StackRow from "../common/StackRow";
 import FormTextField from "../form/FormTextField";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
+
+  const handleCloseSnackbar = () => {
+    setSnackbar((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  };
+
+  const handleSubscribe = async () => {
+    if (!email?.trim()) {
+      setSnackbar({
+        open: true,
+        message: "Please enter your email",
+        severity: "warning",
+      });
+
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      await subscribeApi.subscribe({
+        email: email.trim(),
+      });
+
+      setSnackbar({
+        open: true,
+        message: "Subscribed successfully!",
+        severity: "success",
+      });
+
+      setEmail("");
+    } catch (error) {
+      console.error(error);
+
+      setSnackbar({
+        open: true,
+        message:
+          error?.response?.data?.message ||
+          "Subscribe failed",
+        severity: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Box
       component="footer"
@@ -54,7 +108,6 @@ const Footer = () => {
             mb: 8,
           }}
         >
-          {/* LEFT */}
           <Box sx={{ maxWidth: 380 }}>
             <Typography
               variant="h5"
@@ -68,52 +121,93 @@ const Footer = () => {
               variant="body2"
               sx={{ color: "#94a3b8", mb: 4, lineHeight: 1.7 }}
             >
-              Elevate your automation processes with a workflow library designed by top experts.
+              Elevate your automation processes with a workflow library designed
+              by top experts.
             </Typography>
 
             <Typography variant="subtitle2" sx={{ mb: 1.5, fontWeight: 600 }}>
               Subscribe to get the latest workflows
             </Typography>
 
-            <Box sx={{ display: "flex", gap: 1 }}>
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={1.2}
+              sx={{ width: "100%" }}
+            >
               <FormTextField
                 size="small"
-                placeholder="Your email..."
+                placeholder="Enter your email..."
                 fullWidth
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 sx={{
-                  bgcolor: "rgba(255,255,255,0.08)",
-                  borderRadius: "8px",
                   "& .MuiOutlinedInput-root": {
-                    color: "white",
+                    height: 46,
+                    color: "#fff",
+                    bgcolor: "rgba(255,255,255,0.06)",
+                    borderRadius: "12px",
+                    transition: "all 0.2s ease",
                     "& fieldset": {
-                      borderColor: "rgba(255,255,255,0.1)",
+                      borderColor: "rgba(255,255,255,0.08)",
                     },
                     "&:hover fieldset": {
                       borderColor: "#22c55e",
                     },
+                    "&.Mui-focused": {
+                      bgcolor: "rgba(255,255,255,0.08)",
+                    },
                     "&.Mui-focused fieldset": {
                       borderColor: "#22c55e",
-                      boxShadow: "0 0 0 1px rgba(34,197,94,0.3)",
+                      boxShadow: "0 0 0 3px rgba(34,197,94,0.15)",
                     },
+                  },
+                  "& input::placeholder": {
+                    color: "#94a3b8",
+                    opacity: 1,
                   },
                 }}
               />
+
               <Button
                 variant="contained"
+                disableElevation
+                onClick={handleSubscribe}
+                disabled={loading}
                 sx={{
-                  bgcolor: "#22c55e",
-                  "&:hover": { bgcolor: "#16a34a" },
+                  minWidth: 140,
+                  height: 46,
+                  borderRadius: "12px",
                   textTransform: "none",
-                  borderRadius: "8px",
-                  px: 3,
+                  fontWeight: 700,
+                  fontSize: 14,
+                  bgcolor: "#22c55e",
+                  color: "#fff",
+                  transition: "all 0.2s ease",
+                  "&:hover": {
+                    bgcolor: "#16a34a",
+                  },
+                  "&:active": {
+                    transform: "scale(0.98)",
+                  },
+                  "&.Mui-disabled": {
+                    bgcolor: "#22c55e",
+                    color: "#fff",
+                    opacity: 0.85,
+                  },
                 }}
               >
-                Subscribe
+                {loading ? (
+                  <StackRow sx={{ alignItems: "center", gap: 1 }}>
+                    <CircularProgress size={16} sx={{ color: "#fff" }} />
+                    Sending...
+                  </StackRow>
+                ) : (
+                  "Subscribe"
+                )}
               </Button>
-            </Box>
+            </Stack>
           </Box>
 
-          {/* RIGHT - CARD */}
           <Box
             sx={{
               p: 3,
@@ -134,19 +228,16 @@ const Footer = () => {
                 text="contact@n8n.io"
                 href="mailto:contact@n8n.io"
               />
-
               <ContactItem
                 icon={<Phone size={18} />}
                 text="+84 123 456 789"
                 href="tel:+84123456789"
               />
-
               <ContactItem
                 icon={<Globe size={18} />}
                 text="n8n.io"
                 href="https://n8n.io"
               />
-
               <ContactItem
                 icon={<HatGlasses size={18} />}
                 text="Zalo: n8nHub"
@@ -158,7 +249,6 @@ const Footer = () => {
 
         <Divider sx={{ borderColor: "rgba(255,255,255,0.05)", mb: 4 }} />
 
-        {/* BOTTOM */}
         <StackRow
           justifyContent="space-between"
           sx={{
@@ -170,23 +260,41 @@ const Footer = () => {
           <Typography variant="caption" sx={{ color: "#64748b" }}>
             © {new Date().getFullYear()} n8n Hub. All rights reserved.
           </Typography>
-          <StackRow
-            sx={{
-              alignItems: "center",
-              columnGap: "20px",
-            }}
-          >
-            <FooterLink small>Privacy Policy</FooterLink>
 
+          <StackRow sx={{ alignItems: "center", columnGap: "20px" }}>
+            <FooterLink small>Privacy Policy</FooterLink>
             <FooterLink small>Terms of Service</FooterLink>
           </StackRow>
         </StackRow>
       </Container>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          variant="filled"
+          severity={snackbar.severity}
+          onClose={handleCloseSnackbar}
+          sx={{
+            width: "100%",
+            borderRadius: "12px",
+            alignItems: "center",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+          }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
 
-/* CONTACT ITEM */
 const ContactItem = ({ icon, text, href }) => (
   <Box
     component="a"
@@ -211,20 +319,14 @@ const ContactItem = ({ icon, text, href }) => (
   >
     <Box sx={{ color: "#22c55e" }}>{icon}</Box>
 
-    <Typography
-      variant="body2"
-      sx={{ color: "#cbd5f5", flex: 1 }}
-    >
+    <Typography variant="body2" sx={{ color: "#cbd5f5", flex: 1 }}>
       {text}
     </Typography>
 
-    <Typography sx={{ color: "#22c55e", fontSize: 12 }}>
-      →
-    </Typography>
+    <Typography sx={{ color: "#22c55e", fontSize: 12 }}>→</Typography>
   </Box>
 );
 
-/* LINK */
 const FooterLink = ({ children, small }) => (
   <Link
     href="#"
@@ -242,7 +344,6 @@ const FooterLink = ({ children, small }) => (
   </Link>
 );
 
-/* SOCIAL ICON */
 const SocialIcon = ({ icon }) => (
   <IconButton
     size="small"
