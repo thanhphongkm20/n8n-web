@@ -15,6 +15,7 @@ const userEndpoints = {
   list: "users",
   login: "users/login",
   profile: "users/profile",
+  changePassword: "users/change-password",
   byId: (id) => `users/${id}`,
 };
 
@@ -27,7 +28,9 @@ const userApi = {
 
   list: (query = {}) => {
     const queryString = generateQueryString(query);
-    const url = queryString ? `${userEndpoints.list}?${queryString}` : userEndpoints.list;
+    const url = queryString
+      ? `${userEndpoints.list}?${queryString}`
+      : userEndpoints.list;
     return callApi("get", url);
   },
 
@@ -49,6 +52,10 @@ const userApi = {
 
   updateProfile: (data) => {
     return callApi("put", userEndpoints.profile, data);
+  },
+
+  changePassword: (data) => {
+    return callApi("put", userEndpoints.changePassword, data);
   },
 };
 

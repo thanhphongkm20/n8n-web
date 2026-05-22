@@ -25,24 +25,23 @@ export const userUpdateRequest = z.object({
 });
 
 export const userUpdateProfileRequest = z.object({
-  body: z.object({
-    full_name: z.string().trim().optional(),
-    email: z.email().nonempty(),
-    phone: z.string().trim().optional(),
-    profile_image: z.string().trim().optional(),
-    avatar: z.string().trim().optional(),
-  }),
+  full_name: z.string().trim().optional(),
+  display_name: z.string().trim().optional(),
+  email: z.string().email().nonempty(),
+  phone: z.string().trim().optional(),
+  profile_image: z.string().trim().optional(),
+  avatar: z.string().trim().optional(),
+  first_name: z.string().trim().optional(),
+  last_name: z.string().trim().optional(),
 });
 
-export const userChangePassRequest = z.object({
-  body: z
-    .object({
-      old_password: z.string().trim().nonempty(),
-      new_password: z.string().trim().nonempty(),
-      new_password_repeat: z.string().trim().nonempty(),
-    })
-    .refine((data) => data.new_password === data.new_password_repeat, {
-      message: "new_password_repeat は new_password と一致する必要があります",
-      path: ["new_password_repeat"],
-    }),
-});
+export const userChangePassRequest = z
+  .object({
+    old_password: z.string().trim().nonempty(),
+    new_password: z.string().trim().nonempty(),
+    new_password_repeat: z.string().trim().nonempty(),
+  })
+  .refine((data) => data.new_password === data.new_password_repeat, {
+    message: "new_password_repeat は new_password と一致する必要があります",
+    path: ["new_password_repeat"],
+  });

@@ -33,10 +33,6 @@ export const ROUTES = {
 
   ACCOUNT: {
     SETTINGS: "/account/settings",
-    EDIT_NAME: "/account/edit/name",
-    EDIT_EMAIL: "/account/edit/email",
-    EDIT_PASSWORD: "/account/edit/password",
-    EDIT_AVATAR: "/account/edit/avatar",
   },
 };
 

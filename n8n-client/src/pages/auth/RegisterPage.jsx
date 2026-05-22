@@ -42,7 +42,7 @@ const RegisterPage = ({ onSuccess }) => {
       setIsRequesting(true);
       try {
         await userApi.create(values);
-        toast.success("Tạo tài khoản thành công!");
+        toast.success("Account created successfully!");
         setTimeout(() => {
           navigate(ROUTES.LOGIN);
         }, 800);

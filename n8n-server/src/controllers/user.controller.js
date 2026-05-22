@@ -149,7 +149,8 @@ const update = async (req, res) => {
     const updated = Object.assign(userTarget, userData);
 
     if (updated.last_name || updated.first_name) {
-      updated.display_name = `${updated.last_name || ""} ${updated.first_name || ""}`.trim();
+      updated.display_name =
+        `${updated.last_name || ""} ${updated.first_name || ""}`.trim();
     }
 
     const result = await userService.save(updated);
@@ -198,7 +199,14 @@ const profile = (req, res) => {
 const profileUpdate = async (req, res) => {
   try {
     const updated = _.merge(req.user, req.validatedBody);
-    updated.display_name = `${updated.last_name} ${updated.first_name}`;
+    if (req.validatedBody.display_name) {
+      updated.display_name = req.validatedBody.display_name;
+    } else if (req.validatedBody.full_name) {
+      updated.display_name = req.validatedBody.full_name;
+    } else if (req.validatedBody.first_name || req.validatedBody.last_name) {
+      updated.display_name =
+        `${updated.last_name || ""} ${updated.first_name || ""}`.trim();
+    }
 
     const result = await userService.save(updated);
     return ApiResponse.OK(res, result);

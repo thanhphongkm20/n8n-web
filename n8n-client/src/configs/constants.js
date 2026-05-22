@@ -195,3 +195,10 @@ export const faqs = [
       "You can follow the included documentation and walkthrough. If you still have trouble, support is available to help you complete the setup.",
   },
 ];
+
+export const levels = [
+  { label: "Yếu", color: "error", value: 25 },
+  { label: "Trung bình", color: "warning", value: 50 },
+  { label: "Khá mạnh", color: "info", value: 75 },
+  { label: "Mạnh", color: "success", value: 100 },
+];

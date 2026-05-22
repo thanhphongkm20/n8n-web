@@ -7,7 +7,7 @@ import {
   userLoginRequest,
   userUpdateProfileRequest,
   userUpdateRequest,
-  userCreateRequest
+  userCreateRequest,
 } from "../requests/user.request.js";
 
 const router = express.Router();
@@ -21,20 +21,26 @@ router.get(
 router.post(
   "/login",
   validateRequest(userLoginRequest),
-  userController.login,
+  userController.login
 );
 
 router.get(
-  "/:id",
-  adminTokenRequired,
-  userController.userById,
-  userController.getById
+  "/profile",
+  allTokenRequired,
+  userController.profile
+);
+
+router.put(
+  "/profile",
+  allTokenRequired,
+  validateRequest(userUpdateProfileRequest),
+  userController.profileUpdate
 );
 
 router.get(
   "/",
   adminTokenRequired,
-  userController.list,
+  userController.list
 );
 
 router.post(
@@ -44,16 +50,10 @@ router.post(
 );
 
 router.get(
-  "/profile",
-  allTokenRequired,
-  userController.profile,
-);
-
-router.put(
-  "/profile",
-  allTokenRequired,
-  validateRequest(userUpdateProfileRequest),
-  userController.profileUpdate,
+  "/:id",
+  adminTokenRequired,
+  userController.userById,
+  userController.getById
 );
 
 router.put(
@@ -61,7 +61,7 @@ router.put(
   adminTokenRequired,
   validateRequest(userUpdateRequest),
   userController.userById,
-  userController.update,
+  userController.update
 );
 
 export default router;

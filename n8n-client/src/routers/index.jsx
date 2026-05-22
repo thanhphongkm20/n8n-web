@@ -31,6 +31,7 @@ import BlogUpdatePage from "../pages/blog/BlogUpdatePage.jsx";
 import ArticleDetailPage from "../pages/article/ArticleDetailPage.jsx";
 import BlogDetailPage from "../pages/blog/BlogDetailPage.jsx";
 import AboutUsPage from "../pages/AboutUSPage.jsx";
+import AccountSettingsPage from "../pages/account/AccountSettingsPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -268,6 +269,28 @@ const router = createBrowserRouter([
                   },
                 },
               },
+            ],
+          },
+          {
+            path: ROUTES.ACCOUNT.SETTINGS,
+            handle: {
+              breadcrumb: {
+                label: "ACCOUNT SETTINGS",
+                path: ROUTES.ACCOUNT.SETTINGS,
+              },
+            },
+            children: [
+              {
+                index: true,
+                element: (
+                  <Page
+                    state={APP_STATE.ACCOUNT}
+                    element={<AccountSettingsPage />}
+                    roles={[ROLES.ADMIN, ROLES.USER]}
+                  />
+                ),
+              },
+
             ],
           },
         ],
