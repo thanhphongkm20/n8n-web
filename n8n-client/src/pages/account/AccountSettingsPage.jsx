@@ -2,15 +2,12 @@ import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
-  TextField,
   Button,
   Avatar,
   IconButton,
   InputAdornment,
   Chip,
   Paper,
-  Snackbar,
-  Alert,
   Stack,
 } from "@mui/material";
 import { toast } from "react-toastify";
@@ -43,7 +40,7 @@ const AccountSettings = () => {
   const [showNewPass, setShowNewPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const initials = (form.fullname)
+  const initials = form.fullname
     .split(" ")
     .filter(Boolean)
     .map((w) => w[0])
@@ -94,18 +91,16 @@ const AccountSettings = () => {
 
         const fullname =
           user?.full_name ||
-          `${user?.first_name} ${user?.last_name || ""}`.trim() ||
-          "";
+          `${user?.first_name || ""} ${user?.last_name || ""}`.trim();
 
         setForm((prev) => ({
           ...prev,
           fullname,
-          email: user?.email,
+          email: user?.email || "",
           phone: user?.phone || "",
         }));
       } catch (error) {
         console.error(error);
-        if (!mounted) return;
         showMessage("Unable to load user information", "error");
       }
     };
@@ -120,7 +115,10 @@ const AccountSettings = () => {
   const handleSave = async () => {
     try {
       if (form.newPassword && form.newPassword.length < 8) {
-        showMessage("New password must be at least 8 characters long", "warning");
+        showMessage(
+          "New password must be at least 8 characters long",
+          "warning"
+        );
         return;
       }
 
@@ -155,7 +153,11 @@ const AccountSettings = () => {
       showMessage("Profile updated successfully", "success");
     } catch (error) {
       console.error(error);
-      showMessage(error?.response?.data?.message || "Failed to update profile", "error");
+
+      showMessage(
+        error?.response?.data?.message || "Failed to update profile",
+        "error"
+      );
     } finally {
       setLoading(false);
     }
@@ -178,7 +180,14 @@ const AccountSettings = () => {
         px: 2,
       }}
     >
-      <Box sx={{ maxWidth: 720, mx: "auto", width: "100%" }}>
+      <Box
+        sx={{
+          maxWidth: 720,
+          mx: "auto",
+          width: "100%",
+        }}
+      >
+        {/* HEADER */}
         <Box
           sx={{
             position: "relative",
@@ -225,7 +234,7 @@ const AccountSettings = () => {
             Change Image
           </Button>
         </Box>
-
+        {/* PERSONAL */}
         <Paper
           elevation={0}
           sx={{
@@ -250,7 +259,10 @@ const AccountSettings = () => {
           </Typography>
 
           <Stack spacing={2.5}>
-            <Stack direction={{ xs: "column", md: "row" }} spacing={2.2}>
+            <Stack
+              direction={{ xs: "column", md: "row" }}
+              spacing={2.2}
+            >
               <Box sx={{ flex: 1 }}>
                 <FormLabelField
                   id="fullname"
@@ -309,7 +321,7 @@ const AccountSettings = () => {
             </Box>
           </Stack>
         </Paper>
-
+        {/* SECURITY */}
         <Paper
           elevation={0}
           sx={{
@@ -333,7 +345,10 @@ const AccountSettings = () => {
             SECURITY
           </Typography>
 
-          <Stack direction={{ xs: "column", md: "row" }} spacing={2.2}>
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            spacing={2.2}
+          >
             <Box sx={{ flex: 1 }}>
               <FormLabelField
                 id="currentPassword"
@@ -348,8 +363,12 @@ const AccountSettings = () => {
                     <InputAdornment position="end">
                       <IconButton
                         size="small"
-                        onClick={() => setShowCurrentPass((v) => !v)}
-                        sx={{ color: "#6b7280" }}
+                        onClick={() =>
+                          setShowCurrentPass((prev) => !prev)
+                        }
+                        sx={{
+                          color: "#6b7280",
+                        }}
                       >
                         {showCurrentPass ? (
                           <EyeOff size={18} strokeWidth={2.4} />
@@ -377,8 +396,12 @@ const AccountSettings = () => {
                     <InputAdornment position="end">
                       <IconButton
                         size="small"
-                        onClick={() => setShowNewPass((v) => !v)}
-                        sx={{ color: "#6b7280" }}
+                        onClick={() =>
+                          setShowNewPass((prev) => !prev)
+                        }
+                        sx={{
+                          color: "#6b7280",
+                        }}
                       >
                         {showNewPass ? (
                           <EyeOff size={18} strokeWidth={2.4} />
@@ -394,11 +417,16 @@ const AccountSettings = () => {
           </Stack>
         </Paper>
 
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          sx={{ width: "100%" }}
+        {/* ACTIONS */}
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 2,
+            flexWrap: "wrap",
+          }}
         >
           <Button
             variant="outlined"
@@ -426,49 +454,41 @@ const AccountSettings = () => {
             Cancel Changes
           </Button>
 
-          <Box
+          <Button
+            variant="contained"
+            startIcon={<Check size={16} />}
+            onClick={handleSave}
+            disabled={loading}
             sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-              width: "100%",
+              height: 42,
+              px: 3,
+              minWidth: 170,
+              borderRadius: "12px",
+              textTransform: "none",
+              fontWeight: 900,
+              fontSize: 14,
+              bgcolor: "#009F8F",
+              color: "#fff",
+              boxShadow: "none",
+
+              "&:hover": {
+                bgcolor: "#00897B",
+                boxShadow: "none",
+              },
+
+              "& .MuiButton-startIcon": {
+                color: "#fff",
+              },
+
+              "&.Mui-disabled": {
+                bgcolor: "#d1d5db",
+                color: "#9ca3af",
+              },
             }}
           >
-            <Button
-              variant="contained"
-              startIcon={<Check size={16} />}
-              onClick={handleSave}
-              disabled={loading}
-              sx={{
-                height: 42,
-                px: 3,
-                minWidth: 170,
-                borderRadius: "12px",
-                textTransform: "none",
-                fontWeight: 900,
-                fontSize: 14,
-                bgcolor: "#009F8F",
-                color: "#fff",
-                boxShadow: "none",
-
-                "&:hover": {
-                  bgcolor: "#00897B",
-                  boxShadow: "none",
-                },
-
-                "& .MuiButton-startIcon": {
-                  color: "#fff",
-                },
-
-                "&.Mui-disabled": {
-                  bgcolor: "#d1d5db",
-                  color: "#9ca3af",
-                },
-              }}
-            >
-              {loading ? "Saving..." : "Save Changes"}
-            </Button>
-          </Box>
-        </Stack>
+            {loading ? "Saving..." : "Save Changes"}
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

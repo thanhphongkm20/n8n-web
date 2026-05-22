@@ -25,14 +25,16 @@ const FormLabelField = ({
   rows,
   minRows,
   maxRows,
-  InputProps,
+  inputProps,
+  slotProps,
 }) => {
   const fieldValue = value ?? getIn(form?.values, id) ?? "";
 
-  const isError =
-    error ?? (form?.touched?.[id] && Boolean(form?.errors?.[id]));
+  const isTouched = getIn(form?.touched, id);
+  const formError = getIn(form?.errors, id);
 
-  const helper = helperText ?? (form?.touched?.[id] && form?.errors?.[id]);
+  const isError = error ?? (isTouched && Boolean(formError));
+  const helper = helperText ?? (isTouched && formError);
 
   return (
     <Stack sx={{ width: "100%" }}>
@@ -83,13 +85,16 @@ const FormLabelField = ({
         type={type}
         value={fieldValue}
         onChange={onChange ?? form?.handleChange}
-        error={isError}
-        helperText={helper}
+        error={Boolean(isError)}
+        helperText={helper || ""}
         multiline={multiline}
         rows={rows}
         minRows={minRows}
         maxRows={maxRows}
-        InputProps={InputProps}
+        slotProps={{
+          input: inputProps,
+          ...slotProps,
+        }}
         sx={{
           "& .MuiOutlinedInput-root": {
             height: multiline ? "auto" : 48,
