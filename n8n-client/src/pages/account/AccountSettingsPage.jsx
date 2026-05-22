@@ -43,7 +43,7 @@ const AccountSettings = () => {
   const [showNewPass, setShowNewPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const initials = (form.fullname || "U")
+  const initials = (form.fullname)
     .split(" ")
     .filter(Boolean)
     .map((w) => w[0])
@@ -90,18 +90,17 @@ const AccountSettings = () => {
         const res = await userApi.getProfile();
         if (!mounted) return;
 
-        const user = res?.data || res?.user || res;
+        const user = res;
 
         const fullname =
           user?.full_name ||
-          user?.display_name ||
           `${user?.first_name} ${user?.last_name || ""}`.trim() ||
           "";
 
         setForm((prev) => ({
           ...prev,
           fullname,
-          email: user?.email || "",
+          email: user?.email,
           phone: user?.phone || "",
         }));
       } catch (error) {
