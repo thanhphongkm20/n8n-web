@@ -215,6 +215,24 @@ const profileUpdate = async (req, res) => {
   }
 };
 
+const remove = async (req, res) => {
+  try {
+    const userTarget = req.targetUser;
+
+    if (userTarget.role === USER_ROLE.ADMIN) {
+      return ApiResponse.Forbidden(res, "Cannot delete admin user");
+    }
+
+    await userService.remove(userTarget._id);
+
+    return ApiResponse.OK(res, {
+      message: "Deleted successfully",
+    });
+  } catch (error) {
+    ApiResponse.InternalServerError(res, error);
+  }
+};
+
 export default {
   initAdminUser,
   login,
@@ -223,6 +241,7 @@ export default {
   update,
   getById,
   userById,
+  remove,
   list,
   profile,
   profileUpdate,

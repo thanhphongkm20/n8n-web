@@ -64,4 +64,11 @@ router.put(
   userController.update
 );
 
+router.delete(
+  "/:id",
+  adminTokenRequired,
+  userController.userById,
+  userController.remove
+);
+
 export default router;

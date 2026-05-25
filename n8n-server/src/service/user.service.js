@@ -39,10 +39,13 @@ const findOne = async (query) => {
   return user;
 };
 
+const remove = async (id) => {
+  return await User.findByIdAndDelete(id);
+};
+
 const list = async (query, skip, limit) => {
   const [users, count] = await Promise.all([
-    User
-      .find(query)
+    User.find(query)
       .skip(skip)
       .limit(limit)
       .populate("created_by", "display_name email")
@@ -60,6 +63,7 @@ const findById = async (id) => {
 export default {
   save,
   create,
+  remove,
   findOne,
   list,
   findById,
