@@ -140,28 +140,6 @@ const Footer = () => {
                 fullWidth
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    height: 46,
-                    color: "#fff",
-                    bgcolor: "rgba(255,255,255,0.06)",
-                    borderRadius: "12px",
-                    "&:hover fieldset": {
-                      borderColor: "#22c55e",
-                    },
-                    "&.Mui-focused": {
-                      bgcolor: "rgba(255,255,255,0.08)",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "#22c55e",
-                      boxShadow: "0 0 0 3px rgba(34,197,94,0.15)",
-                    },
-                  },
-                  "& input::placeholder": {
-                    color: "#94a3b8",
-                    opacity: 1,
-                  },
-                }}
               />
 
               <Button
