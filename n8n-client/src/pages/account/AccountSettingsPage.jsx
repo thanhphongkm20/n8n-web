@@ -91,13 +91,13 @@ const AccountSettings = () => {
 
         const fullname =
           user?.full_name ||
-          `${user?.first_name || ""} ${user?.last_name || ""}`.trim();
+          `${user?.first_name} ${user?.last_name}`.trim();
 
         setForm((prev) => ({
           ...prev,
           fullname,
-          email: user?.email || "",
-          phone: user?.phone || "",
+          email: user?.email,
+          phone: user?.phone,
         }));
       } catch (error) {
         console.error(error);
