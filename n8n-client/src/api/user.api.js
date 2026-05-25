@@ -57,6 +57,9 @@ const userApi = {
   changePassword: (data) => {
     return callApi("put", userEndpoints.changePassword, data);
   },
+  remove: (id) => {
+    return callApi("delete", userEndpoints.byId(id));
+  },
 };
 
 export default userApi;

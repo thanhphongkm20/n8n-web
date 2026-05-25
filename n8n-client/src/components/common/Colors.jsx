@@ -40,7 +40,7 @@ export const BG_COLORS = {
   ARROW_RIGHT: "#CCC",
   BREADCRUMB_BGCOLOR: "#E8F0FF",
   BLOCK_FILE: "#F8F9FA",
-  DELETE: "#B7C0C6",
+  DELETE: "#e7574d",
   BUTTON_HOVER: darken("#009F8F", 0.25),
   BG_HOVER: "rgba(0,0,0,0.04)",
 };

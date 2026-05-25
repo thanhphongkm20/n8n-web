@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  IconButton,
   Paper,
   Table,
   TableBody,
@@ -9,10 +10,12 @@ import {
   TableHead,
   TableRow
 } from "@mui/material";
-import { Plus } from "lucide-react";
+import { Plus, Trash } from "lucide-react";
+import ButtonDelete from "../../components/common/ButtonDelete";
 import { toast } from 'react-toastify';
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import DialogDeleteAlert from "../../components/dialog/DialogDeleteAlert";
 
 import { BG_COLORS, COLORS } from "../../components/common/Colors";
 import { ButtonEdit } from "../../components/common/ButtonEdit";
@@ -33,6 +36,10 @@ const ResourceListPage = () => {
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingTable, setIsLoadingTable] = useState(false);
+  const [reload, setReload] = useState(0);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const handleChangePage = (_, value) => {
     setSearchParams({ page: value.toString() });
@@ -47,7 +54,7 @@ const ResourceListPage = () => {
 
         const res = await resourceApi.list({ page: currentPage });
 
-        const payload =res?.data;
+        const payload = res?.data;
 
         if (!isMounted) return;
 
@@ -76,7 +83,7 @@ const ResourceListPage = () => {
     return () => {
       isMounted = false;
     };
-  }, [currentPage]);
+  }, [currentPage, reload]);
 
   const handleCreate = () => {
     navigate(ROUTES.RESOURCE.CREATE);
@@ -84,6 +91,26 @@ const ResourceListPage = () => {
 
   const handleDetail = (id) => {
     navigate(ROUTES_GEN.resourceUpdate(id));
+  };
+
+  const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setOpenDelete(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      setDeleteLoading(true);
+      await resourceApi.remove(deleteId);
+      toast.success("Deleted successfully");
+      setReload((r) => r + 1);
+    } catch (error) {
+      toast.error(error?.message || "Delete failed");
+    } finally {
+      setDeleteLoading(false);
+      setOpenDelete(false);
+      setDeleteId(null);
+    }
   };
 
   if (isLoading) return <LoadingPage />;
@@ -167,9 +194,12 @@ const ResourceListPage = () => {
                   </TableCell>
 
                   <TableCell align="right" sx={{ pr: "30px" }}>
-                    <ButtonEdit
-                      onClick={() => handleDetail(item._id || item.id)}
-                    />
+                    <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
+                      <ButtonEdit
+                        onClick={() => handleDetail(item._id || item.id)}
+                      />
+                      <ButtonDelete onClick={() => handleDeleteClick(item._id || item.id)} />
+                    </Box>
                   </TableCell>
                 </TableRow>
               ))}
@@ -186,6 +216,14 @@ const ResourceListPage = () => {
           </StackRow>
         )}
       </Box>
+      <DialogDeleteAlert
+        title="Delete resource"
+        description="Are you sure you want to delete this resource?"
+        open={openDelete}
+        onClose={() => setOpenDelete(false)}
+        onConfirm={handleConfirmDelete}
+        loading={deleteLoading}
+      />
     </Box>
   );
 };

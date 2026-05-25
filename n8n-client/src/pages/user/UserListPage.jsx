@@ -1,6 +1,8 @@
 import {
   Box,
   Paper,
+  Button,
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -8,6 +10,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { Trash } from "lucide-react";
 import { toast } from "react-toastify";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +25,8 @@ import StackRow from "../../components/common/StackRow";
 import useParams from "../../hooks/use-params";
 
 import userApi from "../../api/user.api";
+import DialogDeleteAlert from "../../components/dialog/DialogDeleteAlert";
+import ButtonDelete from "../../components/common/ButtonDelete";
 
 const UserListPage = () => {
   const navigate = useNavigate();
@@ -38,6 +43,10 @@ const UserListPage = () => {
   const [query, setQuery] = useState({ page: initialPage });
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingTable, setIsLoadingTable] = useState(false);
+  const [reload, setReload] = useState(0);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -57,7 +66,7 @@ const UserListPage = () => {
     };
 
     fetchUsers();
-  }, [query]);
+  }, [query, reload]);
 
   const handleChange = (_, value) => {
     setPage(value);
@@ -67,6 +76,26 @@ const UserListPage = () => {
 
   const handleDetail = (id) => {
     navigate(ROUTES_GEN.userDetail(id));
+  };
+
+  const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setOpenDelete(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      setDeleteLoading(true);
+      await userApi.remove(deleteId);
+      toast.success("Deleted successfully");
+      setReload((r) => r + 1);
+    } catch (error) {
+      toast.error(error?.message || "Delete failed");
+    } finally {
+      setDeleteLoading(false);
+      setOpenDelete(false);
+      setDeleteId(null);
+    }
   };
 
   if (isLoading) {
@@ -171,7 +200,10 @@ const UserListPage = () => {
                     <TableCell>{item.phone}</TableCell>
 
                     <TableCell align="right" sx={{ pr: "30px" }}>
-                      <ButtonEdit onClick={() => handleDetail(item.id)} />
+                      <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
+                        <ButtonEdit onClick={() => handleDetail(item._id || item.id)} />
+                        <ButtonDelete onClick={() => handleDeleteClick(item._id || item.id)} />
+                      </Box>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -189,6 +221,14 @@ const UserListPage = () => {
           </StackRow>
         )}
       </Box>
+      <DialogDeleteAlert
+        title="Delete user"
+        description="Are you sure you want to delete this user?"
+        open={openDelete}
+        onClose={() => setOpenDelete(false)}
+        onConfirm={handleConfirmDelete}
+        loading={deleteLoading}
+      />
     </Box>
   );
 };

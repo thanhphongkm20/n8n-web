@@ -7,20 +7,23 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { Plus } from "lucide-react";
+import { toast } from "react-toastify";
+
+import articleApi from "../../api/article.api";
+import ButtonDelete from "../../components/common/ButtonDelete";
 import { ButtonEdit } from "../../components/common/ButtonEdit";
 import { BG_COLORS, COLORS } from "../../components/common/Colors";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import StackRow from "../../components/common/StackRow";
+import DialogDeleteAlert from "../../components/dialog/DialogDeleteAlert";
 import CustomPagination from "../../components/pagination/CustomPagination";
-import { ROUTES, ROUTES_GEN } from '../../configs/routes';
+import { ROUTES, ROUTES_GEN } from "../../configs/routes";
 import { LoadingPage } from "../bases/LoadingPage";
-import articleApi from "../../api/article.api";
-import { Plus } from "lucide-react";
 
 const ArticleListPage = () => {
   const navigate = useNavigate();
@@ -31,6 +34,10 @@ const ArticleListPage = () => {
   const [pageCount, setPageCount] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingTable, setIsLoadingTable] = useState(false);
+  const [reload, setReload] = useState(0);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const handleChangePage = (_, value) => {
     setSearchParams({ page: value.toString() });
@@ -71,7 +78,27 @@ const ArticleListPage = () => {
     return () => {
       isMounted = false;
     };
-  }, [currentPage]);
+  }, [currentPage, reload]);
+
+  const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setOpenDelete(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    try {
+      setDeleteLoading(true);
+      await articleApi.remove(deleteId);
+      toast.success("Deleted successfully");
+      setReload((r) => r + 1);
+    } catch (error) {
+      toast.error(error?.message || "Delete failed");
+    } finally {
+      setDeleteLoading(false);
+      setOpenDelete(false);
+      setDeleteId(null);
+    }
+  };
 
   const handleCreate = () => {
     navigate(ROUTES.ARTICLE.CREATE);
@@ -154,7 +181,10 @@ const ArticleListPage = () => {
                     </Box>
                   </TableCell>
                   <TableCell align="right" sx={{ pr: "30px" }}>
-                    <ButtonEdit onClick={() => handleDetail(item._id || item.id)} />
+                    <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
+                      <ButtonEdit onClick={() => handleDetail(item._id || item.id)} />
+                      <ButtonDelete onClick={() => handleDeleteClick(item._id || item.id)} />
+                    </Box>
                   </TableCell>
                 </TableRow>
               ))}
@@ -171,6 +201,14 @@ const ArticleListPage = () => {
           </StackRow>
         )}
       </Box>
+      <DialogDeleteAlert
+        title="Delete article"
+        description="Are you sure you want to delete this article?"
+        open={openDelete}
+        onClose={() => setOpenDelete(false)}
+        onConfirm={handleConfirmDelete}
+        loading={deleteLoading}
+      />
     </Box>
   );
 };
