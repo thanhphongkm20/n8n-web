@@ -2,7 +2,6 @@ import { Alert, Box, Button, Snackbar, Stack } from "@mui/material";
 import { Save } from "lucide-react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 import { LoadingPage } from "../bases/LoadingPage";
 import { ROUTES } from "../../configs/routes.js";
@@ -13,6 +12,7 @@ import PublishSidebar from "../../components/blog/PublishSidebar";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import SeoSettings from "../../components/blog/SeoSettings";
 import ThumbnailUpload from "../../components/blog/ThumbnailUpload";
+import { showError, showSuccess } from "../../utils/toast";
 
 import blogApi from "../../api/blog.api";
 
@@ -41,20 +41,6 @@ const normalizePayload = (values) => ({
 const BlogCreatePage = () => {
   const navigate = useNavigate();
 
-  const [toast, setToast] = useState({
-    open: false,
-    severity: "success",
-    message: "",
-  });
-
-  const showToast = (severity, message) => {
-    setToast({
-      open: true,
-      severity,
-      message,
-    });
-  };
-
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -79,16 +65,19 @@ const BlogCreatePage = () => {
       try {
         await blogApi.create(normalizePayload(values));
 
-        showToast("success", "Create blog successfully");
+        showSuccess("Create blog successfully");
 
         resetForm();
 
-        navigate(ROUTES.BLOG_ADMIN.LIST);
+        setTimeout(() => {
+          navigate(ROUTES.BLOG_ADMIN.LIST);
+        }, 1200);
       } catch (error) {
-        showToast(
+        showError(
           "error",
           error?.response?.data?.message ||
-          error?.message,
+          error?.message ||
+          "Create blog failed"
         );
       } finally {
         setSubmitting(false);
@@ -155,9 +144,10 @@ const BlogCreatePage = () => {
               <PublishSidebar
                 form={formik.values}
                 onChange={handleFieldChange}
-                onTagsChange={(tags) =>
-                  formik.setFieldValue("tags", tags)
-                }
+                onTagsChange={(tags) => {
+                  formik.setFieldValue("tags", tags, true);
+                  formik.setFieldTouched("tags", true, false);
+                }}
               />
 
               <ThumbnailUpload
@@ -195,34 +185,6 @@ const BlogCreatePage = () => {
           </Box>
         </Stack>
       </Box>
-
-      <Snackbar
-        open={toast.open}
-        autoHideDuration={3000}
-        onClose={() =>
-          setToast((prev) => ({
-            ...prev,
-            open: false,
-          }))
-        }
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-      >
-        <Alert
-          severity={toast.severity}
-          variant="filled"
-          onClose={() =>
-            setToast((prev) => ({
-              ...prev,
-              open: false,
-            }))
-          }
-        >
-          {toast.message}
-        </Alert>
-      </Snackbar>
     </Box>
   );
 };

@@ -5,7 +5,6 @@ import {
   Paper,
   Stack,
   Switch,
-  TextField,
   Typography,
 } from "@mui/material";
 import { Send, Tags } from "lucide-react";
@@ -38,7 +37,7 @@ const SectionTitle = ({ icon, children }) => {
 
 const PublishSidebar = ({ form, onChange, onTagsChange }) => {
   const [tagInput, setTagInput] = useState("");
-  const tags = form.tags;
+  const tags = form.tags || [];
 
   const addTag = () => {
     const tag = tagInput.trim().toLowerCase();
@@ -46,10 +45,6 @@ const PublishSidebar = ({ form, onChange, onTagsChange }) => {
 
     onTagsChange([...tags, tag]);
     setTagInput("");
-  };
-
-  const removeTag = (tag) => {
-    onTagsChange(tags.filter((item) => item !== tag));
   };
 
   return (
@@ -126,6 +121,7 @@ const PublishSidebar = ({ form, onChange, onTagsChange }) => {
         <SectionTitle icon={Tags}>TAGS</SectionTitle>
 
         <FormLabelField
+          id="tags"
           fullWidth
           size="small"
           value={tagInput}
@@ -134,6 +130,7 @@ const PublishSidebar = ({ form, onChange, onTagsChange }) => {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.preventDefault();
+              e.stopPropagation();
               addTag();
             }
           }}
@@ -143,7 +140,7 @@ const PublishSidebar = ({ form, onChange, onTagsChange }) => {
             <Chip
               key={tag}
               label={tag}
-              onDelete={() => removeTag(tag)}
+              onDelete={() => onTagsChange(tags.filter((item) => item !== tag))}
               size="small"
               sx={{
                 bgcolor: "#e0f2f1",

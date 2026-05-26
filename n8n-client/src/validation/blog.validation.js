@@ -60,13 +60,9 @@ export const blogValidationSchema = Yup.object({
 
   tags: Yup.array().of(Yup.string().trim()).max(10, "Maximum 10 tags allowed"),
 
-  seo_title: Yup.string()
-    .trim()
-    .max(60, "SEO title should not exceed 60 characters"),
+  seo_title: Yup.string().trim(),
 
-  seo_description: Yup.string()
-    .trim()
-    .max(160, "SEO description should not exceed 160 characters"),
+  seo_description: Yup.string().trim(),
 
   status: Yup.string()
     .oneOf(["draft", "published"], "Invalid status")

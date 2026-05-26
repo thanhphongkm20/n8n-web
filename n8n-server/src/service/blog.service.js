@@ -9,6 +9,10 @@ export const blogService = {
     if (existed) {
       throw new Error("Blog slug already exists");
     }
+
+    const blog = await Blog.create(payload);
+
+    return blog;
   },
 
   async getAll(query) {

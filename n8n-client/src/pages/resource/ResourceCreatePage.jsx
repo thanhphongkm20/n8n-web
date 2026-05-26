@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { LoadingPage } from "../bases/LoadingPage";
 import BasicInformation from "../../components/resource/BasicInformation";
@@ -16,14 +17,16 @@ import LinksDownloads from "../../components/resource/Linksdownloads";
 import Options from "../../components/resource/Options";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import Thumbnail from "../../components/resource/Thumbnail";
+import { showError, showSuccess } from "../../utils/toast";
 
 import resourceApi from "../../api/resource.api";
 import resourceValidationSchema from "../../validation/resource.validation";
+import { ROUTES } from "../../configs/routes";
 
 const ResourceCreatePage = () => {
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -46,8 +49,6 @@ const ResourceCreatePage = () => {
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        setSuccessMessage("");
-        setErrorMessage("");
 
         const cleanTags = values.tags.filter((tag) => tag?.trim());
 
@@ -85,8 +86,11 @@ const ResourceCreatePage = () => {
           await resourceApi.create(payload);
         }
 
-        setSuccessMessage("Resource created successfully");
+        showSuccess("Resource created successfully");
+
         formik.resetForm();
+
+        navigate(ROUTES.RESOURCE.LIST);
       } catch (error) {
         const message =
           error?.message ||
@@ -98,7 +102,7 @@ const ResourceCreatePage = () => {
           formik.setFieldTouched("slug", true, false);
         }
 
-        setErrorMessage(message);
+        showError(message);
         console.error("Create resource failed:", error);
       } finally {
         setLoading(false);
@@ -154,36 +158,6 @@ const ResourceCreatePage = () => {
           </Box>
         </Stack>
       </Container>
-
-      <Snackbar
-        open={Boolean(successMessage)}
-        autoHideDuration={3000}
-        onClose={() => setSuccessMessage("")}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      >
-        <Alert
-          severity="success"
-          variant="filled"
-          onClose={() => setSuccessMessage("")}
-        >
-          {successMessage}
-        </Alert>
-      </Snackbar>
-
-      <Snackbar
-        open={Boolean(errorMessage)}
-        autoHideDuration={4000}
-        onClose={() => setErrorMessage("")}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      >
-        <Alert
-          severity="error"
-          variant="filled"
-          onClose={() => setErrorMessage("")}
-        >
-          {errorMessage}
-        </Alert>
-      </Snackbar>
     </Box>
   );
 };

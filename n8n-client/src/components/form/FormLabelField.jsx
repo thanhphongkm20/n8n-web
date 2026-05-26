@@ -11,6 +11,7 @@ const FormLabelField = ({
   form,
   value,
   onChange,
+  onKeyDown,
   type = "text",
   size = "medium",
   sx = {},
@@ -85,6 +86,7 @@ const FormLabelField = ({
         type={type}
         value={fieldValue}
         onChange={onChange ?? form?.handleChange}
+        onKeyDown={onKeyDown}
         error={Boolean(isError)}
         helperText={helper || ""}
         multiline={multiline}

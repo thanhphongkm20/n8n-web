@@ -1,6 +1,6 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { Image, ImagePlus } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const Thumbnail = ({ formik }) => {
   const url = formik?.values?.thumbnail_url ?? "";
@@ -12,8 +12,14 @@ const Thumbnail = ({ formik }) => {
     return URL.createObjectURL(file);
   }, [file]);
 
-  const previewSrc = filePreview;
-  const showPreview = previewSrc && !imgError;
+  useEffect(() => {
+    return () => {
+      if (filePreview) URL.revokeObjectURL(filePreview);
+    };
+  }, [filePreview]);
+
+  const previewSrc = filePreview || url.trim();
+  const showPreview = Boolean(previewSrc) && !imgError;
 
   const handleChange = (e) => {
     setImgError(false);
@@ -51,10 +57,7 @@ const Thumbnail = ({ formik }) => {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: {
-            xs: "1fr",
-            sm: "96px 1fr",
-          },
+          gridTemplateColumns: { xs: "1fr", sm: "100px 1fr" },
           alignItems: "start",
           gap: 2,
           p: 2,
@@ -81,6 +84,7 @@ const Thumbnail = ({ formik }) => {
             <Box
               component="img"
               src={previewSrc}
+              alt="Thumbnail preview"
               onError={() => setImgError(true)}
               sx={{
                 width: "100%",
@@ -89,14 +93,7 @@ const Thumbnail = ({ formik }) => {
               }}
             />
           ) : (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 0.3,
-              }}
-            >
+            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 0.3 }}>
               <Image size={14} color="#b0a99a" />
               <Typography sx={{ fontSize: 10, color: "#b0a99a", fontWeight: 500 }}>
                 Preview
@@ -106,15 +103,7 @@ const Thumbnail = ({ formik }) => {
         </Box>
 
         <Box>
-          <Typography
-            sx={{
-              fontSize: 13,
-              fontWeight: 700,
-              mb: 0.8,
-              color: "#3f3f3f",
-              textAlign: "left",
-            }}
-          >
+          <Typography sx={{ fontSize: 13, fontWeight: 700, mb: 0.8, color: "#3f3f3f" }}>
             Thumbnail URL
           </Typography>
 
@@ -147,12 +136,7 @@ const Thumbnail = ({ formik }) => {
             }}
           >
             Upload image
-            <input
-              hidden
-              type="file"
-              accept="image/png,image/jpeg,image/webp,image/jpg"
-              onChange={handleFileChange}
-            />
+            <input hidden type="file" accept="image/png,image/jpeg,image/webp,image/jpg" onChange={handleFileChange} />
           </Button>
         </Box>
       </Box>

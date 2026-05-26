@@ -6,17 +6,6 @@ import StackCol from "../common/StackCol";
 import StackRow from "../common/StackRow";
 
 const SeoSettings = ({ formik }) => {
-  const values = formik?.values;
-
-  const seoDescLength = values.seo_description?.length;
-
-  const seoDescColor =
-    seoDescLength > 160
-      ? "#ef4444"
-      : seoDescLength > 130
-        ? "#f59e0b"
-        : "#6b7280";
-
   return (
     <Paper
       elevation={0}
@@ -62,18 +51,6 @@ const SeoSettings = ({ formik }) => {
             multiline
             rows={4}
           />
-
-          <Typography
-            sx={{
-              mt: 1,
-              fontSize: 12,
-              fontWeight: 500,
-              color: seoDescColor,
-              textAlign: "right",
-            }}
-          >
-            {seoDescLength}/160
-          </Typography>
         </Box>
       </StackCol>
     </Paper>
