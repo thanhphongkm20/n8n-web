@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Snackbar, Stack } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import { Save } from "lucide-react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -74,7 +74,6 @@ const BlogCreatePage = () => {
         }, 1200);
       } catch (error) {
         showError(
-          "error",
           error?.response?.data?.message ||
           error?.message ||
           "Create blog failed"

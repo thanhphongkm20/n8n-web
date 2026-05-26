@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  Alert,
-  Box,
-  Button,
-  CircularProgress,
-  Snackbar,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import { Save } from "lucide-react";
 import { useFormik } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
@@ -24,6 +16,7 @@ import blogApi from "../../api/blog.api";
 import blogValidationSchema from "../../validation/blog.validation.js";
 import { ROUTES } from "../../configs/routes.js";
 import { slugify } from "../../utils/slugify.js";
+import { showSuccess, showError } from "../../utils/toast";
 
 const trimFields = [
   "title",
@@ -53,9 +46,7 @@ const initialBlogValues = {
 const normalizePayload = (values) => ({
   ...values,
 
-  ...Object.fromEntries(
-    trimFields.map((key) => [key, values[key]?.trim?.()]),
-  ),
+  ...Object.fromEntries(trimFields.map((key) => [key, values[key]?.trim?.()])),
 
   published_at: values.published_at,
   tags: values.tags,
@@ -74,9 +65,7 @@ const normalizeBlogValues = (blog = {}) => ({
   seo_description: blog.seo_description,
   status: blog.status,
   is_featured: !!blog.is_featured,
-  published_at: blog.published_at
-    ? String(blog.published_at).slice(0, 16)
-    : "",
+  published_at: blog.published_at ? String(blog.published_at).slice(0, 16) : "",
 });
 
 const BlogUpdatePage = () => {
@@ -84,20 +73,6 @@ const BlogUpdatePage = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
-
-  const [toast, setToast] = useState({
-    open: false,
-    severity: "success",
-    message: "",
-  });
-
-  const showToast = (severity, message) => {
-    setToast({
-      open: true,
-      severity,
-      message,
-    });
-  };
 
   const formik = useFormik({
     initialValues: initialBlogValues,
@@ -110,16 +85,11 @@ const BlogUpdatePage = () => {
       try {
         await blogApi.update(id, normalizePayload(values));
 
-        showToast("success", "Update blog successfully");
+        showSuccess("Update blog successfully");
 
         navigate(ROUTES.BLOG_ADMIN.LIST);
       } catch (error) {
-        showToast(
-          "error",
-          error?.response?.data?.message ||
-          error?.message ||
-          "Update blog failed",
-        );
+        showError(error?.response?.data?.message || error?.message || "Update blog failed");
       } finally {
         setSubmitting(false);
       }
@@ -133,35 +103,22 @@ const BlogUpdatePage = () => {
 
         const response = await blogApi.getById(id);
 
-        const blog =
-          response?.data?.data ||
-          response?.data ||
-          response;
+        const blog = response?.data?.data || response?.data || response;
 
         formik.setValues(normalizeBlogValues(blog));
       } catch (error) {
-        showToast(
-          "error",
-          error?.response?.data?.message ||
-          error?.message ||
-          "Get blog detail failed",
-        );
+        showError(error?.response?.data?.message || error?.message || "Get blog detail failed");
       } finally {
         setLoading(false);
       }
     };
 
-    if (id) {
-      fetchBlogDetail();
-    }
+    if (id) fetchBlogDetail();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handleFieldChange = (field) => (e) => {
-    const value =
-      e.target.type === "checkbox"
-        ? e.target.checked
-        : e.target.value;
+    const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
 
     formik.setFieldValue(field, value);
 
@@ -176,55 +133,24 @@ const BlogUpdatePage = () => {
     }
   };
 
-  if (loading) {
-    return <LoadingPage />;
-  }
+  if (loading) return <LoadingPage />;
 
   return (
     <Box sx={{ minHeight: "100vh" }}>
-      <Box
-        component="form"
-        onSubmit={formik.handleSubmit}
-        sx={{
-          width: "100%",
-          maxWidth: 1280,
-          mx: "auto",
-          px: 4,
-          py: 3,
-        }}
-      >
+      <Box component="form" onSubmit={formik.handleSubmit} sx={{ width: "100%", maxWidth: 1280, mx: "auto", px: 4, py: 3 }}>
         <Stack spacing={3}>
           <RouteBreadcrumbs />
 
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: {
-                xs: "1fr",
-                lg: "minmax(0, 1fr) 320px",
-              },
-              gap: 2.5,
-              alignItems: "start",
-            }}
-          >
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", lg: "minmax(0, 1fr) 320px" }, gap: 2.5, alignItems: "start" }}>
             <Stack spacing={2}>
               <BasicInformation formik={formik} />
               <SeoSettings formik={formik} />
             </Stack>
 
             <Stack spacing={2}>
-              <PublishSidebar
-                form={formik.values}
-                onChange={handleFieldChange}
-                onTagsChange={(tags) =>
-                  formik.setFieldValue("tags", tags)
-                }
-              />
+              <PublishSidebar form={formik.values} onChange={handleFieldChange} onTagsChange={(tags) => formik.setFieldValue("tags", tags)} />
 
-              <ThumbnailUpload
-                form={formik.values}
-                onChange={handleFieldChange}
-              />
+              <ThumbnailUpload form={formik.values} onChange={handleFieldChange} />
 
               <Button
                 fullWidth
@@ -248,42 +174,12 @@ const BlogUpdatePage = () => {
                   },
                 }}
               >
-                {formik.isSubmitting
-                  ? "Updating..."
-                  : "Update Blog"}
+                {formik.isSubmitting ? "Updating..." : "Update Blog"}
               </Button>
             </Stack>
           </Box>
         </Stack>
       </Box>
-
-      <Snackbar
-        open={toast.open}
-        autoHideDuration={3000}
-        onClose={() =>
-          setToast((prev) => ({
-            ...prev,
-            open: false,
-          }))
-        }
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-      >
-        <Alert
-          severity={toast.severity}
-          variant="filled"
-          onClose={() =>
-            setToast((prev) => ({
-              ...prev,
-              open: false,
-            }))
-          }
-        >
-          {toast.message}
-        </Alert>
-      </Snackbar>
     </Box>
   );
 };
