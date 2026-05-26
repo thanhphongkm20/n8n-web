@@ -58,7 +58,7 @@ const LoginPage = () => {
 
         await progressComplete();
 
-        toast.success("Đăng nhập thành công!");
+        toast.success("Login successful!!");
 
         await new Promise((resolve) => setTimeout(resolve, 250));
 
@@ -79,7 +79,7 @@ const LoginPage = () => {
           navigate(ROUTES.HOME);
         }
       } catch (error) {
-        toast.error(error?.message || "Đăng nhập thất bại");
+        toast.error(error?.message || "Login failed");
         progressReset();
         setIsLoginRequest(false);
       }
