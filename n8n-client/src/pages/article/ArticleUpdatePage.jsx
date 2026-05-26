@@ -153,7 +153,7 @@ const ArticleUpdatePage = () => {
 
         <Grid container spacing={3} columns={12} sx={{ mt: 3, alignItems: 'flex-start' }}>
           {/* LEFT COLUMN - Article Content Area */}
-          <Grid item xs={12} sm={8} md={9} lg={9} xl={9} sx={{ flexBasis: { sm: '66.6667%', md: '60%' } }}>
+          <Grid xs={12} sm={8} md={9} lg={9} xl={9} sx={{ flexBasis: { sm: '66.6667%', md: '60%' } }}>
             <Stack gap={3}>
 
               <MPaper sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 3, borderRadius: 3 }}>
@@ -214,7 +214,7 @@ const ArticleUpdatePage = () => {
             </Stack>
           </Grid>
 
-          <Grid item xs={12} sm={4} md={3} lg={3} xl={3} sx={{ flexBasis: { sm: '33.3333%', md: '25%' }, maxWidth: { sm: '33.3333%', md: '25%' } }}>
+          <Grid xs={12} sm={4} md={3} lg={3} xl={3} sx={{ flexBasis: { sm: '33.3333%', md: '25%' }, maxWidth: { sm: '33.3333%', md: '25%' } }}>
             <Stack gap={3}>
               <MPaper sx={{ p: 3, borderRadius: 3 }}>
                 <ArticleSidePanel

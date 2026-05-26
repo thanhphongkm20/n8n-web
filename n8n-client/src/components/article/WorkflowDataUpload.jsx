@@ -92,7 +92,13 @@ const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
           </>
         )}
         {(value || oldUrl) && (
-          <Stack direction="row" alignItems="center" spacing={1.5}>
+          <Stack
+            direction="row"
+            spacing={1.5}
+            sx={{
+              alignItems: "center",
+            }}
+          >
             <Box
               sx={{
                 p: 1.5,
@@ -149,7 +155,6 @@ const WorkflowDataUpload = ({ value, oldUrl, setOldUrl, onChange }) => {
             </Box>
           </Stack>
         )}
-
         <input
           type="file"
           accept=".json"

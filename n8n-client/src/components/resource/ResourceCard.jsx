@@ -169,8 +169,8 @@ const ResourceCard = ({ resource }) => {
           sx={{
             flexWrap: "wrap",
             gap: 1,
-            minHeight: 58,
-            maxHeight: 58,
+            minHeight: 84,
+            maxHeight: 84,
             overflow: "hidden",
             alignContent: "flex-start",
           }}
@@ -216,9 +216,21 @@ const ResourceCard = ({ resource }) => {
         <Box sx={{ mt: "auto" }}>
           <Divider sx={{ my: 2 }} />
 
-          <Stack direction="row" gap={0.6} sx={{ alignItems: "center" }}>
+          <Stack
+            direction="row"
+            spacing={0.8}
+            sx={{
+              alignItems: "center",
+            }}
+          >
             <Clock3 size={14} color="#8B9BB4" />
-            <Typography sx={{ color: "text.secondary", fontSize: "0.74rem" }}>
+            <Typography
+              sx={{
+                color: "text.secondary",
+                fontSize: "0.74rem",
+                lineHeight: 1,
+              }}
+            >
               {formatDate(resource.createdAt)}
             </Typography>
           </Stack>
@@ -250,13 +262,21 @@ const ResourceCard = ({ resource }) => {
           <Button
             fullWidth={!resource.download_url}
             variant="outlined"
-            startIcon={<ExternalLink size={16} />}
+            startIcon={<ExternalLink size={17} />}
             href={resource.external_url}
             target="_blank"
             sx={{
+              minWidth: 110,
+              height: 44,
+              px: 3,
+
               borderColor: "rgba(255,255,255,0.16)",
               color: "text.secondary",
+
               fontWeight: 800,
+              fontSize: "0.82rem",
+              borderRadius: "12px",
+
               "&:hover": {
                 borderColor: "#00C9A7",
                 color: "#00C9A7",

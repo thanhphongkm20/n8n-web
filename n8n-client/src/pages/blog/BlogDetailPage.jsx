@@ -114,7 +114,11 @@ const BlogDetailPage = () => {
         >
           {blog.excerpt}
         </Typography>
-        <Stack direction="row" spacing={2.2} flexWrap="wrap">
+        <Stack
+          direction="row"
+          spacing={2.2}
+          sx={{ flexWrap: "wrap" }}
+        >
           <Meta
             icon={<BookOpen size={14} />}
             text={`${blog.reading_time} phút đọc`}
@@ -126,7 +130,14 @@ const BlogDetailPage = () => {
         </Stack>
 
         {tags.length > 0 && (
-          <Stack direction="row" spacing={1.2} flexWrap="wrap" sx={{ mt: 3 }}>
+          <Stack
+            direction="row"
+            spacing={1.2}
+            sx={{
+              mt: 3,
+              flexWrap: "wrap",
+            }}
+          >
             {tags.map((tag) => (
               <Chip
                 key={tag}
@@ -218,8 +229,10 @@ const BlogDetailPage = () => {
           <Stack
             direction="row"
             spacing={1.5}
-            justifyContent="center"
-            alignItems="center"
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
             <Button
               startIcon={<Share2 size={16} />}

@@ -294,7 +294,7 @@ const ArticleDetailPage = () => {
                     border: "1px solid rgba(16,185,129,0.22)",
                   }}
                 >
-                  <Stack direction="row" spacing={1} alignItems="center">
+                  <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
                     <ShieldCheck size={16} color="#10b981" />
 
                     <Typography
@@ -338,7 +338,7 @@ function Section({ title, icon, children }) {
     <Box sx={{ mt: 6 }}>
       <Divider sx={{ mb: 3, borderColor: "rgba(255,255,255,0.08)" }} />
 
-      <Stack direction="row" spacing={1.2} alignItems="center" sx={{ mb: 2.5 }}>
+      <Stack direction="row" spacing={1.2} sx={{ alignItems: "center", mb: 2.5 }}>
         <Box sx={{ color: "#10b981", display: "flex" }}>{icon}</Box>
         <Typography fontWeight={950}>{title}</Typography>
       </Stack>

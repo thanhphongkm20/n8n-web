@@ -47,9 +47,9 @@ const BlogTagSection = ({ tags = [] }) => {
           direction="row"
           sx={{
             width: "100%",
-            columnGap: 2,
             flexWrap: "wrap",
             justifyContent: "flex-start",
+            gap: 2,
           }}
         >
           {tags.map((tag, index) => {
