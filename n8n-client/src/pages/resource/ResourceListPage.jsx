@@ -30,7 +30,7 @@ import resourceApi from "../../api/resource.api";
 const ResourceListPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = parseInt(searchParams.get("page"));
+  const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
   const [resources, setResources] = useState([]);
   const [pageCount, setPageCount] = useState(1);

@@ -31,7 +31,7 @@ const BlogListPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentPage = parseInt(searchParams.get("page"), 10);
+  const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
   const [blogs, setBlogs] = useState([]);
   const [pageCount, setPageCount] = useState(1);
