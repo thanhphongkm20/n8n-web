@@ -1,20 +1,32 @@
-import { Stack } from '@mui/material';
+import { Stack } from "@mui/material";
 
 const StackCol = ({
+  children,
+  justifyContent = "flex-start",
+  alignItems = "stretch",
   gap = 2,
-  justifyContent = 'flex-start',
-  alignItems = 'stretch',
+  flexWrap = "nowrap",
+  spacing,
+  width,
+  height,
   sx = {},
-  children
+  className,
+  onClick,
 }) => {
   return (
     <Stack
+      direction="column"
+      spacing={spacing}
+      className={className}
+      onClick={onClick}
       sx={{
         display: "flex",
-        flexDirection: "column",
         justifyContent,
         alignItems,
         gap,
+        flexWrap,
+        width,
+        height,
         ...sx,
       }}
     >

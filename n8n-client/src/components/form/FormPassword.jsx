@@ -1,10 +1,9 @@
-import { IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
-import { Eye, EyeOff } from 'lucide-react';
-import { useState } from 'react';
+import { IconButton, InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
-import ChipRequired from '../common/ChipRequired';
-import { COLORS } from '../common/Colors';
-import StackRow from '../common/StackRow';
+import ChipRequired from "../common/ChipRequired";
+import { COLORS } from "../common/Colors";
 
 const FormPassword = ({
   id,
@@ -19,36 +18,36 @@ const FormPassword = ({
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleVisibility = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((prev) => !prev);
   };
 
   return (
     <Stack
+      direction={{ xs: "column", md: "row" }}
       justifyContent="flex-start"
-      direction={{ xs: 'column', md: 'row' }}
       alignItems="center"
       gap={{ xs: 1, md: gap }}
-      sx={{ width: '100%', ...sx }}
+      sx={{ width: "100%", ...sx }}
     >
       {title && (
-        <StackRow
+        <Stack
+          direction="row"
           alignItems="center"
-          justifyContent={{ xs: 'flex-start', md: 'flex-end' }}
+          justifyContent={{ xs: "flex-start", md: "flex-end" }}
           sx={{
-            width: { xs: '100%', md: '30%' },
-            whiteSpace: 'normal',
+            width: { xs: "100%", md: "30%" },
+            whiteSpace: "normal",
             color: COLORS.BLACK,
           }}
         >
-          <StackRow alignItems="center">
+          <Stack direction="row" alignItems="center">
             <Typography fontSize={{ xs: 14, md: 16 }}>
               {title}
             </Typography>
-            {required && (
-              <ChipRequired sx={{ ml: 1 }} />
-            )}
-          </StackRow>
-        </StackRow>
+
+            {required && <ChipRequired sx={{ ml: 1 }} />}
+          </Stack>
+        </Stack>
       )}
 
       <TextField
@@ -59,10 +58,10 @@ const FormPassword = ({
         name={id}
         placeholder={placeholder}
         type={showPassword ? "text" : "password"}
-        value={form?.values?.[id]}
+        value={form?.values?.[id] ?? ""}
         onChange={form?.handleChange}
         onBlur={form?.handleBlur}
-        error={form?.touched?.[id] && Boolean(form?.errors?.[id])}
+        error={Boolean(form?.touched?.[id] && form?.errors?.[id])}
         helperText={form?.touched?.[id] && form?.errors?.[id]}
         slotProps={{
           htmlInput: { autoComplete: "new-password" },
@@ -70,17 +69,13 @@ const FormPassword = ({
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
+                  type="button"
                   onClick={toggleVisibility}
                   edge="end"
-                  sx={{
-                    p: 0.8,
-                  }}
+                  disabled={disabled}
+                  sx={{ p: 0.8 }}
                 >
-                  {showPassword ? (
-                    <EyeOff size={18} />
-                  ) : (
-                    <Eye size={18} />
-                  )}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </IconButton>
               </InputAdornment>
             ),

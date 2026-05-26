@@ -6,20 +6,30 @@ const StackRow = ({
   alignItems = "center",
   direction = "row",
   gap = 2,
+  flexWrap = "nowrap",
+  spacing,
+  width,
+  height,
   sx = {},
-  ...rest
+  className,
+  onClick,
 }) => {
   return (
     <Stack
+      direction={direction}
+      spacing={spacing}
+      className={className}
+      onClick={onClick}
       sx={{
         display: "flex",
-        flexDirection: direction,
         gap,
         justifyContent,
         alignItems,
+        flexWrap,
+        width,
+        height,
         ...sx,
       }}
-      {...rest}
     >
       {children}
     </Stack>
