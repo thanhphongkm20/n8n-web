@@ -29,7 +29,7 @@ const ArticleHomePage = () => {
         setLoading(true);
         const response = await articleApi.list();
         if (response?.success) {
-          setArticles(response.posts);
+          setArticles(Array.isArray(response.posts) ? response.posts : []);
         } else {
           setArticles([]);
         }
@@ -46,14 +46,14 @@ const ArticleHomePage = () => {
   const filteredArticles = useMemo(() => {
     const keyword = search.trim().toLowerCase();
 
-    if (!keyword) return articles;
+    if (!keyword) return Array.isArray(articles) ? articles : [];
 
-    return articles.filter((article) => {
-      const title = article.title?.toLowerCase();
-      const description = article.description?.toLowerCase();
-      const type = article.type?.toLowerCase();
-      const slug = article.slug?.toLowerCase();
-      const tags = Array.isArray(article.tags)
+    return (Array.isArray(articles) ? articles : []).filter((article) => {
+      const title = article?.title?.toLowerCase() || "";
+      const description = article?.description?.toLowerCase() || "";
+      const type = article?.type?.toLowerCase() || "";
+      const slug = article?.slug?.toLowerCase() || "";
+      const tags = Array.isArray(article?.tags)
         ? article.tags.join(" ").toLowerCase()
         : "";
 
