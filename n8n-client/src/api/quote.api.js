@@ -12,15 +12,13 @@ const quoteApi = {
   },
   list: (query = {}) => {
     const queryString = generateQueryString(query);
-    const url = queryString
-      ? `${quoteEndpoints.base}?${queryString}`
-      : quoteEndpoints.base;
-
-    return callApi("get", url);
+    return callApi("get", `${quoteEndpoints.base}?${queryString}`);
   },
+
   getById: (id) => {
     return callApi("get", quoteEndpoints.byId(id));
   },
+
   remove: (id) => {
     return callApi("delete", quoteEndpoints.byId(id));
   },

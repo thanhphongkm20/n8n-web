@@ -28,10 +28,7 @@ const userApi = {
 
   list: (query = {}) => {
     const queryString = generateQueryString(query);
-    const url = queryString
-      ? `${userEndpoints.list}?${queryString}`
-      : userEndpoints.list;
-    return callApi("get", url);
+    return callApi("get", `${userEndpoints.list}?${queryString}`);
   },
 
   byId: (id) => {

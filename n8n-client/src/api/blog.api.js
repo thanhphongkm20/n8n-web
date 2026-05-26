@@ -10,30 +10,14 @@ const blogEndpoints = {
 const blogApi = {
   list: (query = {}) => {
     const queryString = generateQueryString(query);
-    const url = queryString
-      ? `${blogEndpoints.list}?${queryString}`
-      : blogEndpoints.list;
-
-    return callApi("get", url);
+    return callApi("get", `${blogEndpoints.list}?${queryString}`);
   },
 
-  create: (data, isFormData = false) => {
-    if (isFormData) {
-      return callApi("post", blogEndpoints.list, data, null, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    }
-
+  create: (data) => {
     return callApi("post", blogEndpoints.list, data);
   },
 
-  update: (id, data, isFormData = false) => {
-    if (isFormData) {
-      return callApi("put", blogEndpoints.byId(id), data, null, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    }
-
+  update: (id, data) => {
     return callApi("put", blogEndpoints.byId(id), data);
   },
 

@@ -11,28 +11,14 @@ const articleEndpoints = {
 const articleApi = {
   list: (query = {}) => {
     const queryString = generateQueryString(query);
-    const url = queryString
-      ? `${articleEndpoints.list}?${queryString}`
-      : articleEndpoints.list;
-
-    return callApi("get", url);
+    return callApi("get", `${articleEndpoints.list}?${queryString}`);
   },
 
-  create: (data, isFormData = false) => {
-    if (isFormData) {
-      return callApi("post", articleEndpoints.list, data, null, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    }
+  create: (data) => {
     return callApi("post", articleEndpoints.list, data);
   },
 
-  update: (id, data, isFormData = false) => {
-    if (isFormData) {
-      return callApi("put", articleEndpoints.byId(id), data, null, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    }
+  update: (id, data) => {
     return callApi("put", articleEndpoints.byId(id), data);
   },
 

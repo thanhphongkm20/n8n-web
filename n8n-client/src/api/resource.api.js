@@ -10,30 +10,14 @@ const resourceEndpoints = {
 const resourceApi = {
   list: (query = {}) => {
     const queryString = generateQueryString(query);
-    const url = queryString
-      ? `${resourceEndpoints.list}?${queryString}`
-      : resourceEndpoints.list;
-
-    return callApi("get", url);
+    return callApi("get", `${resourceEndpoints.list}?${queryString}`);
   },
 
-  create: (data, isFormData = false) => {
-    if (isFormData) {
-      return callApi("post", resourceEndpoints.list, data, null, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    }
-
+  create: (data) => {
     return callApi("post", resourceEndpoints.list, data);
   },
 
-  update: (id, data, isFormData = false) => {
-    if (isFormData) {
-      return callApi("put", resourceEndpoints.byId(id), data, null, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    }
-
+  update: (id, data) => {
     return callApi("put", resourceEndpoints.byId(id), data);
   },
 
