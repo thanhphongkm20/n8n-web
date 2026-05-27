@@ -24,16 +24,20 @@ const Logo = () => {
       <Box
         className="logo-icon"
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          transition: "transform 0.2s ease-in-out"
+          display: "flex",
+          alignItems: "center",
+          transition: "transform 0.2s ease-in-out",
         }}
       >
-        <Shield
-          size={32}
-          strokeWidth={2.5}
-          color={COLORS.SECONDARY}
-          fill={`${COLORS.SECONDARY}20`}
+        <Box
+          component="img"
+          src="https://n8n.io/favicon.ico"
+          alt="n8n"
+          sx={{
+            width: 35,
+            height: 35,
+            objectFit: "contain",
+          }}
         />
       </Box>
 

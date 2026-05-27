@@ -7,6 +7,14 @@ import {
   Wrench,
   FileText,
   MessageSquare,
+  Bot,
+  Workflow,
+  Code2,
+  Database,
+  Cpu,
+  Layers3,
+  Settings2,
+  MessageCircle,
 } from "lucide-react";
 import { createTheme } from "@mui/material/styles";
 
@@ -201,4 +209,90 @@ export const levels = [
   { label: "Trung bình", color: "warning", value: 50 },
   { label: "Khá mạnh", color: "info", value: 75 },
   { label: "Mạnh", color: "success", value: 100 },
+];
+
+export const STACKS = [
+  { icon: Bot, label: "AI Automation", color: "#14b8a6" },
+  { icon: Workflow, label: "n8n Workflows", color: "#818cf8" },
+  { icon: Code2, label: "API Integration", color: "#fb923c" },
+  { icon: Database, label: "Database Systems", color: "#f472b6" },
+  { icon: Cpu, label: "Server Scripts", color: "#14b8a6" },
+  { icon: Layers3, label: "Scalable Architecture", color: "#818cf8" },
+];
+
+export const STATS = [
+  { value: "500+", label: "Workflows Built" },
+  { value: "120+", label: "Happy Clients" },
+  { value: "99%", label: "Uptime Rate" },
+  { value: "24h", label: "Support Response" },
+];
+
+export const SERVICES = [
+  {
+    icon: Workflow,
+    tag: "01",
+    title: "Workflow Marketplace",
+    description:
+      "Explore a growing library of premium n8n workflows built for real business use cases — from AI content pipelines and CRM automation to e-commerce, marketing, and internal operations.",
+    items: [
+      "Categorized workflow collections",
+      "Advanced filters by difficulty, price, and release date",
+      "Detailed setup documentation",
+      "One-click JSON import",
+    ],
+    accent: "#14b8a6",
+    glow: "rgba(20,184,166,0.07)",
+    borderHover: "rgba(20,184,166,0.38)",
+  },
+
+  {
+    icon: Settings2,
+    tag: "02",
+    title: "Custom Automation Solutions",
+    description:
+      "For businesses with unique processes, we design tailored automation systems based on your workflows, APIs, infrastructure, and operational goals.",
+    items: [
+      "Custom workflow architecture",
+      "AI and API integrations",
+      "Database and server automation",
+      "End-to-end delivery support",
+    ],
+    accent: "#818cf8",
+    glow: "rgba(129,140,248,0.07)",
+    borderHover: "rgba(129,140,248,0.38)",
+  },
+
+  {
+    icon: BookOpen,
+    tag: "03",
+    title: "Resources & Technical Tools",
+    description:
+      "Access practical documentation, deployment guides, scripts, and best practices to keep your automation systems stable, scalable, and easy to maintain.",
+    items: [
+      "Docker and PM2 setup guides",
+      "Webhook configuration tutorials",
+      "Backup and server scripts",
+      "Community knowledge sharing",
+    ],
+    accent: "#fb923c",
+    glow: "rgba(251,146,60,0.07)",
+    borderHover: "rgba(251,146,60,0.38)",
+  },
+
+  {
+    icon: MessageCircle,
+    tag: "04",
+    title: "Blog & Automation Insights",
+    description:
+      "Learn how modern automation improves productivity through case studies, technical tutorials, AI integration guides, and n8n workflow optimization tips.",
+    items: [
+      "Automation case studies",
+      "n8n update news",
+      "AI integration tutorials",
+      "Security and performance tips",
+    ],
+    accent: "#f472b6",
+    glow: "rgba(244,114,182,0.07)",
+    borderHover: "rgba(244,114,182,0.38)",
+  },
 ];

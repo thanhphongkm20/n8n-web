@@ -97,28 +97,30 @@ const ResourceFilterBar = ({ filter, counts = {}, onFilterChange }) => {
                   {tab.label}
                 </Box>
 
-                <Box
-                  component="span"
-                  sx={{
-                    minWidth: 22,
-                    height: 22,
-                    px: 0.75,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: "999px",
-                    bgcolor:
-                      filter === tab.value
-                        ? "rgba(4,17,31,0.14)"
-                        : "rgba(148,163,184,0.16)",
-                    color: "inherit",
-                    fontSize: 11,
-                    fontWeight: 900,
-                    flexShrink: 0,
-                  }}
-                >
-                  {counts[tab.value]}
-                </Box>
+                {counts[tab.value] > 0 && (
+                  <Box
+                    component="span"
+                    sx={{
+                      minWidth: 22,
+                      height: 22,
+                      px: 0.75,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "999px",
+                      bgcolor:
+                        filter === tab.value
+                          ? "rgba(4,17,31,0.14)"
+                          : "rgba(148,163,184,0.16)",
+                      color: "inherit",
+                      fontSize: 11,
+                      fontWeight: 900,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {counts[tab.value]}
+                  </Box>
+                )}
               </ToggleButton>
             );
           })}

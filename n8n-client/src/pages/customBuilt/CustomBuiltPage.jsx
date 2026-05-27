@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useState } from "react";
 import {
   Box,
   Container,
@@ -22,6 +21,8 @@ import FormQuoteField from "../../components/form/FormQuoteField";
 import FormQuoteSelect from "../../components/form/FormQuoteSelect";
 
 const CustomBuiltPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useFormik({
     initialValues: {
       companyName: "",
@@ -32,8 +33,10 @@ const CustomBuiltPage = () => {
       description: "",
     },
     validationSchema: quoteValidation,
+
     onSubmit: async (values, { resetForm, setSubmitting }) => {
       try {
+        setIsLoading(true);
         const payload = {
           companyName: values.companyName.trim(),
           contactPerson: values.contactPerson.trim(),
@@ -45,7 +48,6 @@ const CustomBuiltPage = () => {
 
         const res = await quoteApi.requestQuote(payload);
 
-        // check response backend
         if (res?.success === false) {
           throw new Error(res.message);
         }
@@ -59,14 +61,13 @@ const CustomBuiltPage = () => {
           "Something went wrong!";
         toast.error(message);
       } finally {
+        setIsLoading(false);
         setSubmitting(false);
       }
     },
   });
 
-  if (form.isSubmitting) {
-    return <LoadingPage />;
-  }
+  if (isLoading) return <LoadingPage />;
 
   return (
     <Box

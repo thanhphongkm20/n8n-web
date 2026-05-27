@@ -16,17 +16,18 @@ import StackRow from "../common/StackRow";
 import Animate from "../common/Animate";
 import articleApi from "../../api/article.api";
 import { ROUTES_GEN } from "../../configs/routes";
+import { LoadingPage } from "../../pages/bases/LoadingPage";
 
 const ArticleHomePage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        setLoading(true);
+        setIsLoading(true);
         const response = await articleApi.list();
         if (response?.success) {
           setArticles(Array.isArray(response.posts) ? response.posts : []);
@@ -37,7 +38,7 @@ const ArticleHomePage = () => {
         console.error("Failed to fetch articles:", error);
         setArticles([]);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     fetchArticles();
@@ -68,6 +69,8 @@ const ArticleHomePage = () => {
   }, [articles, search]);
 
   const visibleArticles = filteredArticles.slice(0, 6);
+
+  if (isLoading) return <LoadingPage />;
 
   return (
     <Box sx={{ flexGrow: 1, width: "100%", py: 2 }}>
@@ -100,17 +103,7 @@ const ArticleHomePage = () => {
             },
           }}
         >
-          {loading ? (
-            [1, 2, 3, 4, 5, 6].map((n) => (
-              <Box key={n} sx={{ display: "flex" }}>
-                <Skeleton
-                  variant="rectangular"
-                  height={350}
-                  sx={{ borderRadius: 4, width: "100%" }}
-                />
-              </Box>
-            ))
-          ) : visibleArticles.length > 0 ? (
+          {visibleArticles.length > 0 ? (
             visibleArticles.map((article) => (
               <Box key={article._id} sx={{ display: "flex" }}>
                 <Animate type="fade" sx={{ width: "100%" }}>
