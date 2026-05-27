@@ -90,6 +90,114 @@ const ArticleSidePanel = ({
           }}
         />
         <FormLabelField
+          title="DISCOUNT %"
+          type="number"
+          placeholder="20"
+          form={formik}
+          id="discount"
+          sx={{
+            "& .MuiTypography-root": labelStyle,
+            "& .MuiInputBase-root": { height: 50, borderRadius: 2 },
+          }}
+        />
+        <Box
+          sx={{
+            mt: 2.5,
+            p: 2.4,
+            borderRadius: "22px",
+            background:
+              "linear-gradient(135deg, #0f766e 0%, #14b8a6 48%, #38bdf8 100%)",
+            boxShadow: "0 18px 42px rgba(20,184,166,0.28)",
+            border: "1px solid rgba(255,255,255,0.45)",
+            textAlign: "center",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "radial-gradient(circle at 20% 15%, rgba(255,255,255,0.32), transparent 28%)",
+              pointerEvents: "none",
+            }}
+          />
+
+          <Typography
+            sx={{
+              position: "relative",
+              color: "rgba(255,255,255,0.78)",
+              fontSize: 11,
+              fontWeight: 900,
+              letterSpacing: 1.4,
+              textTransform: "uppercase",
+            }}
+          >
+            Final Price
+          </Typography>
+
+          <Typography
+            sx={{
+              position: "relative",
+              mt: 0.6,
+              color: "#fff",
+              fontWeight: 950,
+              fontSize: 38,
+              lineHeight: 1,
+              letterSpacing: "-0.06em",
+              textShadow: "0 10px 28px rgba(0,0,0,0.18)",
+            }}
+          >
+            $
+            {(
+              Number(formik.values.price || 0) -
+              (Number(formik.values.price || 0) *
+                Number(formik.values.discount || 0)) /
+              100
+            ).toFixed(2)}
+          </Typography>
+
+          {Number(formik.values.discount || 0) > 0 && (
+            <Box
+              sx={{
+                position: "relative",
+                mt: 1.4,
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                px: 1.6,
+                py: 0.55,
+                borderRadius: 999,
+                bgcolor: "rgba(255,255,255,0.18)",
+                border: "1px solid rgba(255,255,255,0.3)",
+              }}
+            >
+              <Typography
+                sx={{
+                  color: "#fff",
+                  fontSize: 12,
+                  fontWeight: 900,
+                  letterSpacing: 0.5,
+                }}
+              >
+                {formik.values.discount}% OFF
+              </Typography>
+            </Box>
+          )}
+        </Box>
+        <FormLabelField
+          title="NODE COUNT"
+          type="number"
+          placeholder="0"
+          form={formik}
+          id="node_count"
+          sx={{
+            "& .MuiTypography-root": labelStyle,
+            "& .MuiInputBase-root": { height: 50, borderRadius: 2 },
+          }}
+        />
+        <FormLabelField
           title="SLUG"
           disabled
           placeholder="GENERATE SLUG"
@@ -156,7 +264,7 @@ const ArticleSidePanel = ({
                     alignItems: "center",
                     opacity: 0,
                     transition: "0.2s",
-                  }}
+                  }} s
                 >
                   <IconButton
                     onClick={handleRemove}
@@ -180,7 +288,7 @@ const ArticleSidePanel = ({
           </Box>
         </Box>
       </Box>
-    </Paper>
+    </Paper >
   );
 };
 

@@ -372,3 +372,25 @@ export const BADGES = [
   { dot: "#fbbf24", label: "30-day free support" },
   { dot: "#f472b6", label: "Custom workflow" },
 ];
+
+export const STATSHOME = [
+  { value: "120+", label: "Workflows" },
+  { value: "2.4k", label: "Customers" },
+  { value: "4.9★", label: "Average Rating" },
+  { value: "48h", label: "Support" },
+];
+
+export const CATEGORY_OPTIONS = [
+  { label: "Marketing", value: "marketing" },
+  { label: "AI Automation", value: "ai" },
+  { label: "CRM", value: "crm" },
+  { label: "E-commerce", value: "ecommerce" },
+];
+
+export const BADGE_OPTIONS = [
+  { label: "Hot", value: "hot" },
+  { label: "New", value: "new" },
+  { label: "Sale", value: "sale" },
+  { label: "Featured", value: "featured" },
+  { label: "None", value: "none" },
+];

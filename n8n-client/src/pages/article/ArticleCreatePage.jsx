@@ -17,6 +17,7 @@ import WorkflowDataUpload from "../../components/article/WorkflowDataUpload";
 
 import articleApi from "../../api/article.api";
 import validationSchema from "../../validation/article.validation";
+import MarketplaceSettings from "../../components/article/MarketplaceSettings";
 
 const ArticleCreatePage = () => {
   const [workflowFile, setWorkflowFile] = useState(null);
@@ -31,6 +32,11 @@ const ArticleCreatePage = () => {
       price: "",
       status: "draft",
       description: "",
+      category: "",
+      badge: "",
+      featured: false,
+      discount: 0,
+      node_count: 0,
     },
     validationSchema,
     validateOnBlur: true,
@@ -116,6 +122,11 @@ const ArticleCreatePage = () => {
 
       formData.append("workflow", workflowFile);
       formData.append("image", imageFile);
+      formData.append("category", formik.values.category);
+      formData.append("badge", formik.values.badge);
+      formData.append("featured", formik.values.featured);
+      formData.append("discount", formik.values.discount);
+      formData.append("node_count", formik.values.node_count);
 
       await articleApi.create(formData, true);
 
@@ -210,6 +221,7 @@ const ArticleCreatePage = () => {
                   value={workflowFile}
                   onChange={setWorkflowFile}
                 />
+                <MarketplaceSettings formik={formik} />
               </MPaper>
             </Stack>
           </Box>
