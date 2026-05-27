@@ -15,6 +15,8 @@ import {
   Layers3,
   Settings2,
   MessageCircle,
+  Sparkles,
+  Rocket,
 } from "lucide-react";
 import { createTheme } from "@mui/material/styles";
 
@@ -295,4 +297,78 @@ export const SERVICES = [
     glow: "rgba(244,114,182,0.07)",
     borderHover: "rgba(244,114,182,0.38)",
   },
+];
+
+export const STEPS = [
+  {
+    num: "01",
+    title: "Submit Request",
+    detail:
+      "Describe the problem, objectives, and time-consuming operations. No coding or technical spec knowledge required.",
+    icon: FileText,
+    visTitle: "Receive Request",
+    visDesc: "Fill out the form, our team will contact you within 24 hours.",
+    tags: ["Free Consultation", "No Coding Knowledge Required"],
+  },
+
+  {
+    num: "02",
+    title: "Receive Solution & Quote",
+    detail:
+      "We analyze the process, propose a suitable workflow, and send a clear quote within 48 hours.",
+    icon: Sparkles,
+    visTitle: "Solution Design",
+    visDesc:
+      "A workflow outline, timeline, and transparent costs are provided.",
+    tags: ["Clear Quote", "Specific Timeline"],
+  },
+
+  {
+    num: "03",
+    title: "Build & Handover",
+    detail:
+      "Deployment, thorough testing, documentation handover, and 30-day support after workflow goes into use.",
+    icon: Rocket,
+    visTitle: "Complete Handover",
+    visDesc: "Workflow ready to run, with full user manual.",
+    tags: ["Thorough Testing", "30-Day Support"],
+  },
+];
+
+export const USE_CASES = [
+  {
+    icon: "🤖",
+    label: "Internal AI Chatbot",
+    desc: "Document Q&A, SOP, company policies — employees no longer need to search manually.",
+    tag: "Most Popular",
+  },
+
+  {
+    icon: "✉️",
+    label: "Email Automation",
+    desc: "Automatically categorize, reply to, and route emails based on context. Saves hours every day.",
+    tag: "Quick win",
+  },
+
+  {
+    icon: "📊",
+    label: "Data Extraction",
+    desc: "Automatically read PDFs, invoices, forms, and import data into the system — no need for manual copy-paste.",
+    tag: "High ROI",
+  },
+
+  {
+    icon: "🔗",
+    label: "CRM & API Integration",
+    desc: "Connect n8n with HubSpot, Notion, Slack, Google Sheets, and more 400 other applications.",
+    tag: "Highly customizable",
+  },
+];
+
+export const BADGES = [
+  { dot: "#22c55e", label: "No-code setup" },
+  { dot: "#06b6d4", label: "Full integration support" },
+  { dot: "#a78bfa", label: "Dedicated team" },
+  { dot: "#fbbf24", label: "30-day free support" },
+  { dot: "#f472b6", label: "Custom workflow" },
 ];
