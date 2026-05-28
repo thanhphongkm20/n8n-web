@@ -165,79 +165,6 @@ const HomeMainContent = () => {
                 Ready-To-Use Workflows & Custom Automation Solutions Tailored
                 For Your Business. Scale Your Operations Without The Complexity.
               </Typography>
-
-              <Box
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  mt: 5.5,
-                }}
-              >
-                <Stack
-                  direction={{ xs: "column", sm: "row" }}
-                  spacing={1.8}
-                  sx={{
-                    width: "fit-content",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Button
-                    variant="contained"
-                    endIcon={<ArrowRight size={16} />}
-                    sx={{
-                      height: 56,
-                      minWidth: 230,
-                      px: 4.2,
-                      borderRadius: "14px",
-                      bgcolor: COLORS.SECONDARY,
-                      color: "#02110d",
-                      fontWeight: 950,
-                      fontSize: 15.5,
-                      textTransform: "none",
-                      boxShadow: `0 22px 60px ${COLORS.SECONDARY}33`,
-                      transition: "all 0.22s ease",
-
-                      "&:hover": {
-                        bgcolor: COLORS.SECONDARY,
-                        transform: "translateY(-3px)",
-                        boxShadow: `0 28px 70px ${COLORS.SECONDARY}45`,
-                      },
-                    }}
-                  >
-                    Browse Workflows
-                  </Button>
-
-                  <Button
-                    variant="outlined"
-                    sx={{
-                      height: 56,
-                      minWidth: 210,
-                      px: 4.2,
-                      borderRadius: "14px",
-                      color: "rgba(255,255,255,0.68)",
-                      border: "1px solid rgba(255,255,255,0.12)",
-                      bgcolor: "rgba(255,255,255,0.035)",
-                      fontWeight: 900,
-                      fontSize: 15.2,
-                      textTransform: "none",
-                      backdropFilter: "blur(18px)",
-                      transition: "all 0.22s ease",
-                      "&:hover": {
-                        borderColor: "rgba(45,212,191,0.42)",
-                        bgcolor: "rgba(45,212,191,0.08)",
-                        color: "#fff",
-                        transform: "translateY(-3px)",
-                      },
-                    }}
-                  >
-                    Get Custom Built
-                  </Button>
-                </Stack>
-              </Box>
-
               <Stack
                 direction="row"
                 alignItems="center"
@@ -306,7 +233,7 @@ const HomeMainContent = () => {
           </Animate>
         </Container>
       </Box>
-      <Box sx={{ width: "100%", bgcolor: "#f8fafc", py: 6 }}>
+      <Box>
         <Container maxWidth="xl">
           <ArticleHomePage />
         </Container>

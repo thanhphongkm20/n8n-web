@@ -11,6 +11,8 @@ const generateTransferCode = () => {
   return `${Math.random().toString(36).slice(2, 10).toUpperCase()}`;
 };
 
+const USD_TO_VND = 26000;
+
 export const createOrder = async (req, res) => {
   try {
     const { articleId } = req.body;
@@ -24,14 +26,18 @@ export const createOrder = async (req, res) => {
       });
     }
 
+    const amountUsd = parseFloat(article.price_formatted.replace("$", ""));
+    const amountVnd = Math.round(amountUsd * USD_TO_VND);
+
     const order = await Order.create({
       article: article._id,
       user: req.user?._id,
-      amount: article.price,
+      amount: amountUsd,
+      transferAmount: amountVnd,
       transferCode: generateTransferCode(),
     });
 
-    const qrUrl = `https://img.vietqr.io/image/BIDV-1320566390-compact.png?amount=${order.amount}&addInfo=${order.transferCode}&accountName=${encodeURIComponent(
+    const qrUrl = `https://img.vietqr.io/image/BIDV-1320566390-compact.png?amount=${amountVnd}&addInfo=${order.transferCode}&accountName=${encodeURIComponent(
       BANK_INFO.accountName,
     )}`;
 
@@ -40,6 +46,7 @@ export const createOrder = async (req, res) => {
       data: {
         orderId: order._id,
         amount: order.amount,
+        transferAmount: amountVnd,
         transferCode: order.transferCode,
         qrUrl,
         bank: BANK_INFO,

@@ -399,3 +399,5 @@ export const BADGE_OPTIONS = [
   { title: "Best Seller", value: "best-seller" },
   { title: "None", value: "none" },
 ];
+
+export const CATEGORIES = ["All", "Marketing", "AI", "CRM", "Data", "E-commerce", "Productivity", "Sales", "Finance"];

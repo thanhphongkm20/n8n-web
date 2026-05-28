@@ -77,10 +77,9 @@ const PaymentQrModal = ({ open, order, checking = false, onClose }) => {
           />
           <InfoRow
             label="Amount"
-            value={`${order.amount.toLocaleString("vi-VN")} ₫`}
+            value={`${order.transferAmount.toLocaleString("vi-VN")} ₫`}
             highlight
           />
-
           <Divider sx={{ my: 2, borderColor: "rgba(255,255,255,.12)" }} />
 
           <Typography
@@ -94,7 +93,6 @@ const PaymentQrModal = ({ open, order, checking = false, onClose }) => {
           >
             TRANSFER CONTENT
           </Typography>
-
           <Stack
             direction="row"
             spacing={1}
@@ -120,7 +118,6 @@ const PaymentQrModal = ({ open, order, checking = false, onClose }) => {
             >
               {order.transferCode}
             </Typography>
-
             <Box
               onClick={() => copyText(order.transferCode)}
               sx={{
@@ -143,7 +140,6 @@ const PaymentQrModal = ({ open, order, checking = false, onClose }) => {
               <Copy size={14} color="#cbd5e1" />
             </Box>
           </Stack>
-
           {checking && (
             <Box
               sx={{
@@ -161,7 +157,6 @@ const PaymentQrModal = ({ open, order, checking = false, onClose }) => {
                 justifyContent="center"
               >
                 <CircularProgress size={15} sx={{ color: "#6ee7b7" }} />
-
                 <Typography
                   sx={{
                     fontSize: 13,
