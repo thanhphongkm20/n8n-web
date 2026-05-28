@@ -158,6 +158,13 @@ const ArticleListPage = () => {
                     fontWeight: 600,
                     color: COLORS.BLUE
                   }}>
+                  discount
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: 600,
+                    color: COLORS.BLUE
+                  }}>
                   PRICE
                 </TableCell>
                 <TableCell
@@ -174,6 +181,7 @@ const ArticleListPage = () => {
               {articles.map((item) => (
                 <TableRow key={item._id || item.id} hover>
                   <TableCell sx={{ pl: "30px" }}>{item.title}</TableCell>
+                  <TableCell>{item.discount}</TableCell>
                   <TableCell>{item.price_formatted}</TableCell>
                   <TableCell>
                     <Box sx={{ fontWeight: 500, textTransform: 'uppercase' }}>

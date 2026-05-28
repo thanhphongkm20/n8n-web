@@ -51,8 +51,8 @@ const articleSchema = new Schema(
 
     badge: {
       type: String,
-      enum: ["hot", "new", "sale", "featured", "none"],
-      default: "hot",
+      enum: ["hot", "new", "sale", "featured", "best-seller", "none"],
+      default: "none",
     },
 
     featured: {

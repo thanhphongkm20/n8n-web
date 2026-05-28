@@ -381,16 +381,21 @@ export const STATSHOME = [
 ];
 
 export const CATEGORY_OPTIONS = [
-  { label: "Marketing", value: "marketing" },
-  { label: "AI Automation", value: "ai" },
-  { label: "CRM", value: "crm" },
-  { label: "E-commerce", value: "ecommerce" },
+  { title: "Marketing", value: "marketing" },
+  { title: "AI Automation", value: "ai" },
+  { title: "CRM", value: "crm" },
+  { title: "E-commerce", value: "ecommerce" },
+  { title: "Data", value: "data" },
+  { title: "Productivity", value: "productivity" },
+  { title: "Sales", value: "sales" },
+  { title: "Finance", value: "finance" },
 ];
 
 export const BADGE_OPTIONS = [
-  { label: "Hot", value: "hot" },
-  { label: "New", value: "new" },
-  { label: "Sale", value: "sale" },
-  { label: "Featured", value: "featured" },
-  { label: "None", value: "none" },
+  { title: "Hot", value: "hot" },
+  { title: "New", value: "new" },
+  { title: "Sale", value: "sale" },
+  { title: "Featured", value: "featured" },
+  { title: "Best Seller", value: "best-seller" },
+  { title: "None", value: "none" },
 ];

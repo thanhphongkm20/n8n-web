@@ -12,13 +12,9 @@ const openai = new OpenAI({
 const calculatePrice = (price, discount = 0) => {
   const safePrice = Number(price) || 0;
 
-  const safeDiscount = Math.min(
-    Math.max(Number(discount) || 0, 0),
-    100,
-  );
+  const safeDiscount = Math.min(Math.max(Number(discount) || 0, 0), 100);
 
-  const finalPrice =
-    safePrice - (safePrice * safeDiscount) / 100;
+  const finalPrice = safePrice - (safePrice * safeDiscount) / 100;
 
   return {
     price: safePrice,
@@ -84,10 +80,7 @@ export const create = async (req, res) => {
 
     // ================= PRICE =================
 
-    const priceData = calculatePrice(
-      data.price,
-      data.discount,
-    );
+    const priceData = calculatePrice(data.price, data.discount);
 
     // ================= CREATE =================
 
@@ -119,20 +112,13 @@ export const update = async (req, res) => {
     }
 
     if (req.files?.workflow?.[0]) {
-      data.workflow = await uploadFile(
-        req.files.workflow[0],
-      );
+      data.workflow = await uploadFile(req.files.workflow[0]);
     }
 
     // ================= PRICE =================
 
-    if (
-      data.price !== undefined ||
-      data.discount !== undefined
-    ) {
-      const current = await Article.findById(
-        req.params.id,
-      );
+    if (data.price !== undefined || data.discount !== undefined) {
+      const current = await Article.findById(req.params.id);
 
       if (!current) {
         return res.status(404).json({
@@ -188,9 +174,7 @@ export const remove = async (req, res) => {
 // ================= GET DETAIL =================
 export const getDetail = async (req, res) => {
   try {
-    const data = await service.getArticleById(
-      req.params.id,
-    );
+    const data = await service.getArticleById(req.params.id);
 
     if (!data) {
       return res.status(404).json({
@@ -200,10 +184,7 @@ export const getDetail = async (req, res) => {
 
     const formatted = {
       ...data.toObject(),
-      ...calculatePrice(
-        data.price,
-        data.discount,
-      ),
+      ...calculatePrice(data.price, data.discount),
     };
 
     res.json({
@@ -222,13 +203,12 @@ export const getList = async (req, res) => {
   try {
     const data = await service.getArticles(req.query);
 
-    const articles = data.items.map((item) => ({
+    const safeItems = Array.isArray(data?.items) ? data.items : [];
+
+    const articles = safeItems.map((item) => ({
       ...item.toObject(),
 
-      ...calculatePrice(
-        item.price,
-        item.discount,
-      ),
+      ...calculatePrice(item.price, item.discount),
     }));
 
     res.json({
@@ -246,9 +226,7 @@ export const getList = async (req, res) => {
 // ================= GET BY SLUG =================
 export const getBySlug = async (req, res) => {
   try {
-    const data = await service.getArticleBySlug(
-      req.params.slug,
-    );
+    const data = await service.getArticleBySlug(req.params.slug);
 
     if (!data) {
       return res.status(404).json({
@@ -259,10 +237,7 @@ export const getBySlug = async (req, res) => {
     const formatted = {
       ...data.toObject(),
 
-      ...calculatePrice(
-        data.price,
-        data.discount,
-      ),
+      ...calculatePrice(data.price, data.discount),
     };
 
     res.json({
@@ -297,14 +272,12 @@ Return ONLY the slug.
 Title: "${title}"
 `;
 
-    const response =
-      await openai.responses.create({
-        model: "gpt-4.1-mini",
-        input: prompt,
-      });
+    const response = await openai.responses.create({
+      model: "gpt-4.1-mini",
+      input: prompt,
+    });
 
-    let baseSlug =
-      response.output_text || "";
+    let baseSlug = response.output_text || "";
 
     if (!baseSlug) {
       throw new Error("Empty AI response");
@@ -326,13 +299,10 @@ Title: "${title}"
 
     return res.json({ slug });
   } catch (err) {
-    let baseSlug = slugify(
-      req.body.title || "",
-      {
-        lower: true,
-        strict: true,
-      },
-    );
+    let baseSlug = slugify(req.body.title || "", {
+      lower: true,
+      strict: true,
+    });
 
     let slug = baseSlug;
     let count = 1;

@@ -15,7 +15,7 @@ export const createArticleSchema = z.object({
 
   status: z.enum(["draft", "published"]).default("draft"),
   category: z.string().trim().default("marketing"),
-  badge: z.enum(["hot", "new", "sale", "featured", "none"]).default("hot"),
+  badge: z.enum(["hot", "new", "sale", "featured", "best-seller", "none"]).default("none"),
   featured: z.coerce.boolean().default(false),
   sales_count: z.coerce.number().min(0).default(0),
   node_count: z.coerce.number().min(0).default(0),
@@ -39,7 +39,7 @@ export const updateArticleSchema = z.object({
 
   status: z.enum(["draft", "published"]).optional(),
   category: z.string().trim().optional(),
-  badge: z.enum(["hot", "new", "sale", "featured", "none"]).optional(),
+  badge: z.enum(["hot", "new", "sale", "featured", "best-seller", "none"]).optional(),
   featured: z.coerce.boolean().optional(),
   sales_count: z.coerce.number().min(0).optional(),
   node_count: z.coerce.number().min(0).optional(),

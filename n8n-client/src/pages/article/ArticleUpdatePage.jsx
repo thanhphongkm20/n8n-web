@@ -25,6 +25,7 @@ import { showError, showSuccess } from "../../utils/toast";
 
 import articleApi from "../../api/article.api";
 import validationSchema from "../../validation/article.validation";
+import MarketplaceSettings from "../../components/article/MarketplaceSettings";
 
 const ArticleUpdatePage = () => {
   const { id } = useParams();
@@ -46,6 +47,11 @@ const ArticleUpdatePage = () => {
       price: "",
       status: "draft",
       description: "",
+      category: "",
+      badge: "",
+      featured: false,
+      discount: 0,
+      node_count: 0,
     },
     validationSchema,
     onSubmit: async (values) => {
@@ -66,6 +72,11 @@ const ArticleUpdatePage = () => {
           price: data?.price,
           status: data?.status,
           description: data?.description,
+          category: data?.category,
+          badge: data?.badge,
+          featured: data?.featured,
+          discount: data?.discount,
+          node_count: data?.node_count,
         });
 
         if (data?.image) setOldImageUrl(data.image);
@@ -95,6 +106,10 @@ const ArticleUpdatePage = () => {
       formData.append("price", values.price);
       formData.append("status", values.status);
       formData.append("description", values.description);
+      formData.append("badge", formik.values.badge);
+      formData.append("featured", formik.values.featured);
+      formData.append("discount", formik.values.discount);
+      formData.append("node_count", formik.values.node_count);
 
       if (imageFile) {
         formData.append("image", imageFile);
@@ -210,6 +225,7 @@ const ArticleUpdatePage = () => {
                   setOldUrl={setOldWorkflowUrl}
                   onChange={setWorkflowFile}
                 />
+                <MarketplaceSettings formik={formik} />
               </MPaper>
             </Stack>
           </Grid>
