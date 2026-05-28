@@ -35,30 +35,57 @@ export const messageUser = {
   USER_INACTIVE: "Account is inactive. Please contact the administrator",
 };
 
-export const messageArticle = {
-  NOT_FOUND: "Record not found",
-  NO_EDIT_PERMISSION: "You do not have permission to edit this record",
-  NO_DELETE_PERMISSION: "You do not have permission to delete this record",
-  NO_VIEW_PERMISSION: "You do not have permission to view this record",
-  DELETED: "Record has been deleted",
+export const BLOG_MESSAGES = {
+  CREATE_SUCCESS: "Create blog successfully",
+  GET_ALL_SUCCESS: "Get blogs successfully",
+  GET_SUCCESS: "Get blog successfully",
+  UPDATE_SUCCESS: "Update blog successfully",
+  DELETE_SUCCESS: "Delete blog successfully",
 };
 
-export const messageAttachment = {
-  NO_FILE_SELECTED: "No file selected",
+export const ORDER_MESSAGES = {
+  ARTICLE_NOT_FOUND: "Article not found",
+  ORDER_NOT_FOUND: "Order not found",
+  CREATE_ORDER_FAILED: "Failed to create order",
+  GET_ORDER_FAILED: "Failed to get order",
+  UPDATE_ORDER_FAILED: "Failed to update order",
 };
 
-export const messageCategory = {
-  NOT_FOUND: "Category not found",
-  DELETED: "Category has been deleted",
-  SLUG_EXISTS: "This slug is already in use",
-  HAS_ARTICLES: "This category contains articles",
-  MAX_DEPTH_EXCEEDED: "Categories support a maximum of 2 levels",
+export const ARTICLE_MESSAGES = {
+  IMAGE_REQUIRED: "Image is required",
+  TITLE_REQUIRED: "Title is required",
+
+  ARTICLE_NOT_FOUND: "Article not found",
+
+  EMPTY_AI_RESPONSE: "Empty AI response",
+
+  CREATE_FAILED: "Failed to create article",
+  UPDATE_FAILED: "Failed to update article",
+  DELETE_FAILED: "Failed to delete article",
+  GET_DETAIL_FAILED: "Failed to get article detail",
+  GET_LIST_FAILED: "Failed to get article list",
+  GET_BY_SLUG_FAILED: "Failed to get article by slug",
+  GENERATE_SLUG_FAILED: "Failed to generate slug",
 };
 
-export const messageGemini = {
-  SERVICE_UNAVAILABLE: "AI service is currently unavailable. Please try again later",
-  MESSAGE_BLOCKED: "Message was blocked. Please rephrase your input",
-  TOO_MANY_REQUESTS: "Too many requests. Please try again later",
-  ACCESS_DENIED: "Access denied",
-  SOMETHING_WRONG: "An error occurred. Please try again later",
+export const QUOTE_MESSAGES = {
+  CREATE_SUCCESS: "Quote request sent successfully",
+  PROCESS_FAILED: "Failed to process request",
+};
+
+export const RESOURCE_MESSAGES = {
+  CREATE_SUCCESS: "Create resource successfully",
+  GET_LIST_SUCCESS: "Get resources successfully",
+  GET_SUCCESS: "Get resource successfully",
+  UPDATE_SUCCESS: "Update resource successfully",
+  DELETE_SUCCESS: "Delete resource successfully",
+};
+
+export const SUBSCRIBE_MESSAGES = {
+  EMAIL_REQUIRED: "Email is required",
+  INVALID_EMAIL: "Invalid email",
+
+  SUBSCRIBE_SUCCESS: "Subscribed successfully",
+
+  INTERNAL_SERVER_ERROR: "Internal server error",
 };

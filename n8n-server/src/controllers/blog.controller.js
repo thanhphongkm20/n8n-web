@@ -1,3 +1,4 @@
+import { BLOG_MESSAGES } from "../configs/messages.js";
 import { ApiResponse } from "../configs/response.js";
 import { blogService } from "../service/blog.service.js";
 
@@ -9,7 +10,7 @@ export const blogController = {
       );
 
       return ApiResponse.Created(res, {
-        message: "Create blog successfully",
+        message: BLOG_MESSAGES.CREATE_SUCCESS,
         data,
       });
     } catch (error) {
@@ -24,7 +25,7 @@ export const blogController = {
       );
 
       return ApiResponse.OK(res, {
-        message: "Get blogs successfully",
+        message: BLOG_MESSAGES.GET_ALL_SUCCESS,
         data,
       });
     } catch (error) {
@@ -39,7 +40,7 @@ export const blogController = {
       );
 
       return ApiResponse.OK(res, {
-        message: "Get blog successfully",
+        message: BLOG_MESSAGES.GET_SUCCESS,
         data,
       });
     } catch (error) {
@@ -54,7 +55,7 @@ export const blogController = {
       );
 
       return ApiResponse.OK(res, {
-        message: "Get blog successfully",
+        message: BLOG_MESSAGES.GET_SUCCESS,
         data,
       });
     } catch (error) {
@@ -70,7 +71,7 @@ export const blogController = {
       );
 
       return ApiResponse.OK(res, {
-        message: "Update blog successfully",
+        message: BLOG_MESSAGES.UPDATE_SUCCESS,
         data,
       });
     } catch (error) {
@@ -85,7 +86,7 @@ export const blogController = {
       );
 
       return ApiResponse.OK(res, {
-        message: "Delete blog successfully",
+        message: BLOG_MESSAGES.DELETE_SUCCESS,
         data,
       });
     } catch (error) {

@@ -48,12 +48,12 @@ export const getArticles = async (query) => {
   const pageNum = parseInt(page, 10);
   const limitNum = parseInt(limit, 10);
 
-  const items = await Article.find(filter)
+  const posts = await Article.find(filter)
     .skip((pageNum - 1) * limitNum)
     .limit(limitNum)
     .sort({ createdAt: -1 });
 
   const total = await Article.countDocuments(filter);
 
-  return { items, total };
+  return { posts, total };
 };

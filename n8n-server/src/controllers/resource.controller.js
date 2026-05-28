@@ -1,3 +1,4 @@
+import { RESOURCE_MESSAGES } from "../configs/messages.js";
 import { ApiResponse } from "../configs/response.js";
 import { resourceService } from "../service/resource.service.js";
 
@@ -7,7 +8,7 @@ export const resourceController = {
       const data = await resourceService.create(req.body);
 
       return ApiResponse.Created(res, {
-        message: "Create resource successfully",
+        message: RESOURCE_MESSAGES.CREATE_SUCCESS,
         data,
       });
     } catch (error) {
@@ -20,7 +21,7 @@ export const resourceController = {
       const data = await resourceService.getAll(req.query);
 
       return ApiResponse.OK(res, {
-        message: "Get resources successfully",
+        message: RESOURCE_MESSAGES.GET_LIST_SUCCESS,
         data,
       });
     } catch (error) {
@@ -33,7 +34,7 @@ export const resourceController = {
       const data = await resourceService.getById(req.params.id);
 
       return ApiResponse.OK(res, {
-        message: "Get resource successfully",
+        message: RESOURCE_MESSAGES.GET_SUCCESS,
         data,
       });
     } catch (error) {
@@ -46,7 +47,7 @@ export const resourceController = {
       const data = await resourceService.getBySlug(req.params.slug);
 
       return ApiResponse.OK(res, {
-        message: "Get resource successfully",
+        message: RESOURCE_MESSAGES.GET_SUCCESS,
         data,
       });
     } catch (error) {
@@ -62,7 +63,7 @@ export const resourceController = {
       );
 
       return ApiResponse.OK(res, {
-        message: "Update resource successfully",
+        message: RESOURCE_MESSAGES.UPDATE_SUCCESS,
         data,
       });
     } catch (error) {
@@ -75,7 +76,7 @@ export const resourceController = {
       const data = await resourceService.remove(req.params.id);
 
       return ApiResponse.OK(res, {
-        message: "Delete resource successfully",
+        message: RESOURCE_MESSAGES.DELETE_SUCCESS,
         data,
       });
     } catch (error) {

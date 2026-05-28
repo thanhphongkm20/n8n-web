@@ -1,3 +1,4 @@
+import { SUBSCRIBE_MESSAGES } from "../configs/messages.js";
 import { sendSubscribeMail } from "../middlewares/mailer.js";
 
 export const subscribe = async (req, res) => {
@@ -7,7 +8,7 @@ export const subscribe = async (req, res) => {
     if (!email) {
       return res.status(400).json({
         success: false,
-        message: "Email is required",
+        message: SUBSCRIBE_MESSAGES.EMAIL_REQUIRED,
       });
     }
 
@@ -16,7 +17,7 @@ export const subscribe = async (req, res) => {
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
-        message: "Invalid email",
+        message: SUBSCRIBE_MESSAGES.INVALID_EMAIL,
       });
     }
 
@@ -24,14 +25,14 @@ export const subscribe = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "Subscribed successfully",
+      message: SUBSCRIBE_MESSAGES.SUBSCRIBE_SUCCESS,
     });
   } catch (error) {
     console.error(error);
 
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: SUBSCRIBE_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };

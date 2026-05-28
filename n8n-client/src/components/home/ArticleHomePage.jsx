@@ -341,17 +341,20 @@ const ArticleHomePage = () => {
                 >
                   {article.sales_count} sold
                 </Typography>
-                <Typography
-                  sx={{
-                    color: "rgba(226,232,240,0.38)",
-                    fontWeight: 900,
-                    fontSize: 20,
-                    textDecoration: "line-through",
-                    textDecorationThickness: "2px",
-                  }}
-                >
-                  ${article.price}
-                </Typography>
+                {Number(article.discount || 0) > 0 && (
+                  <Typography
+                    sx={{
+                      color: "rgba(226,232,240,0.38)",
+                      fontWeight: 900,
+                      fontSize: 20,
+                      textDecoration: "line-through",
+                      textDecorationThickness: "2px",
+                    }}
+                  >
+                    ${article.price}
+                  </Typography>
+                )}
+
                 <Typography
                   sx={{
                     position: "relative",

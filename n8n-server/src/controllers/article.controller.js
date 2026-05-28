@@ -4,6 +4,7 @@ import slugify from "slugify";
 import { calculatePrice } from "../utils/calculatePrice.js";
 import { uploadImage, uploadFile } from "../utils/uploadToCloudinary.js";
 import * as service from "../service/article.service.js";
+import { ARTICLE_MESSAGES } from "../configs/messages.js";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -29,7 +30,7 @@ export const create = async (req, res) => {
       data.image = await uploadImage(req.files.image[0]);
     } else if (!data.image) {
       return res.status(400).json({
-        message: "Image is required",
+        message: ARTICLE_MESSAGES.IMAGE_REQUIRED,
       });
     }
 
@@ -103,7 +104,7 @@ export const update = async (req, res) => {
 
       if (!current) {
         return res.status(404).json({
-          message: "Article not found",
+          message: ARTICLE_MESSAGES.ARTICLE_NOT_FOUND,
         });
       }
 
@@ -125,7 +126,7 @@ export const update = async (req, res) => {
 
     if (!updated) {
       return res.status(404).json({
-        message: "Article not found",
+        message: ARTICLE_MESSAGES.ARTICLE_NOT_FOUND,
       });
     }
 
@@ -159,7 +160,7 @@ export const getDetail = async (req, res) => {
 
     if (!data) {
       return res.status(404).json({
-        message: "Article not found",
+        message: ARTICLE_MESSAGES.ARTICLE_NOT_FOUND,
       });
     }
 
@@ -184,7 +185,7 @@ export const getList = async (req, res) => {
   try {
     const data = await service.getArticles(req.query);
 
-    const safeItems = Array.isArray(data?.items) ? data.items : [];
+    const safeItems = Array.isArray(data?.posts) ? data.posts : [];
 
     const articles = safeItems.map((item) => ({
       ...item.toObject(),
@@ -194,7 +195,7 @@ export const getList = async (req, res) => {
     return res.json({
       success: true,
       ...data,
-      items: articles,
+      posts: articles,
     });
   } catch (err) {
     return res.status(500).json({
@@ -210,7 +211,7 @@ export const getBySlug = async (req, res) => {
 
     if (!data) {
       return res.status(404).json({
-        message: "Article not found",
+        message: ARTICLE_MESSAGES.ARTICLE_NOT_FOUND,
       });
     }
 
@@ -237,7 +238,7 @@ export const generateSlugAI = async (req, res) => {
 
     if (!title) {
       return res.status(400).json({
-        message: "Title is required",
+        message: ARTICLE_MESSAGES.TITLE_REQUIRED,
       });
     }
 
@@ -260,7 +261,7 @@ Title: "${title}"
     let baseSlug = response.output_text || "";
 
     if (!baseSlug) {
-      throw new Error("Empty AI response");
+      throw new Error(ARTICLE_MESSAGES.EMPTY_AI_RESPONSE);
     }
 
     baseSlug = baseSlug

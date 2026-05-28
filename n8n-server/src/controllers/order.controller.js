@@ -1,3 +1,4 @@
+import { ORDER_MESSAGES } from "../configs/messages.js";
 import * as orderService from "../service/order.service.js";
 
 export const createOrder = async (req, res) => {
@@ -9,7 +10,7 @@ export const createOrder = async (req, res) => {
     if (!result) {
       return res.status(404).json({
         success: false,
-        message: "Article not found",
+        message: ORDER_MESSAGES.ARTICLE_NOT_FOUND,
       });
     }
 
@@ -34,7 +35,7 @@ export const createOrder = async (req, res) => {
     console.error("Create order error:", error);
     return res.status(500).json({
       success: false,
-      message: "Failed to create order",
+      message: ORDER_MESSAGES.CREATE_ORDER_FAILED,
     });
   }
 };
@@ -46,7 +47,7 @@ export const getOrder = async (req, res) => {
     if (!order) {
       return res.status(404).json({
         success: false,
-        message: "Order not found",
+        message: ORDER_MESSAGES.ORDER_NOT_FOUND,
       });
     }
 
@@ -57,7 +58,7 @@ export const getOrder = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Failed to get order",
+      message: ORDER_MESSAGES.GET_ORDER_FAILED,
     });
   }
 };
@@ -69,7 +70,7 @@ export const markOrderPaid = async (req, res) => {
     if (!order) {
       return res.status(404).json({
         success: false,
-        message: "Order not found",
+        message: ORDER_MESSAGES.ORDER_NOT_FOUND,
       });
     }
 
@@ -80,7 +81,7 @@ export const markOrderPaid = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Failed to update order",
+      message: ORDER_MESSAGES.UPDATE_ORDER_FAILED,
     });
   }
 };
