@@ -1,4 +1,4 @@
-import Quote from "../models/quote.model.js";
+import { Quote } from "../models/quote.model.js";
 import { mailTransporter } from "../configs/mail.config.js";
 
 export const createQuote = async (data) => {

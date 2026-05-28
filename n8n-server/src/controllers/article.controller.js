@@ -1,38 +1,20 @@
-import slugify from "slugify";
-import * as service from "../service/article.service.js";
-import { uploadImage, uploadFile } from "../utils/uploadToCloudinary.js";
 import OpenAI from "openai";
+import slugify from "slugify";
+
+import { calculatePrice } from "../utils/calculatePrice.js";
+import { uploadImage, uploadFile } from "../utils/uploadToCloudinary.js";
+import * as service from "../service/article.service.js";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-// ================= PRICE =================
-const calculatePrice = (price, discount = 0) => {
-  const safePrice = Number(price) || 0;
-
-  const safeDiscount = Math.min(Math.max(Number(discount) || 0, 0), 100);
-
-  const finalPrice = safePrice - (safePrice * safeDiscount) / 100;
-
-  return {
-    price: safePrice,
-
-    discount: safeDiscount,
-
-    final_price: Number(finalPrice.toFixed(2)),
-
-    price_formatted: `$${finalPrice.toFixed(2)}`,
-
-    original_price_formatted: `$${safePrice.toFixed(2)}`,
-  };
-};
 
 // ================= CREATE =================
 export const create = async (req, res) => {
   try {
     const data = req.validatedBody;
 
+    // ================= CLEAN DESCRIPTION =================
     if (data.description) {
       data.description = data.description
         .replace(/<[^>]*>?/gm, "")
@@ -160,11 +142,11 @@ export const remove = async (req, res) => {
   try {
     await service.deleteArticle(req.params.id);
 
-    res.json({
+    return res.json({
       success: true,
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       message: err.message,
     });
   }
@@ -186,12 +168,12 @@ export const getDetail = async (req, res) => {
       ...calculatePrice(data.price, data.discount),
     };
 
-    res.json({
+    return res.json({
       success: true,
       data: formatted,
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       message: err.message,
     });
   }
@@ -206,17 +188,16 @@ export const getList = async (req, res) => {
 
     const articles = safeItems.map((item) => ({
       ...item.toObject(),
-
       ...calculatePrice(item.price, item.discount),
     }));
 
-    res.json({
+    return res.json({
       success: true,
       ...data,
       items: articles,
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       message: err.message,
     });
   }
@@ -235,16 +216,15 @@ export const getBySlug = async (req, res) => {
 
     const formatted = {
       ...data.toObject(),
-
       ...calculatePrice(data.price, data.discount),
     };
 
-    res.json({
+    return res.json({
       success: true,
       data: formatted,
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       message: err.message,
     });
   }
@@ -264,7 +244,8 @@ export const generateSlugAI = async (req, res) => {
     const prompt = `
 You are a world-class SEO copywriter and growth marketer.
 
-Your task is to create a highly compelling, curiosity-driven URL slug for selling automation workflows (focused on n8n).
+Your task is to create a highly compelling, curiosity-driven URL slug
+for selling automation workflows (focused on n8n).
 
 Return ONLY the slug.
 
