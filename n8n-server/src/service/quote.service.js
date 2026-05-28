@@ -1,4 +1,13 @@
+import Quote from "../models/quote.model.js";
 import { mailTransporter } from "../configs/mail.config.js";
+
+export const createQuote = async (data) => {
+  const newQuote = await Quote.create(data);
+
+  await sendQuoteEmail(data);
+
+  return newQuote;
+};
 
 export const sendQuoteEmail = async (data) => {
   const html = `

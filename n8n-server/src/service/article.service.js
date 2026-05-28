@@ -1,5 +1,9 @@
 import Article from "../models/article.model.js";
 
+export const isSlugTaken = async (slug) => {
+  return Boolean(await Article.exists({ slug }));
+};
+
 export const createArticle = async (data, userId) => {
   return await Article.create({
     ...data,
@@ -37,19 +41,19 @@ export const getArticles = async (query) => {
     filter.title = { $regex: search, $options: "i" };
   }
 
-  if (query.status) {
-    filter.status = query.status;
+  if (status) {
+    filter.status = status;
   }
 
-  const pageNum = parseInt(page);
-  const limitNum = parseInt(limit);
+  const pageNum = parseInt(page, 10);
+  const limitNum = parseInt(limit, 10);
 
-  const posts = await Article.find(filter)
+  const items = await Article.find(filter)
     .skip((pageNum - 1) * limitNum)
     .limit(limitNum)
     .sort({ createdAt: -1 });
 
   const total = await Article.countDocuments(filter);
 
-  return { posts, total };
+  return { items, total };
 };

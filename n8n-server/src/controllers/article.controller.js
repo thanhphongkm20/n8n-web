@@ -1,5 +1,4 @@
 import slugify from "slugify";
-import Article from "../models/article.model.js";
 import * as service from "../service/article.service.js";
 import { uploadImage, uploadFile } from "../utils/uploadToCloudinary.js";
 import OpenAI from "openai";
@@ -72,7 +71,7 @@ export const create = async (req, res) => {
     let slug = baseSlug;
     let count = 1;
 
-    while (await Article.findOne({ slug })) {
+    while (await service.isSlugTaken(slug)) {
       slug = `${baseSlug}-${count++}`;
     }
 
@@ -84,13 +83,13 @@ export const create = async (req, res) => {
 
     // ================= CREATE =================
 
-    const article = await Article.create({
-      ...data,
-      ...priceData,
-
-      created_by: req.user._id || req.user.id,
-      updated_by: req.user._id || req.user.id,
-    });
+    const article = await service.createArticle(
+      {
+        ...data,
+        ...priceData,
+      },
+      req.user._id || req.user.id,
+    );
 
     return res.status(201).json(article);
   } catch (error) {
@@ -118,7 +117,7 @@ export const update = async (req, res) => {
     // ================= PRICE =================
 
     if (data.price !== undefined || data.discount !== undefined) {
-      const current = await Article.findById(req.params.id);
+      const current = await service.getArticleById(req.params.id);
 
       if (!current) {
         return res.status(404).json({
@@ -293,7 +292,7 @@ Title: "${title}"
     let slug = baseSlug;
     let count = 1;
 
-    while (await Article.findOne({ slug })) {
+    while (await service.isSlugTaken(slug)) {
       slug = `${baseSlug}-${count++}`;
     }
 
@@ -307,7 +306,7 @@ Title: "${title}"
     let slug = baseSlug;
     let count = 1;
 
-    while (await Article.findOne({ slug })) {
+    while (await service.isSlugTaken(slug)) {
       slug = `${baseSlug}-${count++}`;
     }
 

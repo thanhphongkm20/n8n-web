@@ -1,19 +1,16 @@
 // controllers/quote.controller.js
-import { Quote } from "../models/quote.model.js";
-import { sendQuoteEmail } from "../service/quote.service.js";
+import { createQuote as createQuoteService } from "../service/quote.service.js";
 
 export const createQuote = async (req, res) => {
   try {
     const data = req.validatedBody;
 
-    const newQuote = await Quote.create(data);
-
-    await sendQuoteEmail(data);
+    const newQuote = await createQuoteService(data);
 
     return res.json({
       success: true,
       message: "Quote request sent successfully",
-      data: newQuote
+      data: newQuote,
     });
   } catch (error) {
     console.error(error);
