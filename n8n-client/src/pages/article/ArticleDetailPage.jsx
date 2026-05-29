@@ -182,7 +182,7 @@ const ArticleDetailPage = () => {
                     border: "1px solid rgba(239,68,68,0.3)",
                   }}>
                     <Flame size={20} color="#f87171" />
-                    <Typography sx={{ fontSize: 20, fontWeight: 900, color: "#f87171", letterSpacing: "0.08em" }}>
+                    <Typography sx={{ fontSize: 18, fontWeight: 900, color: "#f87171", letterSpacing: "0.08em" }}>
                       {article.badge.toUpperCase()}
                     </Typography>
                   </Box>
@@ -193,7 +193,7 @@ const ArticleDetailPage = () => {
                     bgcolor: "rgba(16,185,129,0.1)",
                     border: "1px solid rgba(16,185,129,0.25)",
                   }}>
-                    <Typography sx={{ fontSize: 20, fontWeight: 900, color: "#10b981", letterSpacing: "0.08em" }}>
+                    <Typography sx={{ fontSize: 18, fontWeight: 900, color: "#10b981", letterSpacing: "0.08em" }}>
                       {article.category.toUpperCase()}
                     </Typography>
                   </Box>
