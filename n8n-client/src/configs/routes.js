@@ -22,6 +22,7 @@ export const ROUTES = {
     LIST: "/admin/resources",
     CREATE: "/admin/resources/create",
     UPDATE: "/admin/resources/:id/update",
+    DETAIL: "/resources/:slug",
   },
 
   BLOG_ADMIN: {
@@ -43,4 +44,5 @@ export const ROUTES_GEN = {
   blogUpdate: (id) => `/admin/blogs/${id}/update`,
   articleDetail: (slug) => `/articles/${slug}`,
   blogDetail: (slug) => `/blogs/${slug}`,
+  resourceDetail: (slug) => `/resources/${slug}`,
 };

@@ -8,7 +8,7 @@ const COLUMN_SIZE = 2;
 const VISIBLE_COLUMNS = 4;
 const VISIBLE_ITEMS = COLUMN_SIZE * VISIBLE_COLUMNS;
 
-const ResourceList = ({ loading, resources = [] }) => {
+const ResourceList = ({ loading, resources = [], onViewDetail }) => {
   const [startIndex, setStartIndex] = useState(0);
 
   const maxStartIndex = Math.max(0, resources.length - VISIBLE_ITEMS);
@@ -150,6 +150,7 @@ const ResourceList = ({ loading, resources = [] }) => {
             <ResourceCard
               key={resource._id || resource.id}
               resource={resource}
+              onViewDetail={onViewDetail}
             />
           ))}
         </Box>

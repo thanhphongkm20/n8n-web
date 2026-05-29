@@ -73,7 +73,7 @@ const BlogDetailPage = () => {
         pb: 10,
       }}
     >
-      <Container maxWidth="md" sx={{ pt: 5 }}>
+      <Container maxWidth="lg" sx={{ pt: 5 }}>
         <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
           <Chip
             label={typeLabel}

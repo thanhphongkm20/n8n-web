@@ -32,6 +32,7 @@ import ArticleDetailPage from "../pages/article/ArticleDetailPage.jsx";
 import BlogDetailPage from "../pages/blog/BlogDetailPage.jsx";
 import AboutUsPage from "../pages/AboutUSPage.jsx";
 import AccountSettingsPage from "../pages/account/AccountSettingsPage.jsx";
+import ResourceDetailPage from "../pages/resource/ResourceDetailPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
           {
             path: ROUTES.ARTICLE.DETAIL,
             element: <ArticleDetailPage />,
+          },
+          {
+            path: ROUTES.RESOURCE.DETAIL,
+            element: <ResourceDetailPage />,
           },
           {
             path: ROUTES.BLOG_ADMIN.DETAIL,

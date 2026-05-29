@@ -1,5 +1,6 @@
 import { Box, ThemeProvider } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { darkTheme } from "../../configs/constants";
 import { LoadingPage } from "../bases/LoadingPage";
@@ -8,8 +9,11 @@ import ResourceHero from "../../components/resource/ResourceHero";
 import ResourceList from "../../components/resource/ResourceList";
 
 import resourceApi from "../../api/resource.api";
+import { ROUTES, ROUTES_GEN } from "../../configs/routes";
 
 const ResourcesPage = () => {
+  const navigate = useNavigate();
+
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
@@ -27,7 +31,6 @@ const ResourcesPage = () => {
         if (ignore) return;
 
         const data = response?.data?.items;
-
         setResources(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Fetch resources error:", error);
@@ -49,6 +52,10 @@ const ResourcesPage = () => {
     };
   }, []);
 
+  const handleViewDetail = (resource) => {
+    navigate(ROUTES_GEN.resourceDetail(resource.slug));
+  };
+
   const counts = useMemo(() => {
     const result = {
       all: resources.length,
@@ -56,7 +63,6 @@ const ResourcesPage = () => {
 
     resources.forEach((item) => {
       if (!item.type) return;
-
       result[item.type] = (result[item.type] || 0) + 1;
     });
 
@@ -101,8 +107,11 @@ const ResourcesPage = () => {
           onFilterChange={setFilter}
           onSearchChange={setSearch}
         />
-
-        <ResourceList loading={loading} resources={filteredResources} />
+        <ResourceList
+          loading={loading}
+          resources={filteredResources}
+          onViewDetail={handleViewDetail}
+        />
       </Box>
     </ThemeProvider>
   );

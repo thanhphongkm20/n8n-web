@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Card,
+  CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
@@ -24,8 +25,13 @@ const formatDate = (date) => {
   });
 };
 
-const ResourceCard = ({ resource }) => {
+const ResourceCard = ({ resource, onViewDetail }) => {
   const typeConfig = TYPE_CONFIG[resource.type];
+  const handleView = () => {
+    if (onViewDetail) {
+      onViewDetail(resource);
+    }
+  };
 
   return (
     <Card
@@ -73,169 +79,181 @@ const ResourceCard = ({ resource }) => {
         </Box>
       )}
 
-      {resource.thumbnail && (
-        <Box
-          sx={{
-            position: "relative",
-            height: 165,
-            bgcolor: "#101A2D",
-            overflow: "hidden",
-          }}
-        >
-          <CardMedia
-            component="img"
-            image={resource.thumbnail}
-            alt={resource.title}
-            sx={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-
-          <Box
-            sx={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to top, rgba(13,21,37,0.95), transparent 60%)",
-            }}
-          />
-
-          <Chip
-            icon={typeConfig.icon}
-            label={typeConfig.label}
-            size="small"
-            sx={{
-              position: "absolute",
-              left: 14,
-              bottom: 12,
-              bgcolor: typeConfig.bg,
-              color: typeConfig.color,
-              border: `1px solid ${typeConfig.color}66`,
-              fontWeight: 700,
-              "& .MuiChip-icon": {
-                color: typeConfig.color,
-              },
-            }}
-          />
-        </Box>
-      )}
-
-      <CardContent
+      <CardActionArea
+        onClick={handleView}
         sx={{
           flexGrow: 1,
-          p: 2,
           display: "flex",
           flexDirection: "column",
+          alignItems: "stretch",
+          textAlign: "left",
+          overflow: "hidden",
         }}
       >
-        <Typography
-          sx={{
-            mb: 1,
-            color: "text.primary",
-            fontWeight: 800,
-            fontSize: "1rem",
-            lineHeight: 1.4,
-            minHeight: 45,
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
-          {resource.title}
-        </Typography>
+        {resource.thumbnail && (
+          <Box
+            sx={{
+              position: "relative",
+              height: 165,
+              bgcolor: "#101A2D",
+              overflow: "hidden",
+            }}
+          >
+            <CardMedia
+              component="img"
+              image={resource.thumbnail}
+              alt={resource.title}
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
 
-        <Typography
-          sx={{
-            mb: 2,
-            color: "text.secondary",
-            fontSize: "0.82rem",
-            lineHeight: 1.6,
-            minHeight: 64,
-            maxHeight: 64,
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
-          {resource.description}
-        </Typography>
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to top, rgba(13,21,37,0.95), transparent 60%)",
+              }}
+            />
 
-        <Stack
-          direction="row"
-          sx={{
-            flexWrap: "wrap",
-            gap: 1,
-            minHeight: 84,
-            maxHeight: 84,
-            overflow: "hidden",
-            alignContent: "flex-start",
-          }}
-        >
-          {(resource.tags).map((tag) => (
             <Chip
-              key={tag}
-              label={tag}
+              icon={typeConfig.icon}
+              label={typeConfig.label}
               size="small"
               sx={{
-                height: 28,
-                px: 0.5,
-                borderRadius: "999px",
-                fontSize: "0.72rem",
+                position: "absolute",
+                left: 14,
+                bottom: 12,
+                bgcolor: typeConfig.bg,
+                color: typeConfig.color,
+                border: `1px solid ${typeConfig.color}66`,
                 fontWeight: 700,
-                letterSpacing: "0.02em",
-
-                color: "#7CF7E3",
-                bgcolor: "rgba(0,201,167,0.10)",
-                border: "1px solid rgba(0,201,167,0.24)",
-
-                backdropFilter: "blur(10px)",
-                boxShadow: "0 2px 10px rgba(0,201,167,0.08)",
-
-                transition: "all 0.2s ease",
-
-                "& .MuiChip-label": {
-                  px: 1.2,
-                },
-
-                "&:hover": {
-                  transform: "translateY(-1px)",
-                  bgcolor: "rgba(0,201,167,0.18)",
-                  borderColor: "rgba(0,201,167,0.5)",
-                  color: "#B8FFF4",
-                  boxShadow: "0 6px 18px rgba(0,201,167,0.22)",
+                "& .MuiChip-icon": {
+                  color: typeConfig.color,
                 },
               }}
             />
-          ))}
-        </Stack>
+          </Box>
+        )}
 
-        <Box sx={{ mt: "auto" }}>
-          <Divider sx={{ my: 2 }} />
+        <CardContent
+          sx={{
+            flexGrow: 1,
+            p: 2,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography
+            sx={{
+              mb: 1,
+              color: "text.primary",
+              fontWeight: 800,
+              fontSize: "1rem",
+              lineHeight: 1.4,
+              minHeight: 45,
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {resource.title}
+          </Typography>
+
+          <Typography
+            sx={{
+              mb: 2,
+              color: "text.secondary",
+              fontSize: "0.82rem",
+              lineHeight: 1.6,
+              minHeight: 64,
+              maxHeight: 64,
+              display: "-webkit-box",
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {resource.description}
+          </Typography>
 
           <Stack
             direction="row"
-            spacing={0.8}
             sx={{
-              alignItems: "center",
+              flexWrap: "wrap",
+              gap: 1,
+              minHeight: 84,
+              maxHeight: 84,
+              overflow: "hidden",
+              alignContent: "flex-start",
             }}
           >
-            <Clock3 size={14} color="#8B9BB4" />
-            <Typography
+            {(resource.tags).map((tag) => (
+              <Chip
+                key={tag}
+                label={tag}
+                size="small"
+                sx={{
+                  height: 28,
+                  px: 0.5,
+                  borderRadius: "999px",
+                  fontSize: "0.72rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.02em",
+
+                  color: "#7CF7E3",
+                  bgcolor: "rgba(0,201,167,0.10)",
+                  border: "1px solid rgba(0,201,167,0.24)",
+
+                  backdropFilter: "blur(10px)",
+                  boxShadow: "0 2px 10px rgba(0,201,167,0.08)",
+
+                  transition: "all 0.2s ease",
+
+                  "& .MuiChip-label": {
+                    px: 1.2,
+                  },
+
+                  "&:hover": {
+                    transform: "translateY(-1px)",
+                    bgcolor: "rgba(0,201,167,0.18)",
+                    borderColor: "rgba(0,201,167,0.5)",
+                    color: "#B8FFF4",
+                    boxShadow: "0 6px 18px rgba(0,201,167,0.22)",
+                  },
+                }}
+              />
+            ))}
+          </Stack>
+
+          <Box sx={{ mt: "auto" }}>
+            <Divider sx={{ my: 2 }} />
+
+            <Stack
+              direction="row"
+              spacing={0.8}
               sx={{
-                color: "text.secondary",
-                fontSize: "0.74rem",
-                lineHeight: 1,
+                alignItems: "center",
               }}
             >
-              {formatDate(resource.createdAt)}
-            </Typography>
-          </Stack>
-        </Box>
-      </CardContent>
+              <Clock3 size={14} color="#8B9BB4" />
+              <Typography
+                sx={{
+                  color: "text.secondary",
+                  fontSize: "0.74rem",
+                  lineHeight: 1,
+                }}
+              >
+                {formatDate(resource.createdAt)}
+              </Typography>
+            </Stack>
+          </Box>
+        </CardContent>
+      </CardActionArea>
 
       <CardActions sx={{ px: 2, pb: 2, pt: 0, gap: 1 }}>
         {resource.download_url && (
