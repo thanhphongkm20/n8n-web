@@ -5,7 +5,11 @@ import { TAG_COLORS } from "../common/Colors";
 import { UI } from "../../configs/constants";
 
 const BlogTagSection = ({ tags = [] }) => {
-  if (!tags.length) return null;
+  const uniqueTags = tags.filter(
+    (tag, index, arr) =>
+      index === arr.findIndex((t) => t.toLowerCase() === tag.toLowerCase())
+  );
+  if (!uniqueTags.length) return null;
 
   return (
     <Box
@@ -52,11 +56,11 @@ const BlogTagSection = ({ tags = [] }) => {
             gap: 2,
           }}
         >
-          {tags.map((tag, index) => {
+          {uniqueTags.map((tag, index) => {
             const color = TAG_COLORS[index % TAG_COLORS.length];
             return (
               <Box
-                key={tag}
+                key={`${tag}-${index}`}
                 sx={{
                   position: "relative",
                   display: "inline-flex",
