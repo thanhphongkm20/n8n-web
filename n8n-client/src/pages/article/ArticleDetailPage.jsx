@@ -182,7 +182,7 @@ const ArticleDetailPage = () => {
                     border: "1px solid rgba(239,68,68,0.3)",
                   }}>
                     <Flame size={20} color="#f87171" />
-                    <Typography sx={{ fontSize: 11, fontWeight: 900, color: "#f87171", letterSpacing: "0.08em" }}>
+                    <Typography sx={{ fontSize: 20, fontWeight: 900, color: "#f87171", letterSpacing: "0.08em" }}>
                       {article.badge.toUpperCase()}
                     </Typography>
                   </Box>
