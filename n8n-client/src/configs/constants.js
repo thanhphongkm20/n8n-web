@@ -17,7 +17,14 @@ import {
   MessageCircle,
   Sparkles,
   Rocket,
+  Check,
+  FileJson,
+  Video,
+  Headphones,
+  RefreshCw,
+  ShieldCheck,
 } from "lucide-react";
+
 import { createTheme } from "@mui/material/styles";
 
 export const API_URL =
@@ -400,4 +407,52 @@ export const BADGE_OPTIONS = [
   { title: "None", value: "none" },
 ];
 
-export const CATEGORIES = ["All", "Marketing", "AI", "CRM", "Data", "E-commerce", "Productivity", "Sales", "Finance"];
+export const CATEGORIES = [
+  "All",
+  "Marketing",
+  "AI",
+  "CRM",
+  "Data",
+  "E-commerce",
+  "Productivity",
+  "Sales",
+  "Finance",
+];
+
+export const PURCHASEITEMS = [
+  {
+    icon: FileJson,
+    label: "n8n workflow .json file",
+  },
+  {
+    icon: FileText,
+    label: "Setup documentation",
+  },
+  {
+    icon: Video,
+    label: "Video walkthrough",
+  },
+  {
+    icon: Headphones,
+    label: "30-day author support",
+  },
+  {
+    icon: RefreshCw,
+    label: "Free lifetime updates",
+  },
+  {
+    icon: ShieldCheck,
+    label: "Commercial use license",
+  },
+];
+
+export const N8N_COMMON_NODES = [
+  "Facebook Lead Ads",
+  "Google Forms",
+  "HubSpot CRM",
+  "Gmail",
+  "Google Sheets",
+  "HTTP Request",
+  "If / Switch",
+  "Set",
+];

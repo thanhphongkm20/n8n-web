@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import {
@@ -11,7 +11,24 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Check, HelpCircle, ShieldCheck, ShoppingCart } from "lucide-react";
+import {
+  Check,
+  HelpCircle,
+  ShieldCheck,
+  ShoppingCart,
+  Flame,
+  Tag,
+  FileCode,
+  BookOpen,
+  Play,
+  Headphones,
+  RefreshCw,
+  BadgeCheck,
+  BarChart2,
+  Cpu,
+  Hash,
+  Clock,
+} from "lucide-react";
 
 import articleApi from "../../api/article.api";
 import { LoadingPage } from "../bases/LoadingPage";
@@ -20,7 +37,7 @@ import ArticleHeroMedia from "../../components/article/ArticleHeroMedia";
 import ArticleFaq from "../../components/article/ArticleFaq";
 import OrderConfirmModal from "../../components/payment/OrderConfirmModal";
 import PaymentQrModal from "../../components/payment/PaymentQrModal";
-import { faqs } from "../../configs/constants";
+import { faqs, N8N_COMMON_NODES, PURCHASEITEMS } from "../../configs/constants";
 
 const ArticleDetailPage = () => {
   const { slug } = useParams();
@@ -42,14 +59,6 @@ const ArticleDetailPage = () => {
   const [creatingOrder, setCreatingOrder] = useState(false);
   const [currentOrder, setCurrentOrder] = useState(null);
   const [paid, setPaid] = useState(false);
-
-  const priceText = useMemo(() => {
-    if (!article) return "";
-    return (
-      article.price_formatted ||
-      `${article.price?.toLocaleString("vi-VN")} ₫`
-    );
-  }, [article]);
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -164,6 +173,47 @@ const ArticleDetailPage = () => {
             <Box>
               <ArticleHeroMedia image={article.image} />
 
+              <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: "wrap" }}>
+                {article.badge && (
+                  <Box sx={{
+                    display: "inline-flex", alignItems: "center", gap: 0.6,
+                    px: 1.4, py: 0.5, borderRadius: 999,
+                    bgcolor: "rgba(239,68,68,0.12)",
+                    border: "1px solid rgba(239,68,68,0.3)",
+                  }}>
+                    <Flame size={20} color="#f87171" />
+                    <Typography sx={{ fontSize: 11, fontWeight: 900, color: "#f87171", letterSpacing: "0.08em" }}>
+                      {article.badge.toUpperCase()}
+                    </Typography>
+                  </Box>
+                )}
+                {article.category && (
+                  <Box sx={{
+                    px: 1.4, py: 0.5, borderRadius: 999,
+                    bgcolor: "rgba(16,185,129,0.1)",
+                    border: "1px solid rgba(16,185,129,0.25)",
+                  }}>
+                    <Typography sx={{ fontSize: 20, fontWeight: 900, color: "#10b981", letterSpacing: "0.08em" }}>
+                      {article.category.toUpperCase()}
+                    </Typography>
+                  </Box>
+                )}
+              </Stack>
+              <Stack direction="row" spacing={2.5} sx={{ mt: 1.5, flexWrap: "wrap" }} alignItems="center">
+                {[
+                  { icon: <BarChart2 size={16} />, label: `${article.sales_count} sales` },
+                  { icon: <Cpu size={16} />, label: `${article.node_count ?? 0} nodes` },
+                  { icon: <Hash size={16} />, label: article.slug },
+                ].map(({ icon, label }) => (
+                  <Stack key={label} direction="row" spacing={0.6} alignItems="center">
+                    <Box sx={{ color: "#4a5568", display: "flex" }}>{icon}</Box>
+                    <Typography sx={{ fontSize: 14, color: "#6b7a99", fontWeight: 500 }}>
+                      {label}
+                    </Typography>
+                  </Stack>
+                ))}
+              </Stack>
+
               <Typography
                 component="h1"
                 sx={{
@@ -195,6 +245,46 @@ const ArticleDetailPage = () => {
                 icon={<HelpCircle size={16} />}
               >
                 <ArticleFaq items={faqs} />
+                {!!article.node_count && (
+                  <Section title="Workflow nodes" icon={<Cpu size={16} />}>
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                      {N8N_COMMON_NODES.slice(0, Math.min(8, article.node_count)).map((node) => (
+                        <Box
+                          key={node}
+                          sx={{
+                            display: "inline-flex", alignItems: "center", gap: 0.8,
+                            px: 1.5, py: 0.75, borderRadius: 2.5,
+                            bgcolor: "#0d1322",
+                            border: "1px solid rgba(255,255,255,0.07)",
+                            transition: "border-color 0.15s",
+                            "&:hover": { borderColor: "rgba(16,185,129,0.3)" },
+                          }}
+                        >
+                          <Box sx={{ width: 6, height: 6, borderRadius: "50%", bgcolor: "#10b981", flexShrink: 0 }} />
+                          <Typography sx={{ fontSize: 13, color: "#94a3b8", fontWeight: 500 }}>
+                            {node}
+                          </Typography>
+                        </Box>
+                      ))}
+
+                      {article.node_count > 8 && (
+                        <Box
+                          sx={{
+                            display: "inline-flex", alignItems: "center", gap: 0.8,
+                            px: 1.5, py: 0.75, borderRadius: 2.5,
+                            bgcolor: "rgba(16,185,129,0.05)",
+                            border: "1px dashed rgba(16,185,129,0.25)",
+                          }}
+                        >
+                          <Box sx={{ width: 6, height: 6, borderRadius: "50%", bgcolor: "rgba(16,185,129,0.4)", flexShrink: 0 }} />
+                          <Typography sx={{ fontSize: 13, color: "#6b7a99", fontWeight: 500 }}>
+                            +{article.node_count - 8} more nodes
+                          </Typography>
+                        </Box>
+                      )}
+                    </Box>
+                  </Section>
+                )}
               </Section>
             </Box>
 
@@ -208,18 +298,66 @@ const ArticleDetailPage = () => {
                   border: "1px solid rgba(255,255,255,0.08)",
                 }}
               >
-                <Typography
-                  sx={{
-                    fontSize: { xs: 34, md: 42 },
-                    fontWeight: 950,
-                    lineHeight: 1,
-                    color: "#ffffff",
-                    letterSpacing: "-0.04em",
-                    textAlign: "left",
-                  }}
-                >
-                  {priceText}
-                </Typography>
+                <Box>
+                  {!!article.discount && (
+                    <Stack direction="row" spacing={1.2} alignItems="center" sx={{ mb: 1 }}>
+                      <Typography
+                        sx={{
+                          fontSize: 16,
+                          fontWeight: 800,
+                          color: "rgba(255,255,255,0.4)",
+                          textDecoration: "line-through",
+                          textDecorationThickness: "2px",
+                        }}
+                      >
+                        ${article.price}
+                      </Typography>
+
+                      <Box
+                        sx={{
+                          px: 1.2,
+                          py: 0.45,
+                          borderRadius: 999,
+                          bgcolor: "rgba(16,185,129,0.15)",
+                          border: "1px solid rgba(16,185,129,0.25)",
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            color: "#10b981",
+                            fontSize: 12,
+                            fontWeight: 900,
+                          }}
+                        >
+                          SALE {article.discount}%
+                        </Typography>
+                      </Box>
+                    </Stack>
+                  )}
+
+                  <Typography
+                    sx={{
+                      fontSize: { xs: 40, md: 52 },
+                      fontWeight: 950,
+                      lineHeight: 1,
+                      color: "#ffffff",
+                      letterSpacing: "-0.05em",
+                    }}
+                  >
+                    {article.price_formatted}
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      mt: 1,
+                      color: "#94a3b8",
+                      fontSize: 13,
+                      fontWeight: 600,
+                    }}
+                  >
+                    One-time payment • Lifetime access
+                  </Typography>
+                </Box>
 
                 <Button
                   fullWidth
@@ -255,33 +393,45 @@ const ArticleDetailPage = () => {
                 </Typography>
 
                 <Stack spacing={1.4}>
-                  {[
-                    "n8n workflow .json file",
-                    "Setup documentation",
-                    "Video walkthrough",
-                    "30-day author support",
-                    "Free lifetime updates",
-                    "Commercial use license",
-                  ].map((item) => (
-                    <Stack
-                      key={item}
-                      direction="row"
-                      spacing={1.2}
-                      alignItems="center"
-                    >
-                      <Check size={15} color="#10b981" />
+                  {PURCHASEITEMS.map((item) => {
+                    const Icon = item.icon;
 
-                      <Typography
-                        sx={{
-                          fontSize: 14,
-                          color: "#ffffff",
-                          fontWeight: 500,
-                        }}
+                    return (
+                      <Stack
+                        key={item.label}
+                        direction="row"
+                        spacing={1.5}
+                        alignItems="center"
                       >
-                        {item}
-                      </Typography>
-                    </Stack>
-                  ))}
+                        <Box
+                          sx={{
+                            width: 28,
+                            height: 28,
+                            borderRadius: 1.5,
+                            bgcolor: "rgba(16,185,129,0.12)",
+                            border: "1px solid rgba(16,185,129,0.25)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "#10b981",
+                            flexShrink: 0,
+                          }}
+                        >
+                          <Icon size={16} />
+                        </Box>
+
+                        <Typography
+                          sx={{
+                            fontSize: 14,
+                            color: "#ffffff",
+                            fontWeight: 500,
+                          }}
+                        >
+                          {item.label}
+                        </Typography>
+                      </Stack>
+                    );
+                  })}
                 </Stack>
 
                 <Divider sx={{ my: 3, borderColor: "rgba(255,255,255,0.08)" }} />

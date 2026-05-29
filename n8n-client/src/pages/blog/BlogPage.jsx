@@ -77,21 +77,45 @@ const BlogPage = () => {
   return (
     <Box
       sx={{
-        bgcolor: UI.bg,
-        minHeight: "70vh",
-        py: { xs: 4, md: 6 },
+        position: "relative",
+        overflow: "hidden",
+        py: { xs: 5, md: 10 },
+        bgcolor: "#020617",
+        borderBottom: "1px solid rgba(34,197,94,0.14)",
       }}
     >
-      <Container maxWidth="lg">
-        {/* HERO */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: -220,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: { xs: 760, md: 1200 },
+          height: 620,
+          background:
+            "radial-gradient(ellipse, rgba(6,182,212,0.22) 0%, rgba(34,197,94,0.12) 38%, rgba(2,6,23,0) 72%)",
+          filter: "blur(18px)",
+          pointerEvents: "none",
+        }}
+      />
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(180deg, rgba(2,6,23,0.2) 0%, #020617 78%)",
+          pointerEvents: "none",
+        }}
+      />
+      <Container maxWidth="lg" sx={{ position: "relative" }}>
         <Typography
           sx={{
-            color: UI.muted,
-            fontSize: 14,
-            fontWeight: 700,
-            letterSpacing: "0.16em",
+            color: "#22c55e",
+            fontSize: 12,
+            fontWeight: 900,
+            letterSpacing: "0.35em",
             textTransform: "uppercase",
-            mb: 1,
+            mb: 2,
           }}
         >
           Share knowledge
@@ -99,12 +123,13 @@ const BlogPage = () => {
 
         <Typography
           sx={{
-            color: UI.text,
-            fontSize: { xs: 34, md: 44 },
-            fontWeight: 800,
-            lineHeight: 1.1,
+            color: "#f8fafc",
+            fontSize: { xs: 42, md: 60 },
+            fontWeight: 900,
+            lineHeight: 1,
+            letterSpacing: "-0.04em",
+            mb: 2.5,
             fontFamily: "Georgia, serif",
-            mb: 1.5,
           }}
         >
           Blogs & Resources
@@ -112,21 +137,19 @@ const BlogPage = () => {
 
         <Typography
           sx={{
-            color: UI.sub,
+            color: "rgba(226,232,240,0.82)",
             fontSize: { xs: 16, md: 18 },
             lineHeight: 1.7,
             maxWidth: 820,
             mb: 5,
-
             textAlign: "center",
             mx: "auto",
           }}
         >
-          Real-world case studies, n8n feature updates, and in-depth technical guides
-          on AI automation.
+          Real-world case studies, n8n feature updates, and in-depth technical
+          guides on AI automation.
         </Typography>
 
-        {/* SECTION 1 */}
         <BlogFeaturedSection
           blogs={blogs}
           featuredBlog={featuredBlog}
@@ -135,10 +158,8 @@ const BlogPage = () => {
           setActiveType={setActiveType}
         />
 
-        {/* SECTION 2 */}
         <BlogLatestSection blogs={latestBlogs} />
 
-        {/* SECTION 3 */}
         <BlogTagSection tags={tags} />
       </Container>
     </Box>
