@@ -19,13 +19,13 @@ import { BG_COLORS, COLORS } from "../../components/common/Colors";
 import { ButtonEdit } from "../../components/common/ButtonEdit";
 import { LoadingPage } from "../bases/LoadingPage";
 import { ROUTES, ROUTES_GEN } from "../../configs/routes";
+import ButtonDelete from "../../components/common/ButtonDelete";
 import CustomPagination from "../../components/pagination/CustomPagination";
+import DialogDeleteAlert from "../../components/dialog/DialogDeleteAlert";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import StackRow from "../../components/common/StackRow";
 
 import blogApi from "../../api/blog.api";
-import DialogDeleteAlert from "../../components/dialog/DialogDeleteAlert";
-import ButtonDelete from "../../components/common/ButtonDelete";
 
 const BlogListPage = () => {
   const navigate = useNavigate();

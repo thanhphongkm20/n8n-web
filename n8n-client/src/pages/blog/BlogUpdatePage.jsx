@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react";
-
 import { Box, Button, Stack } from "@mui/material";
 import { Save } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { LoadingPage } from "../bases/LoadingPage";
+import { ROUTES } from "../../configs/routes.js";
+import { showSuccess, showError } from "../../utils/toast";
+import { slugify } from "../../utils/slugify.js";
 import BasicInformation from "../../components/blog/BasicInformation";
-import SeoSettings from "../../components/blog/SeoSettings";
+import blogValidationSchema from "../../validation/blog.validation.js";
 import PublishSidebar from "../../components/blog/PublishSidebar";
-import ThumbnailUpload from "../../components/blog/ThumbnailUpload";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
+import SeoSettings from "../../components/blog/SeoSettings";
+import ThumbnailUpload from "../../components/blog/ThumbnailUpload";
 
 import blogApi from "../../api/blog.api";
-import blogValidationSchema from "../../validation/blog.validation.js";
-import { ROUTES } from "../../configs/routes.js";
-import { slugify } from "../../utils/slugify.js";
-import { showSuccess, showError } from "../../utils/toast";
 
 const trimFields = [
   "title",

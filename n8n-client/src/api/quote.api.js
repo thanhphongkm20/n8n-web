@@ -10,6 +10,7 @@ const quoteApi = {
   requestQuote: (data) => {
     return callApi("post", quoteEndpoints.base, data);
   },
+  
   list: (query = {}) => {
     const queryString = generateQueryString(query);
     return callApi("get", `${quoteEndpoints.base}?${queryString}`);

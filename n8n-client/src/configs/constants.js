@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 
 import { createTheme } from "@mui/material/styles";
+import { COLORS } from "../components/common/Colors";
 
 export const API_URL =
   import.meta.env.VITE_API_URL || "http://127.0.0.1:5000/api/v1/";
@@ -456,3 +457,50 @@ export const N8N_COMMON_NODES = [
   "If / Switch",
   "Set",
 ];
+
+export const OPTIONS = [
+  {
+    id: "is_featured",
+    title: "Featured resource",
+    description: "Pin this resource to the top of listings",
+  },
+  {
+    id: "allow_comments",
+    title: "Allow comments",
+    description: "Let users comment on this resource",
+  },
+  {
+    id: "notify_subscribers",
+    title: "Notify subscribers",
+    description: "Send email notification on publish",
+  },
+];
+
+export const ResourceSTATS = [
+  {
+    value: "48+",
+    label: "Resources published",
+  },
+  {
+    value: "12K+",
+    label: "Total downloads",
+  },
+  {
+    value: "98%",
+    label: "Positive feedback",
+  },
+];
+
+export const COLUMN_SIZE = 2;
+export const VISIBLE_COLUMNS = 4;
+export const VISIBLE_ITEMS = COLUMN_SIZE * VISIBLE_COLUMNS;
+
+export const labelStyle = {
+  fontSize: 16,
+  fontWeight: 600,
+  color: COLORS.BLACK,
+  mb: 1.5,
+  textAlign: "left",
+  display: "block",
+  whiteSpace: "nowrap",
+};

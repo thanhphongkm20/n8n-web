@@ -2,20 +2,10 @@ import { Image as ImageIcon, X } from "lucide-react";
 import { Typography, Box, Paper, IconButton } from "@mui/material";
 import { useRef, useMemo, useEffect } from "react";
 
-import { ARTICLE_STATUS_OPTIONS } from "../../configs/constants";
+import { ARTICLE_STATUS_OPTIONS, labelStyle } from "../../configs/constants";
 import { COLORS } from "../../components/common/Colors";
 import FormLabelField from "../../components/form/FormLabelField";
 import FormSelect from "../../components/form/FormSelect";
-
-const labelStyle = {
-  fontSize: 16,
-  fontWeight: 600,
-  color: COLORS.BLACK,
-  mb: 1.5,
-  textAlign: "left",
-  display: "block",
-  whiteSpace: "nowrap",
-};
 
 const ArticleSidePanel = ({
   formik,

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { LoadingPage } from "../bases/LoadingPage";
 import { ROUTES } from "../../configs/routes.js";
+import { showError, showSuccess } from "../../utils/toast";
 import { slugify } from "../../utils/slugify.js";
 import BasicInformation from "../../components/blog/BasicInformation";
 import blogValidationSchema from "../../validation/blog.validation.js";
@@ -12,7 +13,6 @@ import PublishSidebar from "../../components/blog/PublishSidebar";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import SeoSettings from "../../components/blog/SeoSettings";
 import ThumbnailUpload from "../../components/blog/ThumbnailUpload";
-import { showError, showSuccess } from "../../utils/toast";
 
 import blogApi from "../../api/blog.api";
 

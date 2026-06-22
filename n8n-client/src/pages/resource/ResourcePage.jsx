@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 import { darkTheme } from "../../configs/constants";
 import { LoadingPage } from "../bases/LoadingPage";
+import { ROUTES, ROUTES_GEN } from "../../configs/routes";
 import ResourceFilterBar from "../../components/resource/ResourceFilterBar";
 import ResourceHero from "../../components/resource/ResourceHero";
 import ResourceList from "../../components/resource/ResourceList";
 
 import resourceApi from "../../api/resource.api";
-import { ROUTES, ROUTES_GEN } from "../../configs/routes";
 
 const ResourcesPage = () => {
   const navigate = useNavigate();

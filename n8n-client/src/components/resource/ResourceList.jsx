@@ -3,10 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import ResourceCard from "./ResourceCard";
-
-const COLUMN_SIZE = 2;
-const VISIBLE_COLUMNS = 4;
-const VISIBLE_ITEMS = COLUMN_SIZE * VISIBLE_COLUMNS;
+import { COLUMN_SIZE, VISIBLE_ITEMS } from "../../configs/constants";
 
 const ResourceList = ({ loading, resources = [], onViewDetail }) => {
   const [startIndex, setStartIndex] = useState(0);

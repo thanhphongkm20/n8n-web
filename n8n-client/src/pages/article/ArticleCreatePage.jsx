@@ -11,13 +11,13 @@ import { showError, showSuccess } from "../../utils/toast";
 import ArticleDescriptionField from "../../components/article/ArticleDescriptionField";
 import ArticleSidePanel from "../../components/article/ArticleSidePanel";
 import FormLabelField from "../../components/form/FormLabelField";
+import MarketplaceSettings from "../../components/article/MarketplaceSettings";
 import MPaper from "../../components/common/MPaper";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import WorkflowDataUpload from "../../components/article/WorkflowDataUpload";
 
 import articleApi from "../../api/article.api";
 import validationSchema from "../../validation/article.validation";
-import MarketplaceSettings from "../../components/article/MarketplaceSettings";
 
 const ArticleCreatePage = () => {
   const [workflowFile, setWorkflowFile] = useState(null);

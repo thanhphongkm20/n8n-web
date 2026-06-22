@@ -9,10 +9,10 @@ import {
 } from "lucide-react";
 
 const ResourceMainContent = ({ resource }) => {
-  const tags = resource?.tags || [];
-  const techStack = resource?.techStack || [];
-  const inside = resource?.inside || [];
-  const related = resource?.related || [];
+  const tags = resource?.tags;
+  const techStack = resource?.techStack;
+  const inside = resource?.inside;
+  const related = resource?.related;
 
   return (
     <Box

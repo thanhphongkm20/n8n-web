@@ -2,24 +2,7 @@ import { Box, Divider, Paper, Switch, Typography } from "@mui/material";
 import { SlidersHorizontal } from "lucide-react";
 
 import StackRow from "../common/StackRow";
-
-const OPTIONS = [
-  {
-    id: "is_featured",
-    title: "Featured resource",
-    description: "Pin this resource to the top of listings",
-  },
-  {
-    id: "allow_comments",
-    title: "Allow comments",
-    description: "Let users comment on this resource",
-  },
-  {
-    id: "notify_subscribers",
-    title: "Notify subscribers",
-    description: "Send email notification on publish",
-  },
-];
+import { OPTIONS } from "../../configs/constants";
 
 const Options = ({ formik }) => {
   return (

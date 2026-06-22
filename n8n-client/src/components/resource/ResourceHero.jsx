@@ -1,20 +1,5 @@
 import { Box, Chip, Container, Grid, Typography } from "@mui/material";
-import { UI } from "../../configs/constants";
-
-const STATS = [
-  {
-    value: "48+",
-    label: "Resources published",
-  },
-  {
-    value: "12K+",
-    label: "Total downloads",
-  },
-  {
-    value: "98%",
-    label: "Positive feedback",
-  },
-];
+import { ResourceSTATS, UI } from "../../configs/constants";
 
 const ResourceHero = () => {
   return (
@@ -109,7 +94,7 @@ const ResourceHero = () => {
                 gap: 3,
               }}
             >
-              {STATS.map((item) => (
+              {ResourceSTATS.map((item) => (
                 <Box
                   key={item.label}
                   sx={{

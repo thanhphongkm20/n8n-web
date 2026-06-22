@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import ResourceImg from "../../components/resource/ResourceImg";
 import ResourceMainContent from "../../components/resource/ResourceMainContent";
 import ResourceSidebar from "../../components/resource/ResourceSidebar";
+
 import resourceApi from "../../api/resource.api";
 
 const ResourceDetailPage = () => {

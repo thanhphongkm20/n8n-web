@@ -7,21 +7,21 @@ import {
   Stack,
 } from "@mui/material";
 import { useFormik } from "formik";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { LoadingPage } from "../bases/LoadingPage";
+import { ROUTES } from "../../configs/routes";
+import { showError, showSuccess } from "../../utils/toast";
 import BasicInformation from "../../components/resource/BasicInformation";
 import Classification from "../../components/resource/Classification";
 import LinksDownloads from "../../components/resource/Linksdownloads";
 import Options from "../../components/resource/Options";
 import RouteBreadcrumbs from "../../components/common/RouteBreadcrumbs";
 import Thumbnail from "../../components/resource/Thumbnail";
-import { showError, showSuccess } from "../../utils/toast";
 
 import resourceApi from "../../api/resource.api";
 import resourceValidationSchema from "../../validation/resource.validation";
-import { ROUTES } from "../../configs/routes";
 
 const ResourceCreatePage = () => {
   const [loading, setLoading] = useState(false);
