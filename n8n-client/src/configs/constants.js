@@ -51,11 +51,6 @@ export const ROLES = {
 
 export const FONT_SIZES = ["12px", "14px", "16px", "18px", "20px"];
 
-export const ARTICLE_STATUS_OPTIONS = [
-  { title: "Draft", value: STATUS.DRAFT },
-  { title: "Published", value: STATUS.PUBLISHED },
-];
-
 export const BUDGET_OPTIONS = [
   { title: "Under $2,000", value: "under_2k" },
   { title: "$2,000 - $5,000", value: "2k_5k" },
@@ -212,13 +207,6 @@ export const faqs = [
     answer:
       "You can follow the included documentation and walkthrough. If you still have trouble, support is available to help you complete the setup.",
   },
-];
-
-export const levels = [
-  { label: "Yếu", color: "error", value: 25 },
-  { label: "Trung bình", color: "warning", value: 50 },
-  { label: "Khá mạnh", color: "info", value: 75 },
-  { label: "Mạnh", color: "success", value: 100 },
 ];
 
 export const STACKS = [

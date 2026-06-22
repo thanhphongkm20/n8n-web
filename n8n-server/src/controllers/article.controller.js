@@ -295,3 +295,28 @@ Title: "${title}"
     return res.json({ slug });
   }
 };
+
+// ================= CATEGORIES =================
+export const getCategories = async (req, res) => {
+  try {
+    const categories = await service.getCategories();
+    return res.json({ success: true, categories });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+export const createCategory = async (req, res) => {
+  try {
+    const { name } = req.body;
+    if (!name || !String(name).trim()) {
+      return res.status(400).json({ message: "Category name is required" });
+    }
+
+    const created = await service.createCategory(name, req.user?._id || req.user?.id);
+
+    return res.status(201).json({ success: true, category: created });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};

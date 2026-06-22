@@ -3,6 +3,7 @@ import { generateQueryString } from "./user.api";
 
 const articleEndpoints = {
   list: "articles/",
+  categories: "articles/categories",
   byId: (id) => `articles/${id}`,
   bySlug: (slug) => `articles/slug/${slug}`,
   generateSlug: "articles/generate-slug",
@@ -32,6 +33,14 @@ const articleApi = {
 
   generateSlug: (title) => {
     return callApi("post", articleEndpoints.generateSlug, { title });
+  },
+
+  getCategories: () => {
+    return callApi("get", articleEndpoints.categories);
+  },
+
+  createCategory: (name) => {
+    return callApi("post", articleEndpoints.categories, { name });
   },
 
   remove: (id) => {

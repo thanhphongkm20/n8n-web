@@ -76,9 +76,6 @@ const HomeMainContent = () => {
         >
           <Animate type="fade">
             <Stack
-              alignItems="center"
-              justifyContent="center"
-              textAlign="center"
               sx={{
                 width: "100%",
                 maxWidth: 980,
@@ -167,8 +164,6 @@ const HomeMainContent = () => {
               </Typography>
               <Stack
                 direction="row"
-                alignItems="center"
-                justifyContent="center"
                 sx={{
                   mt: 7,
                   width: "100%",

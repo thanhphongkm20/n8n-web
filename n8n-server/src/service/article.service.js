@@ -1,4 +1,5 @@
 import Article from "../models/article.model.js";
+import Category from "../models/category.model.js";
 
 export const isSlugTaken = async (slug) => {
   return Boolean(await Article.exists({ slug }));
@@ -56,4 +57,19 @@ export const getArticles = async (query) => {
   const total = await Article.countDocuments(filter);
 
   return { posts, total };
+};
+
+export const getCategories = async () => {
+  return await Article.distinct("category");
+};
+
+export const createCategory = async (name, userId) => {
+  // ensure normalized name
+  const trimmed = String(name || "").trim();
+  if (!trimmed) return null;
+
+  const existing = await Category.findOne({ name: trimmed });
+  if (existing) return existing;
+
+  return await Category.create({ name: trimmed, created_by: userId });
 };

@@ -2,7 +2,7 @@ import { Image as ImageIcon, X } from "lucide-react";
 import { Typography, Box, Paper, IconButton } from "@mui/material";
 import { useRef, useMemo, useEffect } from "react";
 
-import { ARTICLE_STATUS_OPTIONS, labelStyle } from "../../configs/constants";
+import { STATUS, labelStyle } from "../../configs/constants";
 import { COLORS } from "../../components/common/Colors";
 import FormLabelField from "../../components/form/FormLabelField";
 import FormSelect from "../../components/form/FormSelect";
@@ -201,7 +201,7 @@ const ArticleSidePanel = ({
         <FormSelect
           id="status"
           title="ARTICLE STATUS"
-          data={ARTICLE_STATUS_OPTIONS}
+          data={STATUS}
           form={formik}
           placeholder="Select Status"
           backgroundColor="#fff"

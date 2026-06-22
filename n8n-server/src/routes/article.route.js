@@ -11,6 +11,7 @@ import { upload } from "../middlewares/upload.middleware.js";
 const router = express.Router();
 
 router.get("/", controller.getList);
+router.get("/categories", controller.getCategories);
 router.get("/slug/:slug", controller.getBySlug);
 router.get("/:id", controller.getDetail);
 
@@ -36,6 +37,8 @@ router.post(
   validateRequest(createArticleSchema),
   controller.create,
 );
+
+router.post("/categories", adminTokenRequired, controller.createCategory);
 
 router.put(
   "/:id",

@@ -13,29 +13,39 @@ import { useNavigate } from "react-router-dom";
 import articleApi from "../../api/article.api";
 import { ROUTES, ROUTES_GEN } from "../../configs/routes";
 import { LoadingPage } from "../../pages/bases/LoadingPage";
-import { CATEGORIES } from "../../configs/constants";
 
 const ArticleHomePage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+  const [categories, setCategories] = useState(["All"]);
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await articleApi.list();
-        setArticles(response?.success && Array.isArray(response.posts) ? response.posts : []);
+        const [articlesRes, categoriesRes] = await Promise.all([
+          articleApi.list(),
+          articleApi.getCategories(),
+        ]);
+
+        setArticles(articlesRes?.success && Array.isArray(articlesRes.posts) ? articlesRes.posts : []);
+
+        const backendCategories = Array.isArray(categoriesRes?.categories)
+          ? categoriesRes.categories.filter((item) => Boolean(item)).map((item) => String(item))
+          : [];
+
+        setCategories(["All", ...Array.from(new Set(backendCategories))]);
       } catch (error) {
-        console.error("Failed to fetch articles:", error);
+        console.error("Failed to fetch articles or categories:", error);
         setArticles([]);
       } finally {
         setIsLoading(false);
       }
     };
-    fetchArticles();
+    fetchData();
   }, []);
 
   const filteredArticles = useMemo(() => {
@@ -125,18 +135,20 @@ const ArticleHomePage = () => {
                 color: "rgba(226,232,240,0.45)",
               },
             }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search size={18} color="#64748b" />
-                </InputAdornment>
-              ),
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search size={18} color="#64748b" />
+                  </InputAdornment>
+                ),
+              },
             }}
           />
         </Box>
 
         <Box sx={{ display: "flex", gap: 1.2, flexWrap: "wrap", mb: 4 }}>
-          {CATEGORIES.map((item) => (
+          {categories.map((item) => (
             <Chip
               key={item}
               label={item}

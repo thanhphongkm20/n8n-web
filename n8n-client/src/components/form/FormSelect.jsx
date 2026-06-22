@@ -17,6 +17,23 @@ const getOptionValue = (option) => (
     : option.id
 );
 
+const normalizeData = (data) => {
+  // If data is an array, return as-is
+  if (Array.isArray(data)) {
+    return data;
+  }
+  
+  // If data is an object, convert to array format
+  if (data && typeof data === "object") {
+    return Object.entries(data).map(([key, value]) => ({
+      title: key.charAt(0).toUpperCase() + key.slice(1).toLowerCase(),
+      value: value,
+    }));
+  }
+  
+  return [];
+};
+
 const FormSelect = ({
   id,
   form = { values: {}, touched: {}, errors: {}, handleChange: () => { } },
@@ -34,8 +51,9 @@ const FormSelect = ({
 }) => {
   const hasError = form.touched[id] && Boolean(form.errors[id]);
   const rawValue = value !== undefined ? value : form.values[id];
+  const normalizedData = normalizeData(data);
 
-  const isValidValue = data.some(
+  const isValidValue = normalizedData.some(
     (option) => getOptionValue(option) === rawValue
   );
 
@@ -114,7 +132,7 @@ const FormSelect = ({
               </MenuItem>
             )}
 
-            {data.map((option, index) => (
+            {normalizedData.map((option, index) => (
               <MenuItem
                 key={index}
                 value={getOptionValue(option)}

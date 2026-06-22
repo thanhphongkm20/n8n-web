@@ -1,8 +1,37 @@
-import { Box, Stack, Typography, Switch } from "@mui/material";
+import { Box, Stack, Typography, Switch, Autocomplete, TextField } from "@mui/material";
 import FormSelect from "../form/FormSelect";
-import { BADGE_OPTIONS, CATEGORY_OPTIONS } from "../../configs/constants";
+import { BADGE_OPTIONS } from "../../configs/constants";
+import articleApi from "../../api/article.api";
+import { useEffect, useState } from "react";
 
 const MarketplaceSettings = ({ formik }) => {
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const res = await articleApi.getCategories();
+        const categories = (res?.categories || []).map((c) => String(c));
+        if (mounted) setOptions(Array.from(new Set(categories)));
+      } catch {
+        // ignore
+      }
+    })();
+    return () => (mounted = false);
+  }, []);
+
+  const handleCreateCategory = async (name) => {
+    try {
+      const res = await articleApi.createCategory(name);
+      const created = res?.category?.name || name;
+      setOptions((prev) => Array.from(new Set([...(prev || []), created])));
+      return created;
+    } catch {
+      return name;
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -18,12 +47,41 @@ const MarketplaceSettings = ({ formik }) => {
       </Typography>
 
       <Stack spacing={2.5}>
-        <FormSelect
-          id="category"
-          title="CATEGORY"
-          data={CATEGORY_OPTIONS}
-          form={formik}
-          backgroundColor="#fff"
+        <Autocomplete
+          freeSolo
+          options={options}
+          value={formik.values.category || ""}
+          onChange={async (e, newValue) => {
+            if (!newValue) {
+              formik.setFieldValue("category", "");
+              return;
+            }
+
+            // If the value is new (not in options), create it on backend
+            const isExisting = options.includes(newValue);
+            const finalValue = isExisting ? newValue : await handleCreateCategory(newValue);
+            formik.setFieldValue("category", finalValue);
+          }}
+          onInputChange={(e, newInput) => {
+            // update form value as user types
+            formik.setFieldValue("category", newInput);
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="CATEGORY"
+              placeholder="Type or select category"
+              variant="outlined"
+              sx={{ backgroundColor: "#fff" }}
+              onBlur={async () => {
+                const current = formik.values.category || "";
+                if (current && !options.includes(current)) {
+                  const created = await handleCreateCategory(current);
+                  formik.setFieldValue("category", created);
+                }
+              }}
+            />
+          )}
         />
 
         <FormSelect
