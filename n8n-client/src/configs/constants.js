@@ -396,18 +396,6 @@ export const BADGE_OPTIONS = [
   { title: "None", value: "none" },
 ];
 
-export const CATEGORIES = [
-  "All",
-  "Marketing",
-  "AI",
-  "CRM",
-  "Data",
-  "E-commerce",
-  "Productivity",
-  "Sales",
-  "Finance",
-];
-
 export const PURCHASEITEMS = [
   {
     icon: FileJson,
