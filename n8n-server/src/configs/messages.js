@@ -54,11 +54,8 @@ export const ORDER_MESSAGES = {
 export const ARTICLE_MESSAGES = {
   IMAGE_REQUIRED: "Image is required",
   TITLE_REQUIRED: "Title is required",
-
   ARTICLE_NOT_FOUND: "Article not found",
-
   EMPTY_AI_RESPONSE: "Empty AI response",
-
   CREATE_FAILED: "Failed to create article",
   UPDATE_FAILED: "Failed to update article",
   DELETE_FAILED: "Failed to delete article",
@@ -84,8 +81,6 @@ export const RESOURCE_MESSAGES = {
 export const SUBSCRIBE_MESSAGES = {
   EMAIL_REQUIRED: "Email is required",
   INVALID_EMAIL: "Invalid email",
-
   SUBSCRIBE_SUCCESS: "Subscribed successfully",
-
   INTERNAL_SERVER_ERROR: "Internal server error",
 };
