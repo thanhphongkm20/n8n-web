@@ -1,9 +1,7 @@
-name: 🚀 Production CI/CD (Optimized)
+name: 🚀 CD (Deploy to Production)
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
     branches: ["main"]
 
 concurrency:
@@ -13,81 +11,14 @@ concurrency:
 env:
   REGISTRY: docker.io
   IMAGE_TAG: ${{ github.sha }}
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   # =========================
-  # 1️⃣ BACKEND CI
-  # =========================
-  backend-ci:
-    name: Backend CI
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
-      - name: Cache Yarn
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.yarn/cache
-            n8n-server/.yarn/cache
-          key: ${{ runner.os }}-backend-${{ hashFiles('n8n-server/yarn.lock') }}
-
-      - name: Install deps
-        run: |
-          corepack enable
-          cd n8n-server
-          yarn install --immutable
-
-      - name: Validate backend entry syntax
-        run: cd n8n-server && node --check index.js
-
-  # =========================
-  # 2️⃣ FRONTEND CI
-  # =========================
-  frontend-ci:
-    name: Frontend CI
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
-      - name: Cache Yarn
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.yarn/cache
-            n8n-client/.yarn/cache
-          key: ${{ runner.os }}-frontend-${{ hashFiles('n8n-client/yarn.lock') }}
-
-      - name: Install deps
-        run: |
-          corepack enable
-          cd n8n-client
-          yarn install --immutable
-
-      - name: Setup Environment
-        run: |
-          cd n8n-client
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > .env.production
-
-      - name: Build
-        run: cd n8n-client && yarn build
-
-  # =========================
-  # 3️⃣ BUILD & PUSH DOCKER
+  # 1️⃣ BUILD & PUSH DOCKER
   # =========================
   docker-build:
     name: Build & Push
     runs-on: ubuntu-24.04
-    needs: [backend-ci, frontend-ci]
     strategy:
       matrix:
         include:
@@ -100,11 +31,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Create Production Env for Frontend
         if: matrix.name == 'frontend'
         run: |
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > ./n8n-client/.env.production
-          echo "✅ Created .env.production with URL: ${{ secrets.VITE_API_URL }}"
+          echo "✅ Created .env.production for frontend build"
 
       - uses: docker/setup-buildx-action@v3
 
@@ -124,7 +56,7 @@ jobs:
           cache-to: type=gha,mode=max
 
   # =========================
-  # 4️⃣ SECURITY SCAN
+  # 2️⃣ SECURITY SCAN
   # =========================
   image-scan:
     name: Trivy Scan
@@ -140,25 +72,39 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - id: date
+        run: echo "today=$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+
+      # Cache Trivy vulnerability DB để tránh tải lại mỗi lần chạy
+      # (tránh bị GitHub Container Registry rate-limit khi chạy nhiều lần/ngày về lâu dài)
+      - name: Cache Trivy DB
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/trivy
+          key: trivy-db-${{ steps.date.outputs.today }}
+          restore-keys: trivy-db-
+
       - name: Scan image
         run: |
+          mkdir -p ~/.cache/trivy
           docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "$HOME/.docker:/root/.docker:ro" \
+            -v "$HOME/.cache/trivy:/root/.cache/trivy" \
             aquasec/trivy:0.53.0 image \
             --severity CRITICAL,HIGH \
             --ignore-unfixed \
-            --exit-code 0 \
+            --exit-code 1 \
             ${{ secrets.DOCKER_USERNAME }}/${{ matrix.image_name }}:${{ env.IMAGE_TAG }}
 
   # =========================
-  # 5️⃣ DEPLOY (WITH FIXED ENV & ROLLBACK)
+  # 3️⃣ DEPLOY (WITH ROLLBACK)
   # =========================
   deploy:
     name: Deploy with rollback
     runs-on: self-hosted
     needs: image-scan
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -189,8 +135,18 @@ jobs:
           setup_env
 
           echo "Backup current version"
-          docker tag $IMAGE_BACKEND:latest backup-backend:latest || true
-          docker tag $IMAGE_FRONTEND:latest backup-frontend:latest || true
+          # Backup theo image ID của container ĐANG chạy thật sự, không dựa vào tag ":latest"
+          # local (tag này không được compose cập nhật vì deploy luôn pull theo SHA tag).
+          if docker inspect n8n-backend >/dev/null 2>&1; then
+            docker tag "$(docker inspect --format='{{.Image}}' n8n-backend)" backup-backend:latest
+          else
+            echo "No running backend container found, skipping backup."
+          fi
+          if docker inspect n8n-frontend >/dev/null 2>&1; then
+            docker tag "$(docker inspect --format='{{.Image}}' n8n-frontend)" backup-frontend:latest
+          else
+            echo "No running frontend container found, skipping backup."
+          fi
 
           echo "Deploying version: $IMAGE_TAG"
           docker compose -f docker-compose.prod.yml --env-file .env.production up -d --pull always
@@ -202,15 +158,15 @@ jobs:
           rollback() {
             echo "❌ $1"
             setup_env
-            if docker image inspect backup-backend:latest >/dev/null 2>&1; then
+            if docker image inspect backup-backend:latest >/dev/null 2>&1 && docker image inspect backup-frontend:latest >/dev/null 2>&1; then
               echo "Rolling back to previous version..."
               docker compose -f docker-compose.prod.yml down
-              docker tag backup-backend:latest $IMAGE_BACKEND:latest
-              docker tag backup-frontend:latest $IMAGE_FRONTEND:latest
-              IMAGE_TAG=latest docker compose -f docker-compose.prod.yml --env-file .env.production up -d
+              docker tag backup-backend:latest "$IMAGE_BACKEND:rollback"
+              docker tag backup-frontend:latest "$IMAGE_FRONTEND:rollback"
+              IMAGE_TAG=rollback docker compose -f docker-compose.prod.yml --env-file .env.production up -d
             else
-              echo "⚠️ No backup found. Checking logs..."
-              docker compose -f docker-compose.prod.yml logs --tail=20
+              echo "⚠️ No backup found (likely first deploy). Checking logs..."
+              docker compose -f docker-compose.prod.yml logs --tail=50
             fi
             exit 1
           }
@@ -230,13 +186,15 @@ jobs:
           echo "✅ Deploy successful!"
 
   # =========================
-  # 6️⃣ NOTIFY
+  # 4️⃣ NOTIFY
   # =========================
   notify:
     name: Notify
     runs-on: self-hosted
     needs: deploy
-    if: always()
+    # always() bỏ qua kết quả needs mặc định, nên phải tự loại trừ trường hợp deploy bị skip
+    # (ví dụ khi docker-build hoặc image-scan fail khiến deploy không chạy)
+    if: always() && needs.deploy.result != 'skipped'
     timeout-minutes: 2
     steps:
       - name: Send Email
@@ -247,7 +205,7 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "🚀 Deploy Status: ${{ needs.deploy.result }}"
-          to: your@email.com
+          to: ${{ secrets.NOTIFY_EMAIL }}
           from: GitHub Actions
           secure: true
           body: |

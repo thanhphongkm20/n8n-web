@@ -1,0 +1,109 @@
+name: ✅ CI
+
+on:
+  push:
+    branches-ignore: ["main"]
+  pull_request:
+    branches: ["main"]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  # =========================
+  # 1️⃣ BACKEND CI
+  # =========================
+  backend-ci:
+    name: Backend CI
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Cache Yarn
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.yarn/cache
+            n8n-server/.yarn/cache
+          key: ${{ runner.os }}-backend-${{ hashFiles('n8n-server/yarn.lock') }}
+
+      - name: Install deps
+        run: |
+          corepack enable
+          cd n8n-server
+          yarn install --immutable
+
+      - name: Validate backend entry syntax
+        run: cd n8n-server && node --check index.js
+
+  # =========================
+  # 2️⃣ FRONTEND CI
+  # =========================
+  frontend-ci:
+    name: Frontend CI
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Cache Yarn
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.yarn/cache
+            n8n-client/.yarn/cache
+          key: ${{ runner.os }}-frontend-${{ hashFiles('n8n-client/yarn.lock') }}
+
+      - name: Install deps
+        run: |
+          corepack enable
+          cd n8n-client
+          yarn install --immutable
+
+      - name: Lint (fast fail-fast check)
+        run: cd n8n-client && yarn lint
+
+  # =========================
+  # 3️⃣ DOCKER BUILD CHECK (no push)
+  # =========================
+  docker-build-check:
+    name: Docker Build Check
+    runs-on: ubuntu-24.04
+    needs: [backend-ci, frontend-ci]
+    strategy:
+      matrix:
+        include:
+          - name: backend
+            context: ./n8n-server
+          - name: frontend
+            context: ./n8n-client
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Production Env for Frontend
+        if: matrix.name == 'frontend'
+        run: echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" > ./n8n-client/.env.production
+
+      - uses: docker/setup-buildx-action@v3
+
+      # Chỉ build để bắt lỗi Dockerfile/dependency sớm, KHÔNG push image lên registry
+      # (việc build & push thật sự chỉ diễn ra ở CD sau khi merge vào main)
+      - name: Build image (validate only)
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
