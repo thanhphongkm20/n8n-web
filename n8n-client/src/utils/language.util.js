@@ -6,6 +6,10 @@ const LANGUAGE = {
   GENERAL: {
     REQUIRED: "Required",
     EMAIL_ADDRESS: "Email address",
+    PASSWORD: "Password",
+    FIRST_NAME: "First name",
+    LAST_NAME: "Last name",
+    FULL_NAME: "Full name",
   },
 
   USER: {
